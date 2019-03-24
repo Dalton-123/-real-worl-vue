@@ -26,7 +26,10 @@ export default {
   },
   methods: {
     logout() {
-      fireba.auth().signOut().then(() => this.$router.push("/login"));
+      firebase
+        .auth()
+        .signOut()
+        .then(() => this.$router.push("/login"));
     }
   },
   created(){
