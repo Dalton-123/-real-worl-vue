@@ -17,6 +17,10 @@ navbar
     }
   }
 </script>
-<style>
 
+
+<style>
+body{
+  background-color: #ddd;
+}
 </style>
