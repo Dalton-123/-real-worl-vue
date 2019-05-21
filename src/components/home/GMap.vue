@@ -1,48 +1,36 @@
 <template>
-    <div class="map">
+    <div class="map testStep1">
         <div class="google-map" id="map"></div>
-        <h1>Map</h1>
+
+        <but></but>
+        <cor></cor>
     </div>
 </template>
 
 <script>
-    import firebase from 'firebase'
+    import cor from '@/components/frames/corousel'
+    import but from '@/components/frames/buttons'
     export default {
         name: "GMap",
-        data(){
-            return{
-                lat:53,
-                lng:-2
-            }
+        components:{
+            cor,but
         },
-        methods:{
-            renderMap(){
-               // const map = new google.maps.Map(document.getElementById('map'),{
-               //     center:{lat:this,lng:this.lng},
-               //     zoom:6,
-               //     maxZoom:15,
-               //     minZoom:3,
-               //     streetViewControl:false
-               //
-               // })
-
-            }
-        },
-        mounted(){
-            this.renderMap()
-            // console.log(firebase.auth().currentUser)
+        data() {
+            return {}
         }
+
     }
 </script>
 
 <style scoped>
-/*.google-map{*/
-    /*width:100%;*/
-    /*height:100%;*/
-    /*!*margin:0 auto;*!*/
-    /*background: #fff;*/
-    /*position: absolute;*/
-    /*!*top:0;*!*/
-    /*left:0;*/
-/*}*/
+    .testStep1{
+        background-image: url('../../../public/space.jpg');
+        width: 1500px;
+        height: 1000px;
+       margin-top: 0px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
+    }
 </style>

@@ -1,25 +1,27 @@
 <template>
-  <div class="signup container">
-    <form @submit.prevent="signup" class="card-panel">
-      <h2 class="center deep-purple-text">Signup</h2>
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="text" name="email" v-model="email" />
-      </div>
-      <div class="field">
-        <label for="password">Password</label>
-        <input type="password" name="password" v-model="password" />
-      </div>
-      <div class="field">
-        <label for="alias">Alias</label>
-        <input type="text" name="alias" v-model="alias" />
-      </div>
-      <p v-if="feedback" class="red-text center">{{ feedback }}</p>
-      <div class="field center">
-        <button class="btn deep-purple">Signup</button>
-      </div>
-    </form>
-  </div>
+ <div class="testStep1">
+   <div class="signup container ">
+     <form @submit.prevent="signup" class="card-panel">
+       <h2 class="center test">Signup</h2>
+       <div class="field">
+         <label for="email">Email</label>
+         <input type="text" name="email" v-model="email" />
+       </div>
+       <div class="field">
+         <label for="password">Password</label>
+         <input type="password" name="password" v-model="password" />
+       </div>
+       <div class="field">
+         <label for="alias">Alias</label>
+         <input type="text" name="alias" v-model="alias" />
+       </div>
+       <p v-if="feedback" class="red-text center">{{ feedback }}</p>
+       <div class="field center">
+         <button @click="signup" class="uk-button uk-button-default uk-button-small tests">Signup</button>
+       </div>
+     </form>
+   </div>
+ </div>
 </template>
 
 <script>
@@ -89,4 +91,23 @@ export default {
 .signup.field {
   margin-bottom: 16px;
 }
+
+ .testStep1{
+   background-image: url('../../../public/space.jpg');
+   width: 1500px;
+   height: 1000px;
+   margin-top: 0px;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   position: fixed;
+ }
+  .test{
+    /*color: #F44336;*/
+  }
+  .tests{
+    background: #F44336;
+    height: 50px;
+    width: 100px;
+  }
 </style>

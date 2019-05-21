@@ -1,9 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
-// import welcome from "./components/Welcome.vue";
-// import Chat from "./components/Chat.vue";
-// import eventlist from "./views/EventList.vue";
-// import eventCreate from "./views/EventCreate.vue";
+
+
+
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+import 'uikit/dist/css/uikit.css'
+UIkit.use(Icons);
+
+
 import GMap from "./components/home/GMap.vue";
 import Singup from "./components/auth/Signup.vue";
 import logins from "./components/auth/login.vue";

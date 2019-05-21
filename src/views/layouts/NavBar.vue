@@ -1,14 +1,15 @@
 <template>
   <div class="navbar">
-    <nav class="deep-purple darken-1">
+    <nav class="test">
       <div class="container">
-        <router-link :to="{ name: 'GMap' }" class="brand-logo left"
-          ><img src="@/assets/logo.png" style="width: 80px;padding-left: 50px" alt=""> Muscle Crab</router-link>
+        <router-link :to="{ name: 'GMap' }" class="brand-logo left">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzmrga1rLMfSbwLGHoNXhwMcS__9vHP3JXq0JY74jaUEFyXLza" style="width: 40px;padding-left: 10px" alt=""> Meme Galleries</router-link>
         <ul class="right">
-          <li v-if="!user"><router-link to="/signup">Signup</router-link></li>
-          <li v-if="!user"><router-link :to="{ name: 'login' }">Login</router-link></li>
-          <li v-if="user"><a>{{user.email}}</a></li>
-          <li v-if="user"><a href="" @click="logout">logout</a></li>
+          <li v-if="!user"><router-link to="/signup"><span class="" uk-icon="sign-in"></span>Signup</router-link></li>
+          <li v-if="!user"><router-link :to="{ name: 'login' }"><span class="" uk-icon="unlock"></span>Login</router-link></li>
+          <li v-if="user"><span class="" uk-icon="user"></span>{{user.email}}</li>
+          <li v-if="user"><a href="" @click="logout"><span class="" uk-icon="sign-out"></span>logout</a></li>
+
         </ul>
       </div>
     </nav>
@@ -44,4 +45,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .test{
+    background: #F44336;;
+  }
+  /*span{*/
+  /*  padding-right: 10px;*/
+
+
+  /*}*/
+</style>

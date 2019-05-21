@@ -37,27 +37,19 @@ export default {
   created() {
     //get current current user
     let ref = db.collection("users");
-    ref
-      .where("user_id", "==", firebase.auth().currentUser.uid)
-      .get()
-      .then(snapshot => {
+    ref.where("user_id", "==", firebase.auth().currentUser.uid).get().then(snapshot => {
         snapshot.forEach(doc => {
           (this.user = doc.data()), (this.user.id = doc.id);
           console.log(this.user);
         });
       });
     //profile data
-    ref
-      .doc(this.$route.params.id)
-      .get()
-      .then(user => {
+    ref.doc(this.$route.params.id).get().then(user => {
         this.profile = user.data();
       });
 
     //comments
-    db.collection("comments")
-      .where("to", '==', this.$route.params.id)
-      .onSnapshot(snapshot => {
+    db.collection("comments").where("to", '==', this.$route.params.id).onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
           if (change.type == "added") {
             this.comments.unshift({
