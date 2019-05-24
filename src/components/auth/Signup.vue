@@ -92,16 +92,16 @@ export default {
   margin-bottom: 16px;
 }
 
- .testStep1{
-   background-image: url('../../../public/space.jpg');
-   width: 1500px;
-   height: 1000px;
-   margin-top: 0px;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-   position: fixed;
- }
+ /*.testStep1{*/
+ /*  background-image: url('../../../public/space.jpg');*/
+ /*  width: 1500px;*/
+ /*  height: 1000px;*/
+ /*  margin-top: 0px;*/
+ /*  background-position: center;*/
+ /*  background-repeat: no-repeat;*/
+ /*  background-size: cover;*/
+ /*  position: fixed;*/
+ /*}*/
   .test{
     /*color: #F44336;*/
   }
