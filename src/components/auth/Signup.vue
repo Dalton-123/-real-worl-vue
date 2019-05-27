@@ -12,6 +12,10 @@
          <input type="password" name="password" v-model="password" />
        </div>
        <div class="field">
+         <label for="">Phone Number</label>
+         <input v-model.number="number" type="number">
+       </div>
+       <div class="field">
          <label for="alias">Alias</label>
          <input type="text" name="alias" v-model="alias" />
        </div>
@@ -35,13 +39,14 @@ export default {
       email: null,
       password: null,
       alias: null,
+      number:null,
       feedback: null,
       slug: null
     };
   },
   methods: {
     signup() {
-      if (this.alias && this.email && this.password) {
+      if (this.alias && this.email && this.password&&this.number) {
         this.slug = slugify(this.alias, {
           replacement: "-",
           remove: /[$*_+~.()'"!\-:@]/g,
@@ -56,14 +61,16 @@ export default {
               .auth()
               .createUserWithEmailAndPassword(this.email, this.password)
               .then(creds => {
+                this.$store.dispatch('set_user',{payload:'kjfldsjkdf'})
                 ref.set({
                   alias: this.alias,
+                  Phone:this.number,
                   geolocation: "",
                   user_id: creds.user.uid
                 });
               })
               .then(() => {
-                this.$router.push({ name: "GMap" });
+                this.$router.push({ name: "GMap" ,params:{alias:this.alias}});
               })
               .catch(err => {
                 console.log(err);
@@ -92,16 +99,16 @@ export default {
   margin-bottom: 16px;
 }
 
- /*.testStep1{*/
- /*  background-image: url('../../../public/space.jpg');*/
- /*  width: 1500px;*/
- /*  height: 1000px;*/
- /*  margin-top: 0px;*/
- /*  background-position: center;*/
- /*  background-repeat: no-repeat;*/
- /*  background-size: cover;*/
- /*  position: fixed;*/
- /*}*/
+ .testStep1{
+   background-image: url('../../../public/space.jpg');
+   width: 1500px;
+   height: 1000px;
+   margin-top: 0px;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   position: fixed;
+ }
   .test{
     /*color: #F44336;*/
   }

@@ -24,13 +24,15 @@
 
 <script>
 import firebase from "firebase";
+
 export default {
   name: "login",
   data() {
     return {
       email: null,
       password: null,
-      feedback: null
+      feedback: null,
+
     };
   },
   methods: {
@@ -38,17 +40,22 @@ export default {
       if (this.password, this.email) {
        firebase.auth().signInWithEmailAndPassword( this.email,this.password,)
            .then(cred=>{
-               console.log(cred.user)
+             console.log(cred.user)
+             this.$store.dispatch('set_user',{payload:'kjfldsjkdf'})
                this.$router.push({name:'GMap'})
+
            }).catch(err=>{
            this.feedback = err.message
+
        })
 
 
       } else {
         this.feedback = "you need to enter email and password";
       }
-    }
+    },
+
+
   }
 };
 </script>
@@ -65,7 +72,7 @@ export default {
   margin-top: 16px;
 }
 .testStep1{
-  background-image: url('../../../public/space.jpg');
+  background-image: url("../../../public/space.jpg") ;
   width: 1500px;
   height: 1000px;
   margin-top: 0px;

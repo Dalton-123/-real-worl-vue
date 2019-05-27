@@ -13,7 +13,8 @@ import GMap from "./components/home/GMap.vue";
 import Singup from "./components/auth/Signup.vue";
 import logins from "./components/auth/login.vue";
 import prof from "./components/auth/profile.vue";
-
+import chat from "./components/Chat";
+import test from "./components/testSidebar";
 import firebase from "firebase";
 
 Vue.use(Router);
@@ -45,7 +46,29 @@ const router = new Router({
       path: "/profile/:id",
       name: "profile",
       component: prof
-    }
+    },
+
+    {
+      path: "/chat",
+      name: "chat",
+      component: chat,
+      props:true,
+      beforeEnter:((to, from, next) => {
+     if(to.params.name){
+       next()
+     }else{
+       next({name:'GMap'})
+     }
+})
+
+
+    },
+      {
+          path: "/test",
+          name: "testSidebar",
+          component: test,
+
+      }
   ]
 });
 router.beforeEach((to, from, next) => {
