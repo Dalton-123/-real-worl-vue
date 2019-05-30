@@ -2,6 +2,7 @@
   <div id="app">
     <navbar></navbar>
     <router-view />
+    <foot></foot>
   </div>
 </template>
 <script>
@@ -20,7 +21,7 @@ navbar
 
 
 <style>
-body{
-  background-color: #ddd;
-}
+/*body{*/
+/*  background-color: #ddd;*/
+/*}*/
 </style>

@@ -1,9 +1,9 @@
 <template>
     <nav class="uk-navbar-container test" uk-navbar>
-        <div class="uk-navbar-left">
+        <div class="uk-navbar-left il">
 
-            <ul class="uk-navbar-nav uk-align-center">
-                <li class="uk-active "><h3>Get huge discount for Subscription today</h3></li>
+            <ul class="uk-navbar-nav ">
+                <li class="uk-active "><h3>Teaching the world to love better through Meme Technology.</h3></li>
             </ul>
 
         </div>
@@ -20,8 +20,12 @@
 <style scoped>
 .test{
     background-color: #0a2b4e;
+    border-bottom: 1px solid orangered;
 
 }
-    h3{margin-left: 500px;
+    h3{margin-left: 400px;
     color: white}
+
+
+
 </style>

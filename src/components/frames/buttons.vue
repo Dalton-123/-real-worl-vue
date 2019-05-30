@@ -2,7 +2,7 @@
     <div class="login">
         <div>
                 <!--BUTTON FOR CHAT   -->
-            <a style="margin-left: 400px;background: #0a2b4e;" class="waves-effect waves-light btn-small" href="#modal-center" uk-toggle>
+            <a style="margin-left: 350px;background: #0a2b4e;" class="waves-effect waves-light btn-small" href="#modal-center" uk-toggle>
                 <i class="material-icons left;">cloud</i>Chat</a>
             <div id="modal-center" class="uk-flex-top" uk-modal>
                 <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
@@ -13,14 +13,14 @@
                      <label for="name">Name</label>
                     <input type="text" v-model="name">
                     <p class="uk-text-center" v-if="error">{{error}}</p>
-                     <button  @click="Enter" class="uk-button uk-button-secondary">send</button>
+                     <button  @click="Enter" class=" uk-modal-close uk-button uk-button-secondary">send</button>
                      </div>
                 </div>
             </div>
 
 
             <!--    THE OTHER BUTTON        -->
-            <a style="margin-left: 400px;background: white;color: #0a2b4e" class="waves-effect waves-light btn-small"><i class="material-icons right">cloud</i>button</a></div>
+            <a style="margin-left: 450px;background: white;color: #0a2b4e" class="waves-effect waves-light btn-small"><i class="material-icons right">cloud</i>button</a></div>
     </div>
 </template>
 

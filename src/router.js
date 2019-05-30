@@ -16,7 +16,7 @@ import prof from "./components/auth/profile.vue";
 import chat from "./components/Chat";
 import test from "./components/testSidebar";
 import firebase from "firebase";
-
+import about from '@/components/pages/about'
 Vue.use(Router);
 
 const router = new Router({
@@ -67,6 +67,11 @@ const router = new Router({
           path: "/test",
           name: "testSidebar",
           component: test,
+
+      },{
+          path: "/about",
+          name: "about",
+          component: about,
 
       }
   ]

@@ -32,7 +32,7 @@ img{
 .login {
     max-width: 50%;
     margin-top: 10px;
-    margin-left: 400px;
+    margin-left: 350px;
     max-height: 100%!important;
 }
 </style>

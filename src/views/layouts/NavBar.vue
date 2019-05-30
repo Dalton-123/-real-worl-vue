@@ -13,6 +13,11 @@
       </div>
       <div>
         <ul class="right">
+          <li v-if="user">
+            <router-link to="/about"
+            ><span class="tests" uk-icon="users"></span>About</router-link
+            >
+          </li>
           <li v-if="!user">
             <router-link to="/signup"
               ><span class="tests" uk-icon="sign-in"></span>Signup</router-link

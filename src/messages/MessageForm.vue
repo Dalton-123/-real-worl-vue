@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div style="margin-top: 40px" class="test">
     <div class=" ">
       <div class="messages">
         <img :src="imageUrl" alt="" width="200px" height="200px">
@@ -8,6 +8,7 @@
             <input type="text" placeholder="text..." v-model="message" />
           </div>
           <p v-if="errors">{{ errors }}</p>
+          <button @click="deletes">Delete</button>
         </form>
         <button
           @click="sendMessage"
@@ -32,7 +33,7 @@
 
 <script>
 import db from "@/firebase/init";
-// import moment from 'moments'
+import firebase from 'firebase'
 export default {
   name: "MessageForm",
   props: ["name"],
@@ -40,8 +41,9 @@ export default {
     return {
       message: "",
       errors: "",
-      imge:"",
+      image:null,
       imageUrl:""
+
     };
   },
   methods: {
@@ -50,16 +52,24 @@ export default {
         db.collection("message")
           .add({
             time: Date.now(),
-            imge:this.imge,
+            // image:this.image,
             message: this.message,
             name: this.name,
 
-          })
-          .catch(err => {
+          }).then((data)=>{
+            const key= data.id
+          db.collection('message').doc(data.id).update({imageUrl: this.imageUrl})
+            return key
+        }).then(key=>{
+          const filename=this.image.name
+          const ext=filename.slice(filename.lastIndexOf('.'))
+         return  firebase.storage().ref('message/'+key+'.'+ext).put(this.image)
+        }).catch(err => {
             console.log(err);
-          });
+          })
         this.message = null;
         this.errors = null;
+        this.imageUrl=null
       } else {
         this.errors = "You need to enter a message";
       }
@@ -67,20 +77,26 @@ export default {
     upload() {
       this.$refs.fileInput.click()
     },
-    uploadFile(event){
-      const files=event.target.files
-      let filename=files[0].name
-      if(filename.lastIndexOf('.')<=0){
+    uploadFile(event) {
+      const files = event.target.files
+      let filename = files[0].name
+      if (filename.lastIndexOf('.') <= 0) {
         return alert('Please enter a valid file')
       }
-      const fileReader=new FileReader()
-      fileReader.addEventListener('load',()=>{
-        this.imageUrl=fileReader.result
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
       })
       fileReader.readAsDataURL(files[0])
-      this.imge=files[0]
-      console.log(this.imge)
+      this.image = files[0]
+        console.log(this.image)
+
+
+    },
+    deletes(doc){
+
     }
+
   },
   created() {
     this.sendMessage;
@@ -93,29 +109,27 @@ export default {
 /*    margin-left: 330px;*/
 /*}*/
 form button {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 button input {
   width: 90px;
   height: 40px;
 }
 .messages {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
-  z-index: 100;
+  width: 67%;
+  /*z-index: 100;*/
   color: white;
   text-align: center;
-  margin-bottom: 1px;
-  margin-left: 20%;
+  margin-bottom: 0px;
+  margin-left: 26%;
 }
 p {
   color: red;
 }
-div {
-  background-color: #ddd;
-}
+
 input {
   color: black;
 }
