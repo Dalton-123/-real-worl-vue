@@ -1,42 +1,42 @@
 <template>
-  <div class="navbar">
-    <nav class="test">
-      <div class="container left">
-        <router-link :to="{ name: 'GMap' }" class="brand-logo left">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzmrga1rLMfSbwLGHoNXhwMcS__9vHP3JXq0JY74jaUEFyXLza"
-            style="width: 100px;padding-left: 50px"
-            alt=""
-          />
-          Meme Galleries</router-link
-        >
+  <div class=" " style="background: #0a2b4e">
+    <nav class="">
+      <div class=" left">
+<!--        <router-link :to="{ name: 'GMap' }" class="brand-logo left">-->
+<!--          <img-->
+<!--            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzmrga1rLMfSbwLGHoNXhwMcS__9vHP3JXq0JY74jaUEFyXLza"-->
+<!--            style="width: 100px;padding-left: 50px"-->
+<!--            alt=""-->
+<!--          />-->
+<!--          Meme Galleries</router-link-->
+<!--        >-->
       </div>
-      <div>
-        <ul class="right">
+      <div style="margin-left: 50px">
+        <ul class="centre ">
           <li v-if="user">
             <router-link to="/about"
-            ><span class="tests" uk-icon="users"></span>About</router-link
+            ><i class="fa fa-users" >about us</i></router-link
             >
           </li>
           <li v-if="!user">
             <router-link to="/signup"
-              ><span class="tests" uk-icon="sign-in"></span>Signup</router-link
+              ><i class="fa fa-sign-out" >Signup</i></router-link
             >
           </li>
           <li v-if="!user">
             <router-link :to="{ name: 'login' }"
-              ><span class="tests" uk-icon="unlock"></span>Login</router-link
+              ><span class="	fa fa-unlock" >Login</span></router-link
             >
           </li>
           <li v-if="user">
-            <a href=""><span class="tests" uk-icon="cart"></span>cart</a>
+            <i href=""><span class="fa fa-shopping-cart">cart</span></i>
           </li>
           <li v-if="user">
-            <span class="tests" uk-icon="user"></span>{{ user.email }}
+            <i class="fa fa-user">{{ user.email }}</i>
           </li>
           <li v-if="user">
             <a href="" @click="logout"
-              ><span class="tests" uk-icon="sign-out"></span>logout</a
+              ><i class="fa fa-sign-out" >logout</i></a
             >
           </li>
         </ul>
@@ -93,10 +93,16 @@ export default {
 
 <style scoped>
 .test {
-  background: #0a2b4e;
+  /*background: #0a2b4e;*/
+    /*width: 3000px;*/
+
 }
 
-.tests {
-  width: 30px;
+.right {
+ margin-left: 40px;
+
 }
+  i{margin-right: 15px;
+  font-size: 1.2em;
+  }
 </style>

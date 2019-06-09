@@ -1,6 +1,7 @@
 <template>
-  <div style="margin-top: 40px" class="test">
+  <div style="margin-top: 150px" class="">
     <div class=" ">
+
       <div class="messages">
         <img :src="imageUrl" alt="" width="200px" height="200px">
         <form @submit.prevent="sendMessage">
@@ -8,7 +9,7 @@
             <input type="text" placeholder="text..." v-model="message" />
           </div>
           <p v-if="errors">{{ errors }}</p>
-          <button @click="deletes">Delete</button>
+
         </form>
         <button
           @click="sendMessage"
@@ -34,6 +35,7 @@
 <script>
 import db from "@/firebase/init";
 import firebase from 'firebase'
+
 export default {
   name: "MessageForm",
   props: ["name"],
@@ -42,7 +44,8 @@ export default {
       message: "",
       errors: "",
       image:null,
-      imageUrl:""
+      imageUrl:"",
+      names:this.$store.state.name
 
     };
   },
@@ -52,13 +55,13 @@ export default {
         db.collection("message")
           .add({
             time: Date.now(),
-            // image:this.image,
+            image:this.imageUrl,
             message: this.message,
-            name: this.name,
+            name: this.names,
 
           }).then((data)=>{
             const key= data.id
-          db.collection('message').doc(data.id).update({imageUrl: this.imageUrl})
+          // db.collection('message').doc(data.id).update({imageUrl: this.imageUrl})
             return key
         }).then(key=>{
           const filename=this.image.name
@@ -100,6 +103,8 @@ export default {
   },
   created() {
     this.sendMessage;
+    // this.$store.dispatch('name')
+
   }
 };
 </script>
@@ -120,11 +125,11 @@ button input {
   left: 0;
   bottom: 0;
   width: 67%;
-  /*z-index: 100;*/
+  z-index: 100;
   color: white;
   text-align: center;
   margin-bottom: 0px;
-  margin-left: 26%;
+
 }
 p {
   color: red;
@@ -134,6 +139,7 @@ input {
   color: black;
 }
 .test {
-  margin-top: 80px;
+  /*margin-top: 80px;*/
+
 }
 </style>

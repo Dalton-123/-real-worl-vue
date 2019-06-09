@@ -1,7 +1,8 @@
 <template>
     <div>
-        <single-message :name="name"></single-message>
-        <forms :name="name"></forms>
+        <single-message></single-message>
+        <br> <br>
+        <forms></forms>
     </div>
 </template>
 

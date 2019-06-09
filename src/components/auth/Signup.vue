@@ -2,6 +2,7 @@
  <div class="testStep1">
    <div class="signup container ">
      <form @submit.prevent="signup" class="card-panel">
+       <img src="signup.svg" alt="">
        <h2 class="center test">Signup</h2>
        <div class="field">
          <label for="email">Email</label>
@@ -25,6 +26,7 @@
        </div>
      </form>
    </div>
+
  </div>
 </template>
 
@@ -61,7 +63,6 @@ export default {
               .auth()
               .createUserWithEmailAndPassword(this.email, this.password)
               .then(creds => {
-                this.$store.dispatch('set_user',{payload:'kjfldsjkdf'})
                 ref.set({
                   alias: this.alias,
                   Phone:this.number,
@@ -71,6 +72,7 @@ export default {
               })
               .then(() => {
                 this.$router.push({ name: "GMap" ,params:{alias:this.alias}});
+
               })
               .catch(err => {
                 console.log(err);
@@ -107,7 +109,7 @@ export default {
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
-   position: fixed;
+   position: absolute;
  }
   .test{
     /*color: #F44336;*/

@@ -1,7 +1,8 @@
 <template>
   <div class="profile container">
     <div class="card">
-      <h2 class="deep-purple-text center">{{ profile.alias }}'s Wall</h2>
+      <profiles></profiles>
+
       <ul v-for="(comment,index) in comments" :key="comment.index" class="comments collection">
         <li >Comment</li>
         <div class="deep-purple-text">{{comment.from}}</div>
@@ -59,7 +60,18 @@ export default {
           }
         });
       });
+          this.$store.dispatch('ViewProfiles',this.crabs)
+          this.email =firebase .auth().currentUser.email
+
+
+
   },
+    computed:{
+      profile(){
+          return this.$store.state.viewProfile
+      }
+
+    },
   methods: {
     addComment() {
       if (this.newComment) {
@@ -79,7 +91,8 @@ export default {
         this.feedback = "You must enter a momment to add it";
       }
     }
-  }
+  },
+
 };
 </script>
 

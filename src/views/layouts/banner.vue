@@ -1,5 +1,5 @@
 <template>
-    <nav class="uk-navbar-container test" uk-navbar>
+    <nav class="uk-navbar-container test" uk-navbar style="margin-top: -10px">
         <div class="uk-navbar-left il">
 
             <ul class="uk-navbar-nav ">

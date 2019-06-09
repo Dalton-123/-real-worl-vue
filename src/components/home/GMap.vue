@@ -1,11 +1,12 @@
 <template>
     <div class=" testStep1">
+        <navbar></navbar>
         <banner></banner>
 <p class="uk-container test uk-text-center">Muscle Crab Diversities is a Jamaican owned company that provides the planet a taste of caribbean culture daily.  Subscribe today to receive your daily Meme.</p>
         <but :alias="alias"></but>
         <cor></cor>
         <br><br><br><br><br>
-<!--        <foot></foot>-->
+        <foot></foot>
     </div>
 </template>
 

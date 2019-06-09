@@ -41,7 +41,6 @@ export default {
        firebase.auth().signInWithEmailAndPassword( this.email,this.password,)
            .then(cred=>{
              console.log(cred.user)
-             this.$store.dispatch('set_user',{payload:'kjfldsjkdf'})
                this.$router.push({name:'GMap'})
 
            }).catch(err=>{

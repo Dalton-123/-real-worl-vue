@@ -1,22 +1,23 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-
-
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
-import 'uikit/dist/css/uikit.css'
+import UIkit from "uikit";
+import Icons from "uikit/dist/js/uikit-icons";
+import "uikit/dist/css/uikit.css";
 UIkit.use(Icons);
-
 
 import GMap from "./components/home/GMap.vue";
 import Singup from "./components/auth/Signup.vue";
 import logins from "./components/auth/login.vue";
 import prof from "./components/auth/profile.vue";
 import chat from "./components/Chat";
-import test from "./components/testSidebar";
 import firebase from "firebase";
-import about from '@/components/pages/about'
+import about from "@/components/pages/about";
+import user from "@/components/User/createProfile";
+import profile from "@/components/User/viewProfile";
+import news from "@/components/new";
+import sidebar from '@/components/frames/sidebar'
+import memes from '@/views/UploadImages'
 Vue.use(Router);
 
 const router = new Router({
@@ -47,33 +48,60 @@ const router = new Router({
       name: "profile",
       component: prof
     },
-
     {
-      path: "/chat",
-      name: "chat",
-      component: chat,
-      props:true,
-      beforeEnter:((to, from, next) => {
-     if(to.params.name){
-       next()
-     }else{
-       next({name:'GMap'})
-     }
-})
+      path: "/new",
+      name: "new",
+      component: news,
+      children: [
+        {
+          path: "/profile",
+          name: "Profile",
+          component: profile
+        },
+        {
+          path: "/user",
+          name: "UserProfile",
+          component: user
+        },
+        {
+          path: "/chat",
+          name: "chat",
+          component: chat,
+          props: true,
 
+        },
+        {
+          path: "/memes",
+          name: "memes",
+          component: memes,
+          props: true,
 
+        },
+      ]
     },
-      {
-          path: "/test",
-          name: "testSidebar",
-          component: test,
 
-      },{
-          path: "/about",
-          name: "about",
-          component: about,
 
-      }
+    ,
+    {
+      path: "/about",
+      name: "about",
+      component: about
+    },
+    {
+      path: "/user",
+      name: "UserProfile",
+      component: user
+    },
+    {
+      path: "/profile",
+      name: "Profile",
+      component: profile
+    },
+    {
+      path: "/sidebar",
+      name: "sidebar",
+      component: sidebar
+    }
   ]
 });
 router.beforeEach((to, from, next) => {

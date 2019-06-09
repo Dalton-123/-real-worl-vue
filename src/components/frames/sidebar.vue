@@ -1,10 +1,12 @@
 <template>
     <div class="sidebar"  id="sidebar">
-        <h2 class="uk-text-center">Users</h2>
-       <div v-for="use in users">
+
+        <h3 class="test">#USERS</h3>
+        <hr style="width: 200px;margin-left: 10px">
+       <div v-for="use in userse" class="test">
            <div style="margin-top: 10px"  class="uk-width-auto">
-               <img class="uk-comment-avatar" src="crab.png" width="80" height="80" alt="">
-               <span>{{use.name}}</span>
+               <i style="color:green" class="fa fa-circle"></i>
+               <span>{{use.alias}}</span>
            </div>
            <div></div>
        </div>
@@ -13,23 +15,28 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    // import profiles from '@/components/User/viewProfile'
     import db from "@/firebase/init";
     export default {
         name: "sidebar",
         props:['name'],
+        // components:{
+        //     profiles
+        // },
         data(){
             return{
-                users:[]
+                userse:[]
             }
         },
         computed:{
             ...mapGetters(['CurrentUser'])
         },
         created() {
-            var observer = db.collection("message").onSnapshot(querySnapshot => {
+            var observer = db.collection("users").onSnapshot(querySnapshot => {
                 querySnapshot.docChanges().forEach(change => {
                     if (change.type === "added") {
-                         this.users.push({name:change.doc.data().name})
+                         this.userse.push({alias:change.doc.data().alias})
+                            // console.log(this.userse)
 
                     }
                 });
@@ -44,12 +51,12 @@
         /*height: 100%;*/
 
         float:left;
-        position: absolute;
+        position: fixed;
 
     }
     .sidebar  {
         width: 100px;
-        height:96%;
+        height:107%;
         margin: 0;
     }
     #sidebar {
@@ -57,6 +64,9 @@
         width: 25%;
         /*margin-bottom: -4px;*/
         /*bottom: -5;*/
+    }
+    .test{
+        margin-left: 20px;
     }
 span{color: orangered}
 img{width: 20px}

@@ -1,19 +1,20 @@
 <template>
   <div id="app">
-    <navbar></navbar>
+
+
+<!--    <foot></foot>-->
     <router-view />
-    <foot></foot>
   </div>
 </template>
 <script>
   // import welcome from '@/components/Welcome'
-  import navbar from '@/views/layouts/NavBar'
+
 
   export default {
 
-    components:{
-        // welcome,
-navbar
+
+    created() {
+      // this.$store.dispatch('UserID' )
     }
   }
 </script>
