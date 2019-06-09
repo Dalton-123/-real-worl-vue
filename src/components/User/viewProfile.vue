@@ -38,7 +38,7 @@
 <div class="col " >
 
     <div >
-        <img src="'/ +' signup.svg" alt="">
+        <img src="signup.svg" alt="">
         <update></update>
     </div>
 </div>
