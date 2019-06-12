@@ -57,9 +57,9 @@ export default new Vuex.Store({
     profile: [],
     id: null,
     name: null,
-    image:null,
-    Memes:[]
-
+    image: null,
+    Memes: [],
+    Gallery: []
   },
   mutations: {
     PROFILE(state, payload) {
@@ -72,15 +72,20 @@ export default new Vuex.Store({
     ViewProfile(state, payload) {
       state.viewProfile.push(payload);
     },
-
+    Images(state, payload) {
+      state.Memes.push(payload);
+    },
+    //load Image gallery
     image(state, payload) {
       state.image = payload;
     },
+
     name(state, payload) {
       state.name = payload;
-    } ,
-    Memes(state, payload) {
-      state.Memes = payload;
+    },
+
+    gallery(state, payload) {
+      state.Gallery.push(payload);
     }
   },
 
@@ -118,21 +123,49 @@ export default new Vuex.Store({
           querySnapshot.forEach(doc => {
             // doc.data() is never undefined for query doc snapshots
             payload.push(doc.data());
-            commit('image',doc.data().image)
-            commit('name',doc.data().name)
+            commit("image", doc.data().image);
+            commit("name", doc.data().name);
           });
         })
         .catch(error => {
           console.log("Error getting documents: ", error);
         });
       commit("ViewProfile", payload);
-
     },
-  //
-  // Memes({ commit }, payload)){
-  //
-  // },
 
+    Images({ commit }, payload) {
+      var user = firebase.auth().currentUser;
+
+      db.collection("Memes")
+        .add({
+          images: payload
+        })
+        .then(ref => {
+          console.log("Added document with ID: ", ref.id);
+        });
+
+      commit("Images",payload);
+    },
+
+    ViewImages({ commit }, payload) {
+      db.collection("Memes")
+        .get()
+        .then(snapshot => {
+          if (snapshot.empty) {
+            console.log("No matching documents.");
+            return;
+          }
+
+          snapshot.forEach(doc => {
+            payload.push(doc.data());
+          });
+        })
+        .catch(err => {
+          console.log("Error getting documents", err);
+        });
+
+      commit("gallery", payload);
+    },
     //  User id
     UserID({ commit }, payload) {
       var user = firebase.auth().currentUser;

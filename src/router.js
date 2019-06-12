@@ -18,6 +18,8 @@ import profile from "@/components/User/viewProfile";
 import news from "@/components/new";
 import sidebar from '@/components/frames/sidebar'
 import memes from '@/views/UploadImages'
+import gal from  "@/components/pages/gallery";
+import img from  "@/components/frames/Images";
 Vue.use(Router);
 
 const router = new Router({
@@ -41,6 +43,10 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: logins
+    },{
+      path: "/img",
+      name: "Images",
+      component: img
     },
 
     {
@@ -75,6 +81,13 @@ const router = new Router({
           name: "memes",
           component: memes,
           props: true,
+
+        },
+        {
+          path: "/gallery",
+          name: "gallery",
+          component: gal,
+
 
         },
       ]

@@ -3,7 +3,8 @@
 
 
 <!--    <foot></foot>-->
-    <router-view />
+    <div>
+        <router-view /></div>
   </div>
 </template>
 <script>

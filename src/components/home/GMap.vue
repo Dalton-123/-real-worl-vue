@@ -1,7 +1,8 @@
 <template>
     <div class=" testStep1">
-        <navbar></navbar>
-        <banner></banner>
+        <div>
+            <navbar></navbar>
+        </div>
 <p class="uk-container test uk-text-center">Muscle Crab Diversities is a Jamaican owned company that provides the planet a taste of caribbean culture daily.  Subscribe today to receive your daily Meme.</p>
         <but :alias="alias"></but>
         <cor></cor>
@@ -13,13 +14,13 @@
 <script>
     import cor from '@/components/frames/corousel'
     import but from '@/components/frames/buttons'
-    import banner from '@/views/layouts/banner'
+
 
     export default {
         name: "GMap",
         props:['alias'],
         components:{
-            cor,but,banner,
+            cor,but
         },
         data() {
             return {}
@@ -31,10 +32,10 @@
 <style scoped>
     .testStep1{
         background-image: url("../../../public/space.jpg") ;
-        width: 1500px;
-        height: 1000px;
-       margin-top: auto;
-        padding-top: 0px;
+       /* width: 1500px;*/
+       /* height: 1000px;*/
+       /*!*margin-top: 0px;*!*/
+       /* padding-top: 0px;*/
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

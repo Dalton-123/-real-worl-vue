@@ -1,18 +1,18 @@
 <template>
-  <div class=" " style="background: #0a2b4e">
-    <nav class="">
-      <div class=" left">
-<!--        <router-link :to="{ name: 'GMap' }" class="brand-logo left">-->
+  <div class="me " style="">
+    <nav class="me ">
+      <div class=" container left">
+        <router-link :to="{ name: 'GMap' }" class="brand-logo left">
 <!--          <img-->
-<!--            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzmrga1rLMfSbwLGHoNXhwMcS__9vHP3JXq0JY74jaUEFyXLza"-->
+<!--            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRULv4U4pJpoX_qZkAxU969hRb-1eCzWVxTS4-bNrV32qfAfQCuEg"-->
 <!--            style="width: 100px;padding-left: 50px"-->
 <!--            alt=""-->
 <!--          />-->
-<!--          Meme Galleries</router-link-->
-<!--        >-->
+          <span><h2 style="color: white">Meme Galleries</h2></span></router-link
+        >
       </div>
-      <div style="margin-left: 50px">
-        <ul class="centre ">
+      <div style="margin-left: 50px" class="me ">
+        <ul class="right me ">
           <li v-if="user">
             <router-link to="/about"
             ><i class="fa fa-users" >about us</i></router-link
@@ -41,6 +41,16 @@
           </li>
         </ul>
       </div>
+    </nav>
+    <nav class="uk-navbar-container test" uk-navbar style="margin-top: -10px">
+      <div class="uk-navbar-left il">
+
+        <ul class="uk-navbar-nav center">
+          <li class="uk-active "><h3>Teaching the world to love better through Meme Technology.</h3></li>
+        </ul>
+
+      </div>
+
     </nav>
   </div>
 </template>
@@ -92,17 +102,22 @@ export default {
 </script>
 
 <style scoped>
-.test {
-  /*background: #0a2b4e;*/
-    /*width: 3000px;*/
+  .test{
+    margin-top: 0px;
+    background-color: #0a2b4e;
+    border-bottom: 1px solid orangered;
 
-}
-
-.right {
- margin-left: 40px;
+  }
+.me{background: #0a2b4e}
+h3 {
+ padding-left: 400px;
+  color: white;
 
 }
   i{margin-right: 15px;
   font-size: 1.2em;
+  }
+  .right{
+    padding-right: 0px;
   }
 </style>

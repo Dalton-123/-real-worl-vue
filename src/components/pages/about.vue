@@ -1,5 +1,6 @@
 <template>
     <div class="testStep1 test uk-text-center">
+        <navbar></navbar>
         <h1 class="uk-heading-divider uk-container uk-container-small">Meet the teem</h1>
         <div class="uk-container">
             <h3 >Who we are</h3>
@@ -50,7 +51,7 @@
             </div>
         </div>
 
-
+<foot></foot>
 
     </div>
 </template>

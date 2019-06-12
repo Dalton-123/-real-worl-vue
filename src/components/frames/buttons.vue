@@ -33,7 +33,7 @@
       </div>
 
       <!--    THE OTHER BUTTON        -->
-      <router-link to="new"
+      <router-link to="/user"
         style="margin-left: 450px;background: white;color: #0a2b4e"
         class="waves-effect waves-light btn-small"
         ><p style="color:#0a2b4e" class="row">Get Started</p></router-link

@@ -1,14 +1,14 @@
 <template>
     <nav class="uk-navbar-container test" uk-navbar style="margin-top: -10px">
-        <div class="uk-navbar-left il">
+    <div class="uk-navbar-left il">
 
-            <ul class="uk-navbar-nav ">
-                <li class="uk-active "><h3>Teaching the world to love better through Meme Technology.</h3></li>
-            </ul>
+        <ul class="uk-navbar-nav ">
+            <li class="uk-active "><h3>Teaching the world to love better through Meme Technology.</h3></li>
+        </ul>
 
-        </div>
+    </div>
 
-    </nav>
+</nav>
 </template>
 
 <script>
@@ -19,6 +19,7 @@
 
 <style scoped>
 .test{
+    margin-top: 0px;
     background-color: #0a2b4e;
     border-bottom: 1px solid orangered;
 

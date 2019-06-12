@@ -65,7 +65,7 @@ export default {
 
 
     }
-  },
+},
   created() {
     var observer = db.collection("message").orderBy('time').onSnapshot(querySnapshot => {
       querySnapshot.docChanges().forEach(change => {

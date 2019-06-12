@@ -1,13 +1,15 @@
 <template>
   <div class="container-fluid  test">
+    <h2>Create you Profile Here</h2>
+    <div class="uk-cover-container uk-height-medium">
+      <iframe src="https://www.youtube.com/embed/6vUWVIevMVs?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="1920" height="1080" frameborder="0" allowfullscreen uk-cover></iframe>
+    </div>
     <form @submit.prevent="SaverUsers">
       <fieldset class="uk-fieldset">
-        <div>
-          <legend class="uk-legend">Profile</legend>
-        </div>
+
        <div class="row">
-         <div class="col"><photo></photo></div>
-         <div class="col"><p>Create your profile here. You are required to fill out all the fields.</p></div>
+         <div class="col"></div>
+         <div class="col"></div>
        </div>
         <div class="row">
           <!--            name input-->
