@@ -53,16 +53,18 @@
     methods: {
       sendMessage() {
         if (this.message) {
+          var user = firebase.auth().currentUser;
           db.collection("Memes")
                   .add({
                     time: Date.now(),
                     image:this.imageUrl,
                     message: this.message,
                     name: this.names,
+                    id:user.uid
 
                   }).then((data)=>{
             const key= data.id
-            // db.collection('message').doc(data.id).update({imageUrl: this.imageUrl})
+
             return key
           }).then(key=>{
             const filename=this.image.name
@@ -123,7 +125,7 @@
   }
   .messages {
     position: absolute;
-    left: 0;
+  margin-left: 2%;
     bottom: 0;
     width: 67%;
     z-index: 100;

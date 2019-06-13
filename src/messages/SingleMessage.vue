@@ -22,7 +22,7 @@
           </div>
         </header>
         <div class="uk-comment-body">
-          <p>{{message.message}}</p>
+          <p><i style="" class="fas fa-comment-dots"></i>{{message.message}}</p>
 
         </div>
         <div class="first me">
@@ -58,6 +58,7 @@ export default {
     deletes(doc){
       if(confirm("Do you want to delete this message")){
         db.collection("message").doc(doc).delete()
+        window.location.reload()
       }else {
         alert("message was not removed")
       }
@@ -121,4 +122,9 @@ export default {
   .me{
     margin-left: 76%;
   }
+i{margin-right: 15px;
+  font-size: 1.1em;
+  margin-top: 5px;
+  color: palevioletred;
+}
 </style>

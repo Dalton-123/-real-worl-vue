@@ -45,7 +45,7 @@ export default {
       errors: "",
       image:null,
       imageUrl:"",
-      names:this.$store.state.name
+
 
     };
   },
@@ -57,7 +57,7 @@ export default {
             time: Date.now(),
             image:this.imageUrl,
             message: this.message,
-            name: this.names,
+
 
           }).then((data)=>{
             const key= data.id
@@ -67,6 +67,7 @@ export default {
           const filename=this.image.name
           const ext=filename.slice(filename.lastIndexOf('.'))
          return  firebase.storage().ref('message/'+key+'.'+ext).put(this.image)
+
         }).catch(err => {
             console.log(err);
           })
@@ -122,7 +123,7 @@ button input {
 }
 .messages {
   position: absolute;
-  left: 0;
+ margin-left: 2%;
   bottom: 0;
   width: 67%;
   z-index: 100;

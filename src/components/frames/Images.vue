@@ -4,12 +4,11 @@
           <div>
               <div class="uk-card uk-card-default flex" style="width: 200px;margin-left: 10px">
                   <div class="uk-card-media-top">
-                      <img :src="message.image" alt="" class="col">
+                      <router-link :to="'/start/' + message.time"><img :src="message.image" alt="" class=""></router-link>
                   </div>
-                  <div class="uk-card-body">
-                      <h3 class="uk-card-title">Media Top</h3>
-                      <p>Lorem ipsum dolor sit amet, .</p>
-                  </div>
+
+                  <i class="material-icons">send</i>
+                  <i class="material-icons">&#xe439;</i>
               </div>
           </div>
       </div>
@@ -19,22 +18,23 @@
 
 <script>
 import db from "@/firebase/init";
-import moments from "moment";
+
 export default {
   name: "Images",
   data() {
     return {
       messages: [],
-      crabs: []
+
     };
   },
   computed: {
-    image() {
-      return this.$store.state.image;
-    },
-    name() {
-      return this.$store.state.name;
-    }
+    // image() {
+    //   return this.$store.state.image;
+    // },
+    // name() {
+    //   return this.$store.state.name;
+    // },
+
   },
 
   methods: {
@@ -49,32 +49,20 @@ export default {
     }
   },
   created() {
-    var observer = db
-      .collection("Memes")
-      .orderBy("time")
-      .onSnapshot(querySnapshot => {
-        querySnapshot.docChanges().forEach(change => {
-          if (change.type === "added") {
-            this.messages.push({
-              name: change.doc.data().name,
-              message: change.doc.data().message,
-              time: moments(change.doc.data().time).format("lll"),
-              image: change.doc.data().image,
-              id: change.doc.id
-            });
-          }
-        });
-      });
+      this.$store.dispatch('ViewImages',this.messages)
 
-    this.$store.dispatch("image");
   }
 };
 </script>
 
 <style scoped>
 img{
-    with:150px;
+    width:250px;
     max-height: 180px;
 
 }
+   i{
+       color: #0a2b4e;
+   }
+
 </style>

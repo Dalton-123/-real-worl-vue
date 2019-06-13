@@ -7,6 +7,7 @@ import "uikit/dist/css/uikit.css";
 UIkit.use(Icons);
 
 import GMap from "./components/home/GMap.vue";
+import start from "./components/home/GetStarted.vue";
 import Singup from "./components/auth/Signup.vue";
 import logins from "./components/auth/login.vue";
 import prof from "./components/auth/profile.vue";
@@ -87,9 +88,11 @@ const router = new Router({
           path: "/gallery",
           name: "gallery",
           component: gal,
+          props: true,
 
 
         },
+
       ]
     },
 
@@ -114,7 +117,14 @@ const router = new Router({
       path: "/sidebar",
       name: "sidebar",
       component: sidebar
-    }
+    },
+    {
+      path: "/start/:id",
+      name: "GetStarted",
+      component:start,
+props:true
+
+    },
   ]
 });
 router.beforeEach((to, from, next) => {

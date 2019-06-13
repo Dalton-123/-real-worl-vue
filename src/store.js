@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
 import db from "@/firebase/init";
+import moments from "moment";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -58,7 +59,7 @@ export default new Vuex.Store({
     id: null,
     name: null,
     image: null,
-    Memes: [],
+test:[{name:'fkldsjfdls'},{name:";fkdllf"}],
     Gallery: []
   },
   mutations: {
@@ -72,9 +73,7 @@ export default new Vuex.Store({
     ViewProfile(state, payload) {
       state.viewProfile.push(payload);
     },
-    Images(state, payload) {
-      state.Memes.push(payload);
-    },
+
     //load Image gallery
     image(state, payload) {
       state.image = payload;
@@ -148,34 +147,38 @@ export default new Vuex.Store({
     },
 
     ViewImages({ commit }, payload) {
-      db.collection("Memes")
-        .get()
-        .then(snapshot => {
-          if (snapshot.empty) {
-            console.log("No matching documents.");
-            return;
-          }
-
-          snapshot.forEach(doc => {
-            payload.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+        var observer = db
+            .collection("Memes")
+            .orderBy("time")
+            .onSnapshot(querySnapshot => {
+                querySnapshot.docChanges().forEach(change => {
+                    if (change.type === "added") {
+                        payload.push(change.doc.data());
+                    }
+                });
+            });
 
       commit("gallery", payload);
     },
     //  User id
-    UserID({ commit }, payload) {
+    UserID({ commit }, ) {
       var user = firebase.auth().currentUser;
       commit("USER_ID", user.uid);
     }
   },
 
   getters: {
-    // loadedMeetups(state) {
-    //   return state.viewProfile;
-    // }
+      loadedMeetup (state) {
+          return (meetupId) => {
+              return state.Gallery.find((meetup) => {
+                  return meetup.time === meetupId
+              })
+          }
+      },
+      times(state){
+          return state.Gallery.filter(map=>{
+               return  map
+          })
+      }
   }
 });

@@ -2,36 +2,11 @@
   <div class="login">
     <div>
       <!--BUTTON FOR CHAT   -->
-      <a
-        style="margin-left: 350px;background: #0a2b4e;"
-        class="waves-effect waves-light btn-small"
-        href="#modal-center"
-        uk-toggle
+      <router-link to="/chat"
+                   style="margin-left: 310px;background: #0a2b4e;"
+                   class="waves-effect waves-light btn-small"
+      ><p style="color:white" class="uk-text-center">Chat</p></router-link
       >
-        <i class="material-icons left;">cloud</i>Chat</a
-      >
-      <div id="modal-center" class="uk-flex-top" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-          <button
-            class="uk-modal-close-default"
-            type="button"
-            uk-close
-          ></button>
-          <h2 class="uk-text-center">Text you name to enter Chat</h2>
-          <div>
-            <label for="name">Name</label>
-            <input type="text" v-model="name" />
-            <p class="uk-text-center" v-if="error">{{ error }}</p>
-            <button
-              @click="Enter"
-              class=" uk-modal-close uk-button uk-button-secondary"
-            >
-              send
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!--    THE OTHER BUTTON        -->
       <router-link to="/user"
         style="margin-left: 450px;background: white;color: #0a2b4e"
@@ -74,6 +49,6 @@ a {
   font-size: 20px;
 }
 p {
-  color: red;
+  color: white;
 }
 </style>
