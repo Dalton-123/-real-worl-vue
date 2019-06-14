@@ -1,32 +1,35 @@
 <template>
- <div class="testStep1">
-   <div class="signup container ">
-     <form @submit.prevent="signup" class="card-panel">
-       <img src="signup.svg" alt="">
-       <h2 class="center test">Signup</h2>
-       <div class="field">
-         <label for="email">Email</label>
-         <input type="text" name="email" v-model="email" />
-       </div>
-       <div class="field">
-         <label for="password">Password</label>
-         <input type="password" name="password" v-model="password" />
-       </div>
-       <div class="field">
-         <label for="">Phone Number</label>
-         <input v-model.number="number" type="number">
-       </div>
-       <div class="field">
-         <label for="alias">Alias</label>
-         <input type="text" name="alias" v-model="alias" />
-       </div>
-       <p v-if="feedback" class="red-text center">{{ feedback }}</p>
-       <div class="field center">
-         <button @click="signup" class="uk-button uk-button-default uk-button-small tests">Signup</button>
-       </div>
-     </form>
-   </div>
+ <div>
+   <navbar></navbar>
+   <div class="testStep1">
+     <div class="signup container ">
+       <form @submit.prevent="signup" class="card-panel">
+         <img src="signup.svg" alt="">
+         <h2 class="center test">Signup</h2>
+         <div class="field">
+           <label for="email">Email</label>
+           <input type="text" name="email" v-model="email" />
+         </div>
+         <div class="field">
+           <label for="password">Password</label>
+           <input type="password" name="password" v-model="password" />
+         </div>
+         <div class="field">
+           <label for="">Phone Number</label>
+           <input v-model.number="number" type="number">
+         </div>
+         <div class="field">
+           <label for="alias">Alias</label>
+           <input type="text" name="alias" v-model="alias" />
+         </div>
+         <p v-if="feedback" class="red-text center">{{ feedback }}</p>
+         <div class="field center">
+           <button @click="signup" class="uk-button uk-button-default uk-button-small tests">Signup</button>
+         </div>
+       </form>
+     </div>
 
+   </div>
  </div>
 </template>
 
@@ -48,7 +51,7 @@ export default {
   },
   methods: {
     signup() {
-      if (this.alias && this.email && this.password&&this.number) {
+      if (this.alias && this.email && this.password) {
         this.slug = slugify(this.alias, {
           replacement: "-",
           remove: /[$*_+~.()'"!\-:@]/g,
@@ -64,7 +67,7 @@ export default {
               .createUserWithEmailAndPassword(this.email, this.password)
               .then(creds => {
                 ref.set({
-                  alias: this.alias,
+                  alias: this.slug,
                   Phone:this.number,
                   geolocation: "",
                   user_id: creds.user.uid

@@ -2,14 +2,17 @@
   <div class="login">
     <div>
       <!--BUTTON FOR CHAT   -->
+      <div uk-lightbox>
+        <a  style="margin-left: 100px" href="https://www.youtube.com/watch?v=c2pz2mlSfXA" data-caption="YouTube"><i class="fas fa-video" uk-tooltip="title: Watch Video; pos: bottom"></i></a>
+      </div>
       <router-link to="/chat"
-                   style="margin-left: 310px;background: #0a2b4e;"
+                   style="margin-left: 380px;background: #0a2b4e;"
                    class="waves-effect waves-light btn-small"
       ><p style="color:white" class="uk-text-center">Chat</p></router-link
       >
       <!--    THE OTHER BUTTON        -->
       <router-link to="/user"
-        style="margin-left: 450px;background: white;color: #0a2b4e"
+        style="margin-left: 300px;background: white;color: #0a2b4e"
         class="waves-effect waves-light btn-small"
         ><p style="color:#0a2b4e" class="row">Get Started</p></router-link
       >
@@ -51,4 +54,9 @@ a {
 p {
   color: white;
 }
+  i{
+    color:orangered;
+    font-size: 1.9em;
+
+  }
 </style>

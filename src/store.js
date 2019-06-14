@@ -59,7 +59,7 @@ export default new Vuex.Store({
     id: null,
     name: null,
     image: null,
-test:[{name:'fkldsjfdls'},{name:";fkdllf"}],
+    Users: [],
     Gallery: []
   },
   mutations: {
@@ -85,6 +85,9 @@ test:[{name:'fkldsjfdls'},{name:";fkdllf"}],
 
     gallery(state, payload) {
       state.Gallery.push(payload);
+    },
+    USERS(state, payload) {
+      state.Users.push(payload);
     }
   },
 
@@ -143,42 +146,57 @@ test:[{name:'fkldsjfdls'},{name:";fkdllf"}],
           console.log("Added document with ID: ", ref.id);
         });
 
-      commit("Images",payload);
+      commit("Images", payload);
     },
 
     ViewImages({ commit }, payload) {
-        var observer = db
-            .collection("Memes")
-            .orderBy("time")
-            .onSnapshot(querySnapshot => {
-                querySnapshot.docChanges().forEach(change => {
-                    if (change.type === "added") {
-                        payload.push(change.doc.data());
-                    }
-                });
-            });
+      var observer = db
+        .collection("Memes")
+        .orderBy("time")
+        .onSnapshot(querySnapshot => {
+          querySnapshot.docChanges().forEach(change => {
+            if (change.type === "added") {
+              payload.push(change.doc.data());
+            }
+          });
+        });
 
       commit("gallery", payload);
     },
+    //Users
+    Users({ commit }, users) {
+      db.collection("users")
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            // this.id.push(doc.id)
+            users.push(doc.data())
+          });
+        });
+
+      commit("USERS", users);
+    },
     //  User id
-    UserID({ commit }, ) {
+    UserID({ commit }) {
       var user = firebase.auth().currentUser;
       commit("USER_ID", user.uid);
     }
   },
 
   getters: {
-      loadedMeetup (state) {
-          return (meetupId) => {
-              return state.Gallery.find((meetup) => {
-                  return meetup.time === meetupId
-              })
-          }
-      },
-      times(state){
-          return state.Gallery.filter(map=>{
-               return  map
-          })
-      }
+    loadedMeetup(state) {
+      return meetupId => {
+        return state.Gallery.find(meetup => {
+          return meetup.time === meetupId;
+        });
+      };
+    },
+    loadedProfile(state) {
+      return meetupId => {
+        return state.users.find(meetup => {
+          return meetup.time === meetupId;
+        });
+      };
+    }
   }
 });

@@ -1,23 +1,26 @@
 <template>
-  <div class="testStep1">
-    <div class="login container ">
-      <form @submit.prevent="login" class="card-panel">
-        <h2 class=" center test">login</h2>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="text" name="email" v-model="email" />
-        </div>
-        <div class="field">
-          <label for="password">Password</label>
-          <input type="password" name="password" v-model="password" />
-        </div>
-        <p v-if="feedback" style="color:red" class="center red-text-centered">
-          {{ feedback }}
-        </p>
-        <div class="field center">
-          <button @click="login" class="tests">login</button>
-        </div>
-      </form>
+  <div>
+    <navbar></navbar>
+    <div class="testStep1">
+      <div class="login container ">
+        <form @submit.prevent="login" class="card-panel">
+          <h2 class=" center test">login</h2>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="text" name="email" v-model="email" />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" name="password" v-model="password" />
+          </div>
+          <p v-if="feedback" style="color:red" class="center red-text-centered">
+            {{ feedback }}
+          </p>
+          <div class="field center">
+            <button @click="login" class="tests">login</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>

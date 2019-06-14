@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div >
+    <div>
         <img :src="meetus.image" alt="">
     </div>
 </div>

@@ -20,6 +20,7 @@
                     <div class="graphic">
                         <img src="@/assets/front.svg" alt="">
                     </div>
+
                 </div>
             </div>
             <imags></imags>

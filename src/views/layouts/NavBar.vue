@@ -116,6 +116,7 @@ h3 {
 }
   i{margin-right: 15px;
   font-size: 1.2em;
+    color: orangered;
   }
   .right{
     padding-right: 0px;

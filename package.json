@@ -18,8 +18,10 @@
     "uikit": "^3.1.5",
     "vue": "^2.6.6",
     "vue-chat-scroll": "^1.3.5",
+    "vue-google-adsense": "^1.6.0",
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.1",
+    "vue-script2": "^2.0.3",
     "vue-sidebar-menu": "^3.9.0",
     "vuejs-datepicker": "^1.5.4",
     "vuex": "^3.0.1"

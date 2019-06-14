@@ -1,8 +1,8 @@
 <template>
   <div class="profile container">
     <div class="card">
-      <profiles></profiles>
-
+<!--      <profiles></profiles>-->
+<h1 class="uk-text-center">{{profile.alias}}'s  wall</h1>
       <ul v-for="(comment,index) in comments" :key="comment.index" class="comments collection">
         <li >Comment</li>
         <div class="deep-purple-text">{{comment.from}}</div>
@@ -32,7 +32,9 @@ export default {
       newComment: null,
       user: null,
       feedback: null,
-      comments:[]
+      comments:[],
+      id:this.$attrs.id,
+      users:[]
     };
   },
   created() {
@@ -60,16 +62,20 @@ export default {
           }
         });
       });
-          this.$store.dispatch('ViewProfiles',this.crabs)
+
+      this.$store.dispatch('Users',this.users)
           this.email =firebase .auth().currentUser.email
 
 
 
   },
     computed:{
-      profile(){
-          return this.$store.state.viewProfile
-      }
+      // profile(){
+      //     return this.$store.state.viewProfile
+      // },
+      meetus () {
+        return this.$store.getters.loadedProfile().find(map=>map.id==this.id)
+      },
 
     },
   methods: {
@@ -99,7 +105,8 @@ export default {
 <style scoped>
   .profile .card{
     padding:20px;
-    margin-top:60px;
+    top:0
+    /*margin-top:60px;*/
 
   }
   .profile h2{

@@ -7,6 +7,7 @@
         <but :alias="alias"></but>
         <cor></cor>
         <br><br><br><br><br>
+        <about></about>
         <foot></foot>
     </div>
 </template>
@@ -14,13 +15,14 @@
 <script>
     import cor from '@/components/frames/corousel'
     import but from '@/components/frames/buttons'
+    import about from '@/components/pages/about'
 
 
     export default {
         name: "GMap",
         props:['alias'],
         components:{
-            cor,but
+            cor,but,about
         },
         data() {
             return {}

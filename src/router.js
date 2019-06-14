@@ -50,11 +50,7 @@ const router = new Router({
       component: img
     },
 
-    {
-      path: "/profile/:id",
-      name: "profile",
-      component: prof
-    },
+
     {
       path: "/new",
       name: "new",
@@ -91,6 +87,14 @@ const router = new Router({
           props: true,
 
 
+        },
+        {
+          path: "/profile/:id",
+          name: "profile",
+          component: prof,
+          meta: {
+            requiresAuth: true
+          }
         },
 
       ]

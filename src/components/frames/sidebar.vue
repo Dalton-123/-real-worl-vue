@@ -1,12 +1,14 @@
 <template>
-    <div class="sidebar"  id="sidebar">
+<!--    <div class="sidebar"  id="sidebar">-->
+<div>
+
 
         <h3 class="test">#USERS</h3>
         <hr style="width: 200px;margin-left: 10px">
-       <div v-for="use in userse" class="test">
+       <div v-for="use in users" class="test">
            <div style="margin-top: 10px"  class="uk-width-auto">
                <i style="color:green" class="fa fa-circle"></i>
-               <span>{{use.alias}}</span>
+               <router-link :to="'/profile/' + use.alias">{{use.alias}}</router-link>
            </div>
            <div></div>
        </div>
@@ -14,33 +16,25 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
-    // import profiles from '@/components/User/viewProfile'
+
     import db from "@/firebase/init";
     export default {
         name: "sidebar",
-        props:['name'],
-        // components:{
-        //     profiles
-        // },
+
+
         data(){
             return{
-                userse:[]
+                users:[],
+                id:[]
             }
         },
-        computed:{
-            ...mapGetters(['CurrentUser'])
-        },
+        // methods:{
+        //     profile(id){
+        //      this.$router.push({name:'profile'})
+        //     }
+        // },
         created() {
-            var observer = db.collection("users").onSnapshot(querySnapshot => {
-                querySnapshot.docChanges().forEach(change => {
-                    if (change.type === "added") {
-                         this.userse.push({alias:change.doc.data().alias})
-                            // console.log(this.userse)
-
-                    }
-                });
-            });
+            this.$store.dispatch('Users',this.users)
         }
 
     }
