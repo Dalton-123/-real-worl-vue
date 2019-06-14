@@ -1,17 +1,24 @@
 <template>
 <!--    <div class="sidebar"  id="sidebar">-->
 <div>
+    <div class="uk-inline test">
 
 
-        <h3 class="test">#USERS</h3>
-        <hr style="width: 200px;margin-left: 10px">
-       <div v-for="use in users" class="test">
-           <div style="margin-top: 10px"  class="uk-width-auto">
-               <i style="color:green" class="fa fa-circle"></i>
-               <router-link :to="'/profile/' + use.alias">{{use.alias}}</router-link>
-           </div>
-           <div></div>
-       </div>
+
+        <p><i class="fa fa-users">Users</i></p>
+        <div uk-dropdown> <div class="me">
+
+            <div v-for="use in users" class="test">
+                <div style="margin-top: 10px"  class="uk-width-auto">
+
+                    <a href=""><router-link :to="'/profile/' + use.alias"><i style="color:green" class="fa fa-circle"></i>{{use.alias}}</router-link></a>
+                </div>
+                <div></div>
+            </div>
+        </div></div>
+    </div>
+
+
     </div>
 </template>
 
@@ -60,8 +67,21 @@
         /*bottom: -5;*/
     }
     .test{
-        margin-left: 20px;
+       background: #0a2b4e;
     }
-span{color: orangered}
-img{width: 20px}
+
+.me{background: #0a2b4e;
+    overflow: auto;
+    max-height: 250px;
+
+
+}
+.uk-inline{
+    background: #0a2b4e;
+}
+
+    i{margin-right: 5px;
+        font-size: 1.2em;
+        color: orangered;
+    }
 </style>

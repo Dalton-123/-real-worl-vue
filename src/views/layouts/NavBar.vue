@@ -15,8 +15,11 @@
         <ul class="right me ">
           <li v-if="user">
             <router-link to="/about"
-            ><i class="fa fa-users" >about us</i></router-link
+            ><i class="fas fa-grin-alt" >about us</i></router-link
             >
+          </li>
+          <li v-if="user">
+           <span> <sidebar></sidebar></span>
           </li>
           <li v-if="!user">
             <router-link to="/signup"
@@ -32,7 +35,7 @@
             <i href=""><span class="fa fa-shopping-cart">cart</span></i>
           </li>
           <li v-if="user">
-            <i class="fa fa-user">{{ user.email }}</i>
+            <router-link to="/profile"><i class="fa fa-user">{{ user.email }}</i></router-link>
           </li>
           <li v-if="user">
             <a href="" @click="logout"
@@ -57,7 +60,7 @@
 
 <script>
 import firebase from "firebase";
-import { mapGetters } from "vuex";
+
 
 
 
@@ -70,7 +73,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["CurrentUser"])
+
 
   },
   methods: {
@@ -83,10 +86,7 @@ export default {
           this.$router.push("/login")
         });
     },
-    setUser() {
-      this.$store.dispatch("set_user", { payload: "kjfldsjkdf" });
 
-    }
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
