@@ -72,7 +72,7 @@
               <li class="">
                 <a href="#">
                   <i class="material-icons">broken_image</i>
-                  <router-link to="gallery" class="menu-text">Gallery</router-link>
+                  <router-link to="/gallery" class="menu-text">Gallery</router-link>
 
                 </a>
 

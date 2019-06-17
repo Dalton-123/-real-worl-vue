@@ -5,7 +5,8 @@
            <div>
                <ul class="uk-slideshow-items">
                    <li v-for="image in  images" >
-                       <router-link :to="'/start/' + image.time"><img :src="image.image" alt="" ></router-link>
+                       <router-link :to="'/start/' + image.message"><img :src="image.image" alt="" ></router-link>
+
                    </li>
 
 
@@ -27,14 +28,12 @@
         name: "corousel",
         data(){
             return {
-                images:[]
+                image:[]
             }
         },
         computed:{
-            Photos(){
-                return this.images.map(map=>{
-                    return map.image
-                })
+            images(){
+                return this.$store.state.Gallery
             }
         },
 
@@ -44,7 +43,7 @@
 
 
         created(){
-            this.$store.dispatch('ViewImages',this.images)
+            this.$store.dispatch('ViewImages')
         }
 
     }

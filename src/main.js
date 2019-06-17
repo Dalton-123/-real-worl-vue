@@ -10,6 +10,8 @@ import navbar from '@/views/layouts/NavBar'
 import foot from '@/views/layouts/foot'
 import photo from '@/components/frames/Photo'
 import sidebar from '@/components/frames/sidebar'
+import sidegal from '@/components/frames/sidegallery'
+import start from "./components/home/GetStarted.vue";
 Vue.use(VueChatScroll)
 
 
@@ -19,6 +21,8 @@ Vue.component('navbar',navbar)
 Vue.component('foot',foot)
 Vue.component('photo',photo)
 Vue.component('sidebar',sidebar)
+Vue.component('sidegal',sidegal)
+
 let app = null
 firebase.auth().onAuthStateChanged(()=>{
   if(!app){

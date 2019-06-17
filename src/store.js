@@ -58,9 +58,11 @@ export default new Vuex.Store({
     profile: [],
     id: null,
     name: null,
-    image: null,
+    // image: null,
     Users: [],
-    Gallery: []
+    Gallery: [],
+    test:[{id:'ds',name:'Dalton'},{id:'fkjdjkfdj',name:'fjkolkdhf'}]
+
   },
   mutations: {
     PROFILE(state, payload) {
@@ -75,16 +77,16 @@ export default new Vuex.Store({
     },
 
     //load Image gallery
-    image(state, payload) {
-      state.image = payload;
-    },
+    // image(state, payload) {
+    //   state.image = payload;
+    // },
 
-    name(state, payload) {
-      state.name = payload;
-    },
+    // name(state, payload) {
+    //   state.name = payload;
+    // },
 
     gallery(state, payload) {
-      state.Gallery.push(payload);
+      state.Gallery=payload;
     },
     USERS(state, payload) {
       state.Users.push(payload);
@@ -125,8 +127,8 @@ export default new Vuex.Store({
           querySnapshot.forEach(doc => {
             // doc.data() is never undefined for query doc snapshots
             payload.push(doc.data());
-            commit("image", doc.data().image);
-            commit("name", doc.data().name);
+            // commit("image", doc.data().image);
+            // commit("name", doc.data().name);
           });
         })
         .catch(error => {
@@ -150,18 +152,24 @@ export default new Vuex.Store({
     },
 
     ViewImages({ commit }, payload) {
+      var crab=[]
       var observer = db
         .collection("Memes")
         .orderBy("time")
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
+
             if (change.type === "added") {
-              payload.push(change.doc.data());
+              crab.push(change.doc.data());
+
             }
           });
+
+
+          commit("gallery", crab);
         });
 
-      commit("gallery", payload);
+
     },
     //Users
     Users({ commit }, users) {
@@ -184,12 +192,12 @@ export default new Vuex.Store({
   },
 
   getters: {
-    loadedMeetup(state) {
-      return meetupId => {
-        return state.Gallery.find(meetup => {
-          return meetup.time === meetupId;
-        });
-      };
+    loadedGallery (state) {
+      return (meetupId) => {
+        return state.Gallery.find((meetup) => {
+          return meetup.message === meetupId
+        })
+      }
     },
     loadedProfile(state) {
       return meetupId => {
@@ -197,6 +205,12 @@ export default new Vuex.Store({
           return meetup.time === meetupId;
         });
       };
+    },
+    messages(state){
+      return state.Gallery
+
+
+
     }
   }
 });

@@ -18,9 +18,7 @@
             ><i class="fas fa-grin-alt" >about us</i></router-link
             >
           </li>
-          <li v-if="user">
-           <span> <sidebar></sidebar></span>
-          </li>
+
           <li v-if="!user">
             <router-link to="/signup"
               ><i class="fa fa-sign-out" >Signup</i></router-link
@@ -37,11 +35,16 @@
           <li v-if="user">
             <router-link to="/profile"><i class="fa fa-user">{{ user.email }}</i></router-link>
           </li>
+
+          <li v-if="user">
+            <span> <sidebar></sidebar></span>
+          </li>
           <li v-if="user">
             <a href="" @click="logout"
               ><i class="fa fa-sign-out" >logout</i></a
             >
           </li>
+
         </ul>
       </div>
     </nav>

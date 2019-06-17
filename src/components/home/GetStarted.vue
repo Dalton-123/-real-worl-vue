@@ -1,36 +1,56 @@
 <template>
-<div>
-    <div>
-        <img :src="meetus.image" alt="">
+<div classk="container-fluid">
+
+    <div class="row">
+        <div class="col-md-7">
+            <img :src="gallery.image" alt="">
+
+            <chat :ids="ids"></chat>
+        </div>
+       <div class="col">
+           <sidegal :ids="ids"></sidegal>
+       </div>
     </div>
 </div>
 </template>
 
 <script>
+    import chat from '@/components/Chat'
     export default {
         name: "GetStarted",
+        components:{
+            chat
+        },
+
         data(){
           return{
               messages:[],
-              id:this.$attrs.id
+              ids:this.$route.params.id,
+
 
           }
         },
         computed: {
 
-            meetus () {
-                 return this.$store.getters.loadedMeetup().find(map=>map.time==this.id)
-            },
+            gallery() {
+                return this.$store.getters.loadedGallery(this.ids)
+            }
 
 
 
     },
         created(){
-            this.$store.dispatch('ViewImages',this.messages)
+            this.$store.dispatch('ViewImages')
+
         }
     }
 </script>
 
 <style scoped>
+img{
 
+    padding: 20px;
+    max-height: 500px;
+    width: 100%;
+}
 </style>

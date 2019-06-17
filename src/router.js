@@ -21,6 +21,8 @@ import sidebar from '@/components/frames/sidebar'
 import memes from '@/views/UploadImages'
 import gal from  "@/components/pages/gallery";
 import img from  "@/components/frames/Images";
+import sidegal from '@/components/frames/sidegallery'
+import main from "./components/home/mainPage";
 Vue.use(Router);
 
 const router = new Router({
@@ -70,16 +72,10 @@ const router = new Router({
           path: "/chat",
           name: "chat",
           component: chat,
-          props: true,
+          // props: true,
 
         },
-        {
-          path: "/memes",
-          name: "memes",
-          component: memes,
-          props: true,
 
-        },
         {
           path: "/gallery",
           name: "gallery",
@@ -88,14 +84,16 @@ const router = new Router({
 
 
         },
+
         {
           path: "/profile/:id",
           name: "profile",
           component: prof,
-          meta: {
-            requiresAuth: true
-          }
+          // meta: {
+          //   requiresAuth: true
+          // }
         },
+
 
       ]
     },
@@ -122,13 +120,37 @@ const router = new Router({
       name: "sidebar",
       component: sidebar
     },
+
+
+    {
+      path: "/sidegal",
+      name: "sidegallery",
+      component:sidegal,
+      props:true
+
+    },
+    {
+      path: "/mainPage",
+      name: "mainPage",
+      component:main,
+
+
+    },
+    {
+      path: "/memes",
+      name: "memes",
+      component: memes,
+      props: true,
+
+    },
     {
       path: "/start/:id",
       name: "GetStarted",
       component:start,
-props:true
+      props:true
 
     },
+
   ]
 });
 router.beforeEach((to, from, next) => {

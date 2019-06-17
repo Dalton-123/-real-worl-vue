@@ -38,16 +38,25 @@ import firebase from 'firebase'
 
 export default {
   name: "MessageForm",
-  props: ["name"],
+  props: ["ids"],
   data() {
     return {
       message: "",
       errors: "",
       image:null,
       imageUrl:"",
+      crabs:[]
 
 
     };
+  },
+  computed:{
+    Pic(){
+      return this.crabs.map(map=>map.image)
+    },
+    names(){
+      return this.crabs.map(map=>map.name)
+    }
   },
   methods: {
     sendMessage() {
@@ -57,6 +66,9 @@ export default {
             time: Date.now(),
             image:this.imageUrl,
             message: this.message,
+            pic:this.Pic,
+            name:this.names,
+            id:this.ids
 
 
           }).then((data)=>{
@@ -104,7 +116,7 @@ export default {
   },
   created() {
     this.sendMessage;
-    // this.$store.dispatch('name')
+    this.$store.dispatch('ViewProfiles',this.crabs)
 
   }
 };
@@ -122,11 +134,11 @@ button input {
   height: 40px;
 }
 .messages {
-  position: absolute;
+  /*position: absolute;*/
  margin-left: 2%;
-  bottom: 0;
+  /*bottom: 0;*/
   width: 67%;
-  z-index: 100;
+  /*z-index: 100;*/
   color: white;
   text-align: center;
   margin-bottom: 0px;

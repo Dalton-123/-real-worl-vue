@@ -11,18 +11,24 @@
       <article class="uk-comment" @submit.prevent="deletes">
         <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
           <div class="uk-width-auto ">
-            <img class="uk-border-circle" :src="image" width="40" height="40" alt="">
+            <img class="uk-border-circle" :src="message.pic" width="40" height="40" alt="">
           </div>
           <div class="uk-width-expand">
-            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{name}}</a></h4>
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.name[0]}}</a></h4>
             <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-              <li><a href="#">{{message.time}}</a></li>
+              <li><a href="#">{{time}}</a></li>
               <a href="#" @click="deletes(message.id)" class="uk-icon-link" uk-icon="trash"></a>
             </ul>
           </div>
         </header>
         <div class="uk-comment-body">
           <p><i style="" class="fas fa-comment-dots"></i>{{message.message}}</p>
+
+<!--          REPLY-->
+
+          <reply ></reply>
+
+
 
         </div>
         <div class="first me">
@@ -37,21 +43,23 @@
 <script>
 import db from "@/firebase/init";
 import moments from 'moment'
+import reply from '@/components/frames/reply'
 export default {
   name: "SingleMessage",
+  props:['ids'],
   data() {
     return {
       messages: [],
-      crabs:[]
+      crabs:[],
+        time:null
     };
   },
+  components:{reply},
   computed:{
-    image(){
-      return this.$store.state.image
-    },
-    name(){
-      return this.$store.state.name
-    },
+    // image(){
+    //   return this.$store.state.image
+    // },
+
   },
 
   methods: {
@@ -68,22 +76,18 @@ export default {
     }
 },
   created() {
-    var observer = db.collection("message").orderBy('time').onSnapshot(querySnapshot => {
-      querySnapshot.docChanges().forEach(change => {
-        if (change.type === "added") {
-          this.messages.push({
-            name: change.doc.data().name,
-            message: change.doc.data().message,
-            time: moments(change.doc.data().time).format('lll'),
-            image:change.doc.data().image,
-            id:change.doc.id
-          });
-        }
+    let observer = db.collection('message').where('id', '==', this.$route.params.id)
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === 'added') {
+                   this.messages.push(change.doc.data());
+                   this.time=moments(change.doc.data().time).format('lll');
+                }
 
-      });
-    });
+              });
+            });
 
-      this.$store.dispatch('image')
+
 
 
 
@@ -127,4 +131,6 @@ i{margin-right: 15px;
   margin-top: 5px;
   color: palevioletred;
 }
+
+  a{font-size: 1.1em}
 </style>

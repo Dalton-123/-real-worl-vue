@@ -1,8 +1,8 @@
 <template>
     <div>
-        <single-message></single-message>
+        <single-message :ids="ids"></single-message>
         <br> <br>
-        <forms></forms>
+        <forms :ids="ids"></forms>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
     // import database from 'firebase/database'
     export default {
         name: "Messages",
-        props:['name'],
+        props:['ids'],
         components: {SingleMessage,forms},
 
     }

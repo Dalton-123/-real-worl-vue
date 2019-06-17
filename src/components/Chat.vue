@@ -2,7 +2,7 @@
     <div>
 
 <!--        <sidebar :name="name">  </sidebar>-->
-        <Message :name="name"></Message>
+        <Message :ids="ids"></Message>
 
 
 
@@ -16,14 +16,14 @@
 
     export default{
         name:'chat',
-        props:['name'],
+        props:['ids'],
         components:{
             // sidebar,
             Message
         },
         data(){
             return{
-
+id:this.ids
             }
         }
 

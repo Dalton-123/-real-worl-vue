@@ -1,14 +1,15 @@
 <template>
-  <div class="uk-container  uk-child-width-1-4@m row" uk-grid uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 500; repeat: true">
+  <div class="uk-container  uk-child-width-1-4@m row" uk-grid >
       <div style="margin-top: 50px" v-for="message in messages" :key="message.message" class=" " uk-grid>
           <div>
-              <div class="uk-card uk-card-default flex" style="width: 200px;margin-left: 10px">
-                  <div class="uk-card-media-top">
+              <div class="uk-card uk-card-default flex uk-animation-toggle" style="width: 200px;margin-left: 10px" tabindex="0" >
+                  <div class="uk-card-media-top uk-animation-scale-up">
                       <router-link :to="'/start/' + message.time"><img :src="message.image" alt="" class=""></router-link>
                   </div>
 
                   <i class="material-icons">send</i>
                   <i class="material-icons">&#xe439;</i>
+                  <i class="fas fa-comment-dots"></i>
               </div>
           </div>
       </div>
@@ -63,6 +64,8 @@ img{
 }
    i{
        color: #0a2b4e;
+       font-size: 1.4em;
+       margin-left: 2px;
    }
 
 </style>

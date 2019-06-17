@@ -54,13 +54,13 @@
       sendMessage() {
         if (this.message) {
           var user = firebase.auth().currentUser;
-          db.collection("Memes")
-                  .add({
+          db.collection("Memes").doc(this.message)
+                  .set({
                     time: Date.now(),
                     image:this.imageUrl,
                     message: this.message,
                     name: this.names,
-                    id:user.uid
+
 
                   }).then((data)=>{
             const key= data.id
