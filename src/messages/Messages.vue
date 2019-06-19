@@ -1,8 +1,9 @@
 <template>
     <div>
+        <forms :ids="ids"></forms><br> <br>
         <single-message :ids="ids"></single-message>
-        <br> <br>
-        <forms :ids="ids"></forms>
+
+
     </div>
 </template>
 
@@ -14,6 +15,7 @@
         name: "Messages",
         props:['ids'],
         components: {SingleMessage,forms},
+
 
     }
 </script>

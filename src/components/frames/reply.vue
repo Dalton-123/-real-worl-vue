@@ -1,13 +1,13 @@
 <template>
     <div>
         <ul uk-accordion="multiple: true">
-            <li class="uk-open">
+            <li>
                 <a class="uk-accordion-title" href="#">reply</a>
                 <div class="uk-accordion-content">
                     <div class="take">
                         <input type="text"  v-model="reply">
                     </div>
-                    <button @click="send"></button>
+                    <a @click="send"><i class="fa fa-send"></i></a>
                 </div>
             </li>
 
@@ -19,16 +19,23 @@
     import db from "@/firebase/init";
     export default {
         name: "reply",
+        props:[''],
         data(){
             return{
-                reply:null
+                reply:null,
+                time:Date.now().toString()
             }
         },
         methods:{
             send(){
-
-                db.collection('Memes').add({reply: this.reply});
+                db.collection('reply').set({
+                    reply: this.reply,
+                    time:this.time
+                }).then(this.reply=null)
             }
+        },
+        created(){
+
         }
 
     }

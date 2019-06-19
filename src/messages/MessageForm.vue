@@ -1,13 +1,18 @@
 <template>
-  <div style="margin-top: 150px" class="">
+  <div style="margin-top: 150px" class="test">
     <div class=" ">
 
       <div class="messages">
         <img :src="imageUrl" alt="" width="200px" height="200px">
         <form @submit.prevent="sendMessage">
-          <div class="input-group">
-            <input type="text" placeholder="text..." v-model="message" />
-          </div>
+         <div class="d-flex" style="margin-top: 10px">
+           <div class="uk-width-auto ">
+             <img width="50" height="100" class="uk-border-circle" src="@/assets/avatar.svg">
+           </div>
+           <div class="input-group col">
+             <input type="text" placeholder="Comment..." v-model="message" />
+           </div>
+         </div>
           <p v-if="errors">{{ errors }}</p>
 
         </form>
@@ -61,14 +66,15 @@ export default {
   methods: {
     sendMessage() {
       if (this.message) {
-        db.collection("message")
-          .add({
+        db.collection("message").doc()
+          .set({
             time: Date.now(),
             image:this.imageUrl,
             message: this.message,
             pic:this.Pic,
             name:this.names,
-            id:this.ids
+            id:this.ids,
+
 
 
           }).then((data)=>{
@@ -109,9 +115,7 @@ export default {
 
 
     },
-    deletes(doc){
 
-    }
 
   },
   created() {
@@ -136,7 +140,7 @@ button input {
 .messages {
   /*position: absolute;*/
  margin-left: 2%;
-  /*bottom: 0;*/
+  bottom: 0;
   width: 67%;
   /*z-index: 100;*/
   color: white;
@@ -151,8 +155,11 @@ p {
 input {
   color: black;
 }
-.test {
-  /*margin-top: 80px;*/
+.uk-width-auto img{
 
+  max-height: 100px;
 }
+  /*.test{*/
+  /*  margin-left: 0%;*/
+  /*}*/
 </style>

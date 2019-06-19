@@ -4,7 +4,7 @@
           <div>
               <div class="uk-card uk-card-default flex uk-animation-toggle" style="width: 200px;margin-left: 10px" tabindex="0" >
                   <div class="uk-card-media-top uk-animation-scale-up">
-                      <router-link :to="'/start/' + message.time"><img :src="message.image" alt="" class=""></router-link>
+                      <router-link :to="'/start/' + message.message"><img :src="message.image" alt="" class=""></router-link>
                   </div>
 
                   <i class="material-icons">send</i>
@@ -24,14 +24,14 @@ export default {
   name: "Images",
   data() {
     return {
-      messages: [],
+      message: [],
 
     };
   },
   computed: {
-    // image() {
-    //   return this.$store.state.image;
-    // },
+    messages() {
+      return this.$store.state.Gallery
+    },
     // name() {
     //   return this.$store.state.name;
     // },
@@ -50,7 +50,7 @@ export default {
     }
   },
   created() {
-      this.$store.dispatch('ViewImages',this.messages)
+      this.$store.dispatch('ViewImages')
 
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-container test vue-chat-scroll">
+  <div class="uk-container test">
 
 
     <div
@@ -11,13 +11,14 @@
       <article class="uk-comment" @submit.prevent="deletes">
         <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
           <div class="uk-width-auto ">
-            <img class="uk-border-circle" :src="message.pic" width="40" height="40" alt="">
+            <img class="uk-border-circle" :src="message.pic"  alt="">
           </div>
           <div class="uk-width-expand">
             <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.name[0]}}</a></h4>
             <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
               <li><a href="#">{{time}}</a></li>
-              <a href="#" @click="deletes(message.id)" class="uk-icon-link" uk-icon="trash"></a>
+<!--              <a href="#" @click="deletes(message.id)" class="uk-icon-link" uk-icon="trash"></a>-->
+
             </ul>
           </div>
         </header>
@@ -25,8 +26,8 @@
           <p><i style="" class="fas fa-comment-dots"></i>{{message.message}}</p>
 
 <!--          REPLY-->
+<reply :ids="ids" ></reply>
 
-          <reply ></reply>
 
 
 
@@ -52,6 +53,7 @@ export default {
       messages: [],
       crabs:[],
         time:null
+
     };
   },
   components:{reply},
@@ -80,8 +82,9 @@ export default {
             .onSnapshot(querySnapshot => {
               querySnapshot.docChanges().forEach(change => {
                 if (change.type === 'added') {
-                   this.messages.push(change.doc.data());
+                   this.messages.unshift(change.doc.data());
                    this.time=moments(change.doc.data().time).format('lll');
+
                 }
 
               });
@@ -101,7 +104,7 @@ export default {
 .test {
   /*margin-left: 330px;*/
     max-height: 400px;
-    overflow: auto;
+    /*overflow: auto;*/
 
 }
 .test::-webkit-scrollbar-track{
@@ -133,4 +136,11 @@ i{margin-right: 15px;
 }
 
   a{font-size: 1.1em}
+  .fa fa-thumbs-up{
+    color:blue;
+  }
+   .uk-width-auto img{
+        width: 45px;
+       max-height: 45px;
+    }
 </style>

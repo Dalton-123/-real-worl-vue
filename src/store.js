@@ -61,16 +61,15 @@ export default new Vuex.Store({
     // image: null,
     Users: [],
     Gallery: [],
-    test:[{id:'ds',name:'Dalton'},{id:'fkjdjkfdj',name:'fjkolkdhf'}]
+
+
 
   },
   mutations: {
     PROFILE(state, payload) {
       state.profile.push(payload);
     },
-    USER_ID(state, payload) {
-      state.id = payload;
-    },
+
     //  View Profile
     ViewProfile(state, payload) {
       state.viewProfile.push(payload);
@@ -155,7 +154,7 @@ export default new Vuex.Store({
       var crab=[]
       var observer = db
         .collection("Memes")
-        .orderBy("time")
+        // .orderBy("time")
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
 
@@ -165,9 +164,9 @@ export default new Vuex.Store({
             }
           });
 
-
           commit("gallery", crab);
-        });
+
+        })
 
 
     },
@@ -184,21 +183,11 @@ export default new Vuex.Store({
 
       commit("USERS", users);
     },
-    //  User id
-    UserID({ commit }) {
-      var user = firebase.auth().currentUser;
-      commit("USER_ID", user.uid);
-    }
+
   },
 
   getters: {
-    loadedGallery (state) {
-      return (meetupId) => {
-        return state.Gallery.find((meetup) => {
-          return meetup.message === meetupId
-        })
-      }
-    },
+
     loadedProfile(state) {
       return meetupId => {
         return state.users.find(meetup => {
@@ -206,11 +195,14 @@ export default new Vuex.Store({
         });
       };
     },
-    messages(state){
-      return state.Gallery
+    loadedallery (state) {
+      return (meetupId) => {
+        return state.Gallery.find((meetup) => {
+          return meetup.message === meetupId
+        })
+      }
+    },
 
 
-
-    }
   }
 });
