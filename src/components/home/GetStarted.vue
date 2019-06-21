@@ -1,19 +1,23 @@
 <template>
-<div class="uk-container test">
+<div>
+<!--    <navbar></navbar>-->
 
-    <div class="row" v-for="gal in gallery">
-        <div class="col-md-7">
-            <img :src="gal.image" alt="" uk-svg="stroke-animation: true">
-            <div class="test d-flex">
-                <span href="#" class="" @click=" increment"><i class="fa fa-thumbs-up" style="font-size:24px">{{increments}}</i></span>
-                <span href="#" style="margin-left: 10px" @click="decrement"><i class="fa fa-thumbs-down" style="font-size:24px"></i></span>
+    <div class=" test">
+
+        <div class="row" v-for="gal in gallery">
+            <div class="col-md-7">
+                <img :src="gal.image" alt="" uk-svg="stroke-animation: true">
+                <div class="test d-flex">
+                    <span href="#" class="" @click=" increment"><i class="fa fa-thumbs-up" style="font-size:24px">{{increments}}</i></span>
+                    <span href="#" style="margin-left: 10px" @click="decrement"><i class="fa fa-thumbs-down" style="font-size:24px"></i></span>
+                </div>
+                <!--            {{gallery.time}}-->
+                <chat :ids="ids"></chat>
             </div>
-<!--            {{gallery.time}}-->
-            <chat :ids="ids"></chat>
+            <div class="col">
+                <sidegal :ids="ids"></sidegal>
+            </div>
         </div>
-       <div class="col">
-           <sidegal :ids="ids"></sidegal>
-       </div>
     </div>
 </div>
 </template>
@@ -74,9 +78,9 @@ img{
     width: 100%;
 }
     .test{
-        padding-top: 10px;
-        padding-left: 150px;
-        padding-right: 150px;
+        /*padding-top: 10px;*/
+        /*padding-left: 150px;*/
+        /*padding-right: 150px;*/
 
 
     }

@@ -22,7 +22,7 @@ import memes from '@/views/UploadImages'
 import gal from  "@/components/pages/gallery";
 import img from  "@/components/frames/Images";
 import sidegal from '@/components/frames/sidegallery'
-import main from "./components/home/mainPage";
+import main from "./components/frames/bar";
 Vue.use(Router);
 
 const router = new Router({
@@ -54,20 +54,40 @@ const router = new Router({
 
 
     {
-      path: "/new",
-      name: "new",
-      component: news,
-      children: [
+      path: "/bar",
+      name: "bar",
+      component: main,
+    children:[
         {
-          path: "/profile",
-          name: "Profile",
-          component: profile
+            path: "/gallery",
+            name: "gallery",
+            component: gal,
+            props: true,
         },
         {
-          path: "/user",
-          name: "UserProfile",
-          component: user
+            path: "/profile",
+            name: "Profile",
+            component: profile
         },
+        {
+            path: "/user",
+            name: "UserProfile",
+            component: user
+        },
+      {
+        path: "/start/:id",
+        name: "GetStarted",
+        component:start,
+        props:true
+
+      },
+
+    ]
+
+    },
+
+
+
         {
           path: "/chat",
           name: "chat",
@@ -76,14 +96,7 @@ const router = new Router({
 
         },
 
-        {
-          path: "/gallery",
-          name: "gallery",
-          component: gal,
-          props: true,
 
-
-        },
 
         {
           path: "/profile/:id",
@@ -95,8 +108,8 @@ const router = new Router({
         },
 
 
-      ]
-    },
+
+
 
 
     ,
@@ -143,13 +156,7 @@ const router = new Router({
       props: true,
 
     },
-    {
-      path: "/start/:id",
-      name: "GetStarted",
-      component:start,
-      props:true
 
-    },
 
   ]
 });

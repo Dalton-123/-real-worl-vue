@@ -11,8 +11,8 @@
           <span><h2 style="color: white">Meme Galleries</h2></span></router-link
         >
       </div>
-      <div style="margin-left: 50px" class="me ">
-        <ul class="right me ">
+      <div style="" class="right">
+        <ul class= "" style="margin-left: 550px">
           <li v-if="user">
             <router-link to="/about"
             ><i class="fas fa-grin-alt" >about us</i></router-link
@@ -48,9 +48,11 @@
         </ul>
       </div>
     </nav>
-    <nav class="uk-navbar-container test" uk-navbar style="margin-top: -10px">
+    <nav class="uk-navbar-container test" uk-navbar style="">
       <div class="uk-navbar-left il">
+<!--side bar-->
 
+<!--<bar></bar>-->
         <ul class="uk-navbar-nav center">
           <li class="uk-active "><h3>Teaching the world to love better through Meme Technology.</h3></li>
         </ul>
@@ -63,12 +65,13 @@
 
 <script>
 import firebase from "firebase";
-
-
-
+import bar from '@/components/frames/bar'
 
 export default {
   name: "NavBar",
+  components:{
+    bar
+  },
   data() {
     return {
       user: null,
@@ -113,7 +116,7 @@ export default {
   }
 .me{background: #0a2b4e}
 h3 {
- padding-left: 400px;
+ padding-left: 500px;
   color: white;
 
 }
@@ -124,4 +127,5 @@ h3 {
   .right{
     padding-right: 0px;
   }
+    nav{width: 100%}
 </style>

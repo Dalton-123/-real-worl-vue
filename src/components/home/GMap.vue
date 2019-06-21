@@ -1,5 +1,5 @@
 <template>
-    <div class=" testStep1">
+    <div class="uk-background-fixed testStep1">
         <div>
             <navbar></navbar>
         </div>

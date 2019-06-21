@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid  test">
+  <div class=" uk-container ">
     <h2>Create you Profile Here</h2>
     <div class="uk-cover-container uk-height-medium">
       <iframe src="https://www.youtube.com/embed/6vUWVIevMVs?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="1920" height="1080" frameborder="0" allowfullscreen uk-cover></iframe>
@@ -215,16 +215,17 @@ countries(){
 </script>
 
 <style scoped>
-.test {
-  max-width: 70%;
-  padding-bottom: 200px;
-  padding-top: 20px;
+form {
+width:900px;
+
+  /*padding-bottom: 200px;*/
+  /*padding-top: 20px;*/
 }
 
 input {
   width: 450px;
 }
-    .row{
-        margin-top: 10px;
-    }
+/*    .row{*/
+/*        margin-top: 10px;*/
+/*    }*/
 </style>

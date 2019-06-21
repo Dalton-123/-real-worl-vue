@@ -1,5 +1,6 @@
 <template>
   <div>
+<!--      <navbar></navbar>-->
       <div v-for="test in crabs" class="uk-container">
           <h2> {{test.name}} Profile</h2>
           <div class="row">

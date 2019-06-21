@@ -1,11 +1,13 @@
 <template>
     <div>
-        <div   class="uk-position-relative uk-visible-toggle uk-light login" tabindex="-1" uk-slideshow>
+        <div   class=" uk-position-relative uk-visible-toggle uk-light login" tabindex="-1"  uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 9000;">
 
            <div>
                <ul class="uk-slideshow-items">
                    <li v-for="image in  images" >
-                       <router-link :to="'/start/' + image.message"><img :src="image.image" alt="" ></router-link>
+                     <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-top-right">
+                         <router-link :to="'/start/' + image.message"><img :src="image.image" alt="" ></router-link>
+                     </div>
 
                    </li>
 
@@ -23,8 +25,9 @@
 </template>
 
 <script>
-
+    import UIkit from "uikit";
     export default {
+
         name: "corousel",
         data(){
             return {
@@ -44,8 +47,11 @@
 
         created(){
             this.$store.dispatch('ViewImages')
-        }
 
+        },
+mounted(){
+    UIkit.slideshow('uk-slideshow').startAutoplay();
+}
     }
 </script>
 
@@ -56,9 +62,11 @@
     margin-top: 10px;
     margin-left: 350px;
     max-height: 100%!important;
+    border: 4px solid white;
 }
     img{
         width:1800px;
-        max-height: 400px;
+        max-height: 100%!important;
+        height:400px !important;
     }
 </style>
