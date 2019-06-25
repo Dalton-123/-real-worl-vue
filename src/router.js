@@ -81,6 +81,14 @@ const router = new Router({
         props:true
 
       },
+        {
+            path: "/profile/:id",
+            name: "profile",
+            component: prof,
+            meta: {
+                requiresAuth: true
+            }
+        },
 
     ]
 
@@ -98,14 +106,8 @@ const router = new Router({
 
 
 
-        {
-          path: "/profile/:id",
-          name: "profile",
-          component: prof,
-          // meta: {
-          //   requiresAuth: true
-          // }
-        },
+
+
 
 
 

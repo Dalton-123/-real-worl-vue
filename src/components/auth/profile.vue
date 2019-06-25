@@ -1,6 +1,6 @@
 <template>
  <div>
-     <navbar></navbar>
+
      <div class="profile container">
 
          <div class="card">
@@ -117,7 +117,7 @@ export default {
 
   }
   .profile h2{
-    fonr-size:2em;
+    font-size:2em;
     margin-top:0;
     padding-left: 10px;
 
@@ -132,4 +132,7 @@ export default {
       font-size: 1.5em;
       color: orangered;
   }
+     .card{
+        width:1050px;
+    }
 </style>

@@ -8,6 +8,9 @@
           <div class="input-group">
             <input type="text" placeholder="text..." v-model="message" />
           </div>
+          <div class="input-group">
+            <input type="text" placeholder="category..." v-model="category" />
+          </div>
           <p v-if="errors">{{ errors }}</p>
 
         </form>
@@ -46,7 +49,9 @@
         errors: "",
         image:null,
         imageUrl:"",
-        names:this.$store.state.name
+        names:this.$store.state.name,
+        category:null,
+        time:Date.now().toString()
 
       };
     },
@@ -54,14 +59,14 @@
       sendMessage() {
         if (this.message) {
           var user = firebase.auth().currentUser;
-          db.collection("Memes").doc(this.message)
+          db.collection("Memes").doc()
                   .set({
-                    time: Date.now(),
+                    time: this.time,
                     image:this.imageUrl,
                     message: this.message,
                     name: this.names,
-
-
+                    user_id:user.uid,
+                    category:this.category
                   }).then((data)=>{
             const key= data.id
 

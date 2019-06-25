@@ -66,14 +66,18 @@ export default {
   methods: {
     sendMessage() {
       if (this.message) {
+        var user = firebase.auth().currentUser;
         db.collection("message").doc()
           .set({
+            Meme_id:this.ids,
+            user_id:user.uid,
             time: Date.now(),
             image:this.imageUrl,
             message: this.message,
             pic:this.Pic,
             name:this.names,
-            id:this.ids,
+
+
 
 
 

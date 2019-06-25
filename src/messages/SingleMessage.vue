@@ -78,7 +78,7 @@ export default {
     }
 },
   created() {
-    let observer = db.collection('message').where('id', '==', this.$route.params.id)
+    let observer = db.collection('message').where('Meme_id', '==', this.$route.params.id)
             .onSnapshot(querySnapshot => {
               querySnapshot.docChanges().forEach(change => {
                 if (change.type === 'added') {

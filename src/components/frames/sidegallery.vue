@@ -1,24 +1,29 @@
 <template>
-  <div class="uk-container uk-container-small">
-    <div v-for="image in images" class="test ">
-      <div class=" uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-        <div class="uk-card-media-left uk-cover-container uk-animation-toggle">
+  <div class="test" >
+    <div v-for="image in images" class=" ">
+      <div class="  uk-child-width-1-2@s " uk-grid>
+        <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle uk-light" tabindex="0">
           <img
             :src="image.image"
             alt=""
             uk-cover
-            @click="Goto(image.message)"
+            @click="Goto(image.time)"
+
           />
-          <canvas width="48"></canvas>
+          <div class="uk-position-center">
+            <div class="uk-transition-slide-top-small"><h4 class="uk-margin-remove">Meme</h4></div>
+            <div class="uk-transition-slide-bottom-small"><h4 class="uk-margin-remove">Galleries</h4></div>
+          </div>
         </div>
+<!--        <p class="uk-margin-small-top">Small Top + Bottom</p>-->
         <div>
-          <div class="uk-card-body">
+          <div class="uk-card-body ">
             <h3 class="uk-card-title">{{ image.message }}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur .</p>
+            <p class=''>Lorem ipsum dolor sit amet, consectetur .</p>
           </div>
         </div>
       </div>
-      <hr />
+
     </div>
   </div>
 </template>
@@ -49,12 +54,23 @@ export default {
 
 <style scoped>
 .test {
-  padding-top: 20px;
-  padding-right: 20px;
-}
-/*img{*/
+  /*padding-top: 20px;*/
+  padding-right: 70px;
+  padding-top: 0px;
 
-/*max-width: 100%;*/
-/*    max-height: 100%;*/
-/*}*/
+
+
+
+}
+img{
+
+max-width: 100%;
+ /*width: 100px;*/
+    max-height: 70%;
+}
+  p{width: 160px}
+  h4 {
+    color: white;
+    font-size: 20px;
+  }
 </style>

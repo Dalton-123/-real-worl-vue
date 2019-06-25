@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div v-if="this.$route.path!='/'">
 
     <div class="me"><a href="#offcanvas-usage" uk-toggle><i class="fa fa-navicon"></i></a></div>
 
     <div id="offcanvas-usage" uk-offcanvas="bg-close:false">
       <div class="uk-offcanvas-bar test" >
 <!--        <div class="d-flex">-->
-<!--          <i style="margin-top: 0%" class="fa fa-home me"></i>-->
+         <router-link to="/"> <i style="margin-top: 0%" class="fa fa-home me"></i></router-link>
 <!--          <a class="uk-offcanvas-close" type="">-->
 <!--            <i style="font-size:24px;padding-top: 12px" class="fa">&#xf00d;</i></a>-->
 <!--        </div>-->
@@ -43,16 +43,16 @@
                      <a href="#">
                          <i class="fa fa-tachometer-alt"></i>
                          <router-link to="/profile" class="menu-text"
-                         >View Profile</router-link
+                         ><span>View Profile</span></router-link
                          >
                      </a>
                  </li>
 
-                 <li class="tests">
-                     <a href="#">
+                 <li class="tests ">
+                     <a href="#" >
                          <i class="far fa-gem"></i>
                          <router-link to="/user" class="menu-text"
-                         >Create Profile</router-link
+                         ><span class="">Create Profile</span></router-link
                          >
                      </a>
                  </li>
@@ -66,20 +66,23 @@
                      <a href="#">
                          <i class="material-icons">broken_image</i>
                          <router-link to="/gallery" class="menu-text"
-                         >Gallery</router-link
+                         ><span>Gallery</span></router-link
                          >
                      </a>
                  </li>
              </ul>
+
          </div>
+
         </div>
+
       </div>
 
-       <div class="main">
-           <router-view></router-view>
-       </div>
-    </div>
 
+    </div>
+      <div class="main">
+          <router-view />
+      </div>
   </div>
 </template>
 
@@ -92,18 +95,22 @@ export default {
       crabs: []
     };
   },
+    methods:{
+
+    },
   created() {
     this.$store.dispatch("ViewProfiles", this.crabs);
   },
     mounted(){
         UIkit.offcanvas('#offcanvas-usage').show();
+
     }
 };
 </script>
 
 <style scoped>
 .test {
-  background-color: #0a2b4e;
+  background-color: white;
   opacity: 0.9;
     overflow-scrolling: auto;
 
@@ -115,16 +122,16 @@ i {
   color: orangered;
   margin-top: 5px;
   margin-right: 8px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     padding: 3px;
-    background: black;
+    /*background: black;*/
     opacity: 0.8;
 }
 .d-flex span {
   margin-left: 10px;
   font-size: 16px;
   margin-top: 20px;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 img {
@@ -135,7 +142,7 @@ img {
   margin-top: 30px;
 
   font-size: 16px;
-  color: white;
+  color: black;
 }
   .last  li{
         margin-top: 30px;
@@ -167,4 +174,5 @@ img {
     height: 700px;
     overflow: auto;
 }
+span{color: black}
 </style>

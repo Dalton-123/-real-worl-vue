@@ -1,0 +1,118 @@
+<template>
+  <div class="test d-flex">
+    <div>
+      <div>
+        <span href="#" v-if="ID" style="color: blue" @click="like()"
+          ><i class="fa fa-thumbs-up" style="font-size:24px"></i
+          ><span v-if="likenum>1">{{ likenum }}</span></span
+        >
+        <span v-else @click="like()"
+          ><i class="fa fa-thumbs-up" style="font-size:24px"></i
+          ><span v-if="likenum">{{ likenum }}</span></span
+        >
+
+        <span v-if="UID" style="margin-left: 10px;color: blue" @click="unlike"
+        ><i class="fa fa-thumbs-down" style="font-size:24px"></i>
+            <span v-if=" dislikenum>1">{{  dislikenum }}</span>
+        </span>
+
+          <span v-else style="margin-left: 10px" @click="unlike"
+        ><i class="fa fa-thumbs-down" style="font-size:24px"></i>
+            <span v-if=" dislikenum">{{  dislikenum }}</span>
+        </span>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import db from "@/firebase/init";
+import firebase from "firebase";
+export default {
+  name: "likes",
+  props: ["ids"],
+  data() {
+    return {
+      likes: [],
+        dislikes:[],
+      id: firebase.auth().currentUser.uid,
+    };
+  },
+  firestore(){
+    return {
+      products: db.collection('products'),
+    }
+  },
+
+  methods: {
+    like() {
+      var user = firebase.auth().currentUser;
+      db.collection("likes")
+        .doc(user.uid)
+        .set({
+          time: Date.now(),
+          user_id: user.uid,
+            Meme_id: this.ids
+        });
+        db.collection('unlikes').doc(this.id).delete().then(()=>{
+         window.location.reload()
+        })
+
+    },
+    unlike() {
+        var user = firebase.auth().currentUser;
+        db.collection("unlikes")
+            .doc(user.uid)
+            .set({
+                time: Date.now(),
+                user_id: user.uid,
+                Meme_id: this.ids
+            });
+        db.collection('likes').doc(this.id).delete().then(()=>{
+          window.location.reload()
+        })
+        // window.location.reload()
+    }
+  },
+  computed: {
+    likenum() {
+      return this.likes.length;
+    },
+    ID() {
+      return this.likes.find(map => map.user_id === this.id);
+    },
+      dislikenum() {
+          return this.dislikes.length;
+      },
+      UID() {
+          return this.dislikes.find(map => map.user_id === this.id);
+      },
+
+  },
+  created() {
+    db.collection("likes")
+      .where("Meme_id", "==", this.ids)
+      .onSnapshot(querySnapshot => {
+        querySnapshot.docChanges().forEach(change => {
+          if (change.type === "added") {
+            this.likes.push(change.doc.data());
+            console.log(change.doc.data());
+          }
+        });
+      });
+    db.collection("unlikes")
+      .where("Meme_id", "==", this.ids)
+      .onSnapshot(querySnapshot => {
+        querySnapshot.docChanges().forEach(change => {
+          if (change.type === "added") {
+            this.dislikes.push(change.doc.data());
+            console.log(change.doc.data());
+          }
+        });
+      });
+  }
+};
+</script>
+
+<style scoped></style>

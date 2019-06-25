@@ -1,6 +1,8 @@
 <template>
     <div class="uk-background-fixed testStep1">
         <div>
+            <router-view /></div>
+        <div>
             <navbar></navbar>
         </div>
 <p class="uk-container test uk-text-center">Muscle Crab Diversities is a Jamaican owned company that provides the planet a taste of caribbean culture daily.  Subscribe today to receive your daily Meme.</p>
@@ -26,7 +28,10 @@
         },
         data() {
             return {}
-        }
+        },
+    // created() {
+    //         window.location.reload()
+    //     }
 
     }
 </script>

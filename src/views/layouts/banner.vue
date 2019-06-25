@@ -1,14 +1,31 @@
 <template>
-    <nav class="uk-navbar-container test" uk-navbar style="margin-top: -10px">
-    <div class="uk-navbar-left il">
+    <nav class="  container-fluid uk-text-center" uk-navbar>
+        <div class="uk-navbar-right">
 
-        <ul class="uk-navbar-nav ">
-            <li class="uk-active "><h3>Teaching the world to love better through Meme Technology.</h3></li>
-        </ul>
+            <a class="uk-navbar-item uk-logo" href="#">Logo</a>
 
-    </div>
+            <ul class="uk-navbar-nav ">
+                <li>
+                    <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+                        Features
+                    </a>
+                </li>
+            </ul>
 
-</nav>
+            <div class="uk-navbar-item">
+                <div>Some <a href="#">Link</a></div>
+            </div>
+
+<!--            <div class="uk-navbar-item">-->
+<!--                <form action="javascript:void(0)">-->
+<!--                    <input class="uk-input uk-form-width-small" type="text" placeholder="Input">-->
+
+<!--                </form>-->
+<!--            </div>-->
+
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -27,6 +44,11 @@
     h3{margin-left: 400px;
     color: white}
 
-
-
+nav{
+    margin-top: 0%;
+    background-color: white;
+}
+.uk-navbar-container{
+    margin-top: 0px;background-color: white;
+}
 </style>

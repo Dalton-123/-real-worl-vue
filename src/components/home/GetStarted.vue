@@ -1,20 +1,16 @@
 <template>
 <div>
-<!--    <navbar></navbar>-->
+<banner></banner>
 
-    <div class=" test">
-
+    <div class="container-fluid test">
         <div class="row" v-for="gal in gallery">
             <div class="col-md-7">
                 <img :src="gal.image" alt="" uk-svg="stroke-animation: true">
-                <div class="test d-flex">
-                    <span href="#" class="" @click=" increment"><i class="fa fa-thumbs-up" style="font-size:24px">{{increments}}</i></span>
-                    <span href="#" style="margin-left: 10px" @click="decrement"><i class="fa fa-thumbs-down" style="font-size:24px"></i></span>
-                </div>
+               <likes :ids="ids"></likes>
                 <!--            {{gallery.time}}-->
                 <chat :ids="ids"></chat>
             </div>
-            <div class="col">
+            <div class="col-md-4">
                 <sidegal :ids="ids"></sidegal>
             </div>
         </div>
@@ -25,10 +21,11 @@
 <script>
     import chat from '@/components/Chat'
     import db from "@/firebase/init";
+    import likes from "@/components/frames/likes";
     export default {
         name: "GetStarted",
         components:{
-            chat
+            chat,likes
         },
 
         data(){
@@ -37,6 +34,7 @@
               ids:this.$route.params.id,
               first:1,
               increments:null,
+              meme_id:null
 
 
           }
@@ -51,14 +49,14 @@
         },
         created(){
             // this.$store.dispatch('ViewImages')
-            db.collection("Memes").where('message','==',this.ids)
-                .orderBy("time")
+            db.collection("Memes").where('time','==',this.ids)
+                // .orderBy("time")
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
 
                         if (change.type === "added") {
                             this.gallery.push(change.doc.data());
-
+                            // console.log(change.doc.id)
 
                         }
                     });
@@ -72,15 +70,14 @@
 
 <style scoped>
 img{
-
-    padding: 20px;
+padding-top: 27px;
+    padding-right: 25px;
     max-height: 500px;
     width: 100%;
 }
     .test{
-        /*padding-top: 10px;*/
-        /*padding-left: 150px;*/
-        /*padding-right: 150px;*/
+max-height: 500px;
+        overflow-scrolling: auto;
 
 
     }

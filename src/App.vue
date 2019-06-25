@@ -3,8 +3,9 @@
 
 
 <!--    <foot></foot>-->
-    <div>
-        <router-view /></div>
+      <div class="">
+          <router-view />
+      </div>
   </div>
 </template>
 <script>
