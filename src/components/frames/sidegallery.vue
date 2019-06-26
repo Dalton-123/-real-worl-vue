@@ -18,8 +18,9 @@
 <!--        <p class="uk-margin-small-top">Small Top + Bottom</p>-->
         <div>
           <div class="uk-card-body ">
-            <h3 class="uk-card-title">{{ image.message }}</h3>
-            <p class=''>Lorem ipsum dolor sit amet, consectetur .</p>
+            <p class="uk-card-title " style="display: inline-block">{{ image.title }}</p>
+<!--            <p>{{image.name[0]}}</p>-->
+            <p class=''>{{image.description}}.</p>
           </div>
         </div>
       </div>
@@ -55,7 +56,7 @@ export default {
 <style scoped>
 .test {
   /*padding-top: 20px;*/
-  padding-right: 70px;
+  padding-right: 0px;
   padding-top: 0px;
 
 

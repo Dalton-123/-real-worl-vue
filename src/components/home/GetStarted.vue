@@ -6,8 +6,22 @@
         <div class="row" v-for="gal in gallery">
             <div class="col-md-7">
                 <img :src="gal.image" alt="" uk-svg="stroke-animation: true">
-               <likes :ids="ids"></likes>
+                <h2>{{gal.title}}</h2>
+                <div style="float: right;padding-right: 15px"> <likes :ids="ids"></likes>
+                    </div>
+
+
+<!--image description-->
+
+                <hr>
+                <imageInfo></imageInfo>
+
+
+                <hr>
+
                 <!--            {{gallery.time}}-->
+                <p >{{comments.length}} <span style="font-size: 20px">Comments</span></p>
+                <hr>
                 <chat :ids="ids"></chat>
             </div>
             <div class="col-md-4">
@@ -22,18 +36,19 @@
     import chat from '@/components/Chat'
     import db from "@/firebase/init";
     import likes from "@/components/frames/likes";
+    import imageInfo from '@/components/frames/imageInfo'
     export default {
         name: "GetStarted",
         components:{
-            chat,likes
+            chat,likes,imageInfo
         },
 
         data(){
           return{
               gallery:[],
               ids:this.$route.params.id,
-              first:1,
-              increments:null,
+              comments:[],
+
               meme_id:null
 
 
@@ -46,6 +61,9 @@
             decrement(){
                this.increments-=1
            }
+        },
+        computed:{
+
         },
         created(){
             // this.$store.dispatch('ViewImages')
@@ -64,6 +82,17 @@
 
 
                 })
+            db.collection('message').where('Meme_id', '==', this.$route.params.id)
+                .onSnapshot(querySnapshot => {
+                    querySnapshot.docChanges().forEach(change => {
+                        if (change.type === 'added') {
+                            this.comments.unshift(change.doc.data());
+                            // this.time=moments(change.doc.data().time).format('lll');
+
+                        }
+
+                    });
+                });
         }
     }
 </script>

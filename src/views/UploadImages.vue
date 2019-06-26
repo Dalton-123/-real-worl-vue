@@ -1,38 +1,53 @@
 <template>
-  <div style="margin-top: 150px" class="">
-    <div class=" ">
+  <div style="" class="">
+    <a class="" href="#modal-full" uk-toggle><i style="font-size:24px" class="fa">&#xf093;</i></a>
 
-      <div class="messages">
-        <img :src="imageUrl" alt="" width="200px" height="200px">
-        <form @submit.prevent="sendMessage">
-          <div class="input-group">
-            <input type="text" placeholder="text..." v-model="message" />
+    <div id="modal-full" class="uk-modal-full" uk-modal>
+      <div class="uk-modal-dialog">
+        <button @click="Reload" class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+          <div class="uk-background-cover" style="background-image: url('https://cdn.pixabay.com/photo/2018/03/09/10/41/paper-3211179__340.jpg');" uk-height-viewport></div>
+          <div class="uk-padding-large">
+            <h1>Meme Galleries</h1>
+            <div class="">
+              <img :src="imageUrl" alt="" width="200px" height="200px">
+              <form @submit.prevent="sendMessage">
+                <div class="input-group">
+                  <input type="text" placeholder="text..." v-model="title" />
+                </div>
+                <div class="input-group">
+                  <input type="text" placeholder="descriptiion..." v-model="description" />
+                </div>
+                <!--          <label>Browser Select</label>-->
+                <select class="uk-select" v-model="cat" >
+                  <option v-for="sta in categories">{{ sta }}</option>
+                </select>
+                <p v-if="errors">{{ errors }}</p>
+
+              </form>
+              <button
+                      @click="sendMessage"
+                      class="uk-button uk-button-secondary uk-button-small"
+              >
+                Send
+              </button>
+
+              <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
+              <button
+                      raised
+                      style="background: #F44336;"
+                      class="uk-button uk-button-primary uk-button-small"
+                      @click="upload"
+              >
+                upload
+              </button>
+
+            </div>
           </div>
-          <div class="input-group">
-            <input type="text" placeholder="category..." v-model="category" />
-          </div>
-          <p v-if="errors">{{ errors }}</p>
-
-        </form>
-        <button
-                @click="sendMessage"
-                class="uk-button uk-button-secondary uk-button-small"
-        >
-          Send
-        </button>
-
-        <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
-        <button
-                raised
-                style="background: #F44336;"
-                class="uk-button uk-button-primary uk-button-small"
-                @click="upload"
-        >
-          upload
-        </button>
-
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -41,33 +56,42 @@
   import firebase from 'firebase'
 
   export default {
-    name: "MessageForm",
+    name: "upload",
     props: ["name"],
     data() {
       return {
-        message: "",
+
         errors: "",
         image:null,
         imageUrl:"",
         names:this.$store.state.name,
-        category:null,
-        time:Date.now().toString()
+        cat:null,
+        time:Date.now().toString(),
+        categories:['religious','political','social',],
+        crabs:[],
+        description:null,
+        title: null
 
       };
     },
     methods: {
       sendMessage() {
-        if (this.message) {
+        if (this.image) {
           var user = firebase.auth().currentUser;
           db.collection("Memes").doc()
                   .set({
                     time: this.time,
                     image:this.imageUrl,
-                    message: this.message,
-                    name: this.names,
+                    title: this.title,
+                    description: this.description,
                     user_id:user.uid,
-                    category:this.category
-                  }).then((data)=>{
+                    category:this.cat,
+                    name:this.Names,
+                    Photo:this.Pic,
+                    timestamp:Date.now()
+                  }).then(()=>{
+                    window.location.reload()
+          }).then((data)=>{
             const key= data.id
 
             return key
@@ -85,6 +109,7 @@
           this.errors = "You need to enter a message";
         }
       },
+
       upload() {
         this.$refs.fileInput.click()
       },
@@ -104,13 +129,22 @@
 
 
       },
-      deletes(doc){
-
+      Reload(){
+        window.location.reload()
       }
 
+
+    },
+    computed:{
+      Pic(){
+        return this.crabs.map(map=>map.image)
+      },
+      Names(){
+        return this.crabs.map(map=>map.name)
+      }
     },
     created() {
-      this.sendMessage;
+      this.$store.dispatch('ViewProfiles',this.crabs)
       // this.$store.dispatch('name')
 
     }
@@ -121,22 +155,21 @@
   /*.test{*/
   /*    margin-left: 330px;*/
   /*}*/
-  form button {
-    /*margin-top: 20px;*/
+  button {
+    margin-top: 20px;
   }
-  button input {
-    width: 90px;
-    height: 40px;
-  }
+ select{
+   margin-top: 20px;
+ }
   .messages {
-    position: absolute;
+  /*;position: absolute*/
   margin-left: 2%;
-    bottom: 0;
-    width: 67%;
-    z-index: 100;
+    /*bottom: 0;*/
+    width: 30%;
+    /*z-index: 100;*/
     color: white;
     text-align: center;
-    margin-bottom: 0px;
+    /*margin-bottom: 0px;*/
 
   }
   p {
@@ -149,5 +182,8 @@
   .test {
     /*margin-top: 80px;*/
 
+  }
+  a i{
+    color: blue;
   }
 </style>

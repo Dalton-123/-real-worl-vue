@@ -2,7 +2,7 @@
     <nav class="  container-fluid uk-text-center" uk-navbar>
         <div class="uk-navbar-right">
 
-            <a class="uk-navbar-item uk-logo" href="#">Logo</a>
+            <upload></upload>
 
             <ul class="uk-navbar-nav ">
                 <li>
@@ -29,8 +29,10 @@
 </template>
 
 <script>
+    import upload from '@/views/UploadImages'
     export default {
-        name: "banner"
+        name: "banner",
+        components:{upload},
     }
 </script>
 

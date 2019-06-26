@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 150px" class="test">
+  <div style="" class="test">
     <div class=" ">
 
       <div class="messages">

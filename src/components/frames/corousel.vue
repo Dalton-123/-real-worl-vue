@@ -1,5 +1,5 @@
 <template>
-    <div class="center">
+    <div class="uk-container uk-container-small ">
         <div   class=" uk-position-relative uk-visible-toggle uk-light login" tabindex="-1"  uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 7000;">
 
            <div>
@@ -56,16 +56,16 @@
 <style scoped>
 
 .login {
-    max-width: 50%;
+    max-width: 70%;
     margin-top: 10px;
-    margin-left: 350px;
+    margin-left: 160px;
     max-height: 100%!important;
 
 }
     img{
         width:1800px;
         max-height: 100%!important;
-        height:400px !important;
+        /*height:400px !important;*/
         border: 4px solid white;
     }
 </style>

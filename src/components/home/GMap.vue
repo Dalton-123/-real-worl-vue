@@ -1,5 +1,5 @@
 <template>
-    <div class="uk-background-fixed testStep1">
+    <div class="uk-background-fixed testStep1 first" style="background-color: rgb(204,255,225)">
         <div>
             <router-view /></div>
         <div>
@@ -46,6 +46,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+
         /*position: absolute;*/
 
     }
@@ -54,5 +55,8 @@
         color:#0a2b4e;
         font-size: 20px;
         font-weight: 600;
+    }
+    .first{
+        background-color: rgba(201, 76, 76, 0.3);;
     }
 </style>

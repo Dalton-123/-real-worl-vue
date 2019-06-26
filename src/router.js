@@ -89,6 +89,13 @@ const router = new Router({
                 requiresAuth: true
             }
         },
+        {
+            path: "/memes",
+            name: "memes",
+            component: memes,
+            props: true,
+
+        },
 
     ]
 
@@ -151,13 +158,7 @@ const router = new Router({
 
 
     },
-    {
-      path: "/memes",
-      name: "memes",
-      component: memes,
-      props: true,
 
-    },
 
 
   ]

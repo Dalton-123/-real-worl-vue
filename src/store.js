@@ -64,6 +64,7 @@ export default new Vuex.Store({
 
 
 
+
   },
   mutations: {
     PROFILE(state, payload) {

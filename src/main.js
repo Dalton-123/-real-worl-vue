@@ -15,6 +15,8 @@ import sidebar from '@/components/frames/sidebar'
 import sidegal from '@/components/frames/sidegallery'
 import bars from '@/components/frames/pushbar'
 import banner from '@/views/layouts/banner'
+import upload from '@/views/UploadImages'
+import imageInfo from '@/components/frames/imageInfo'
 
 Vue.use(VueChatScroll)
 
@@ -28,6 +30,8 @@ Vue.component('sidebar',sidebar)
 Vue.component('sidegal',sidegal)
 Vue.component('pushbar',bars )
 Vue.component('banner',banner)
+Vue.component('upload',upload)
+Vue.component('imageInfo',imageInfo)
 
 let app = null
 firebase.auth().onAuthStateChanged(()=>{
