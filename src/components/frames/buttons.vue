@@ -11,6 +11,7 @@
       ><p style="color:white" class="uk-text-center">Chat</p></router-link
       >
       <!--    THE OTHER BUTTON        -->
+
       <router-link to="/user"
         style="margin-left: 300px;background: white;color: #0a2b4e"
         class="waves-effect waves-light btn-small"

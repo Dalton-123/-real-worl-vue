@@ -3,35 +3,43 @@
     <div class=" ">
 
       <div class="messages">
-        <img :src="imageUrl" alt="" width="200px" height="200px">
+        <img :src="imageUrl" alt="" width="100px" height="100px">
         <form @submit.prevent="sendMessage">
-         <div class="d-flex" style="margin-top: 10px">
-           <div class="uk-width-auto ">
-             <img width="50" height="100" class="uk-border-circle" src="@/assets/avatar.svg">
+         <div>
+           <div class="d-flex" style="margin-top: 10px">
+             <div class="uk-width-auto ">
+               <img width="50" height="100" class="uk-border-circle" src="@/assets/avatar.svg">
+             </div>
+             <div class="input-group col">
+               <input type="text" placeholder="Comment..." v-model="message" />
+               <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
+               <p @click="sendMessage"> <i style="color: blue" class="fa fa-send"></i></p>
+               <p @click="upload" class="ml-3"> <i style="color: blue" class="fa fa-camera "></i></p>
+
+             </div>
            </div>
-           <div class="input-group col">
-             <input type="text" placeholder="Comment..." v-model="message" />
-           </div>
+
+
          </div>
           <p v-if="errors">{{ errors }}</p>
-
         </form>
-        <button
-          @click="sendMessage"
-          class="uk-button uk-button-secondary uk-button-small"
-        >
-          Send
-        </button>
 
-        <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
-        <button
-          raised
-          style="background: #F44336;"
-          class="uk-button uk-button-primary uk-button-small"
-          @click="upload"
-        >
-          upload
-        </button>
+<!--        <button-->
+<!--          @click="sendMessage"-->
+<!--          class="uk-button uk-button-secondary uk-button-small"-->
+<!--        >-->
+<!--          Send-->
+<!--        </button>-->
+
+<!--        <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>-->
+<!--        <button-->
+<!--          raised-->
+<!--          style="background: #F44336;"-->
+<!--          class="uk-button uk-button-primary uk-button-small"-->
+<!--          @click="upload"-->
+<!--        >-->
+<!--          upload-->
+<!--        </button>-->
       </div>
     </div>
   </div>
@@ -67,8 +75,8 @@ export default {
     sendMessage() {
       if (this.message) {
         var user = firebase.auth().currentUser;
-        db.collection("message").doc()
-          .set({
+        db.collection("message")
+          .add({
             Meme_id:this.ids,
             user_id:user.uid,
             time: Date.now(),
@@ -77,14 +85,14 @@ export default {
             pic:this.Pic,
             name:this.names,
 
-
-
-
-
           }).then((data)=>{
+          db.collection('message').doc(data.id).update({
+          message_id:data.id
+          })
+          db.collection('reply').doc(data.id)
+
             const key= data.id
-          // db.collection('message').doc(data.id).update({imageUrl: this.imageUrl})
-            return key
+          return key
         }).then(key=>{
           const filename=this.image.name
           const ext=filename.slice(filename.lastIndexOf('.'))
@@ -115,7 +123,7 @@ export default {
       })
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
-        console.log(this.image)
+
 
 
     },
@@ -131,23 +139,14 @@ export default {
 </script>
 
 <style scoped>
-/*.test{*/
-/*    margin-left: 330px;*/
-/*}*/
-form button {
-  /*margin-top: 20px;*/
-}
-button input {
-  width: 90px;
-  height: 40px;
-}
+
 .messages {
-  /*position: absolute;*/
- margin-left: 2%;
+
+
   bottom: 0;
-  width: 67%;
-  /*z-index: 100;*/
-  color: white;
+  width: 100%;
+
+
   text-align: center;
   margin-bottom: 0px;
 

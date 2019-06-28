@@ -19,7 +19,7 @@
     import db from "@/firebase/init";
     export default {
         name: "reply",
-        props:[''],
+        props:['Id'],
         data(){
             return{
                 reply:null,

@@ -1,27 +1,33 @@
 <template>
-<div>
+<div >
 <banner></banner>
-
     <div class="container-fluid test">
         <div class="row" v-for="gal in gallery">
-            <div class="col-md-7">
-                <img :src="gal.image" alt="" uk-svg="stroke-animation: true">
-                <h2>{{gal.title}}</h2>
-                <div style="float: right;padding-right: 15px"> <likes :ids="ids"></likes>
+            <div class="col">
+                <div>
+                    <div class="me"><img :src="gal.image" alt=""></div>
+                    <h3>{{gal.title}}</h3>
+
+                    <div style="float: right;padding-right: 15px"> <likes :ids="ids"></likes>
                     </div>
+                </div>
+                <hr>
+               <div class="">
+                   <div class="uk-width-auto d-flex">
+                       <img class="uk-border-circle" width="40" height="40" :src="gal.Photo">
+                       <div class="uk-width-expand ml-3">
+                           <b><p class=" uk-margin-remove-bottom">{{gal.name[0]}}</p></b>
+                           <p style="font-size: 0.7em" class="uk-text-meta uk-margin-remove-top">Published on <time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+                           <p>{{gal.description}}  </p>
+                       </div>
 
-
-<!--image description-->
+                   </div>
+               </div>
 
                 <hr>
-                <imageInfo></imageInfo>
+                <p v-if="comment" >{{comments.length}} <span style="font-size: 20px">Comment</span></p>
+                <p v-else style="font-size: 20px">{{comments.length}} <span style="font-size: 20px;color: blue">Comments</span></p>
 
-
-                <hr>
-
-                <!--            {{gallery.time}}-->
-                <p >{{comments.length}} <span style="font-size: 20px">Comments</span></p>
-                <hr>
                 <chat :ids="ids"></chat>
             </div>
             <div class="col-md-4">
@@ -55,19 +61,19 @@
           }
         },
         methods: {
-           increment(){
-              this.increments+=1
-           } ,
-            decrement(){
-               this.increments-=1
-           }
-        },
-        computed:{
 
         },
+        computed:{
+comment(){
+    return this.comments.length==1
+}
+
+
+
+            },
         created(){
             // this.$store.dispatch('ViewImages')
-            db.collection("Memes").where('time','==',this.ids)
+            db.collection("Memes").where('Meme_id','==',this.ids)
                 // .orderBy("time")
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
@@ -98,16 +104,16 @@
 </script>
 
 <style scoped>
-img{
+.me img{
 padding-top: 27px;
-    padding-right: 25px;
-    max-height: 500px;
-    width: 100%;
+
+    max-height: 400px;
+    max-width: 100%;
+    width: 1500px !important;
 }
     .test{
 max-height: 500px;
         overflow-scrolling: auto;
-
-
     }
+    .uk-width-auto img{width: 50px;height: 50px}
 </style>

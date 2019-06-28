@@ -1,5 +1,8 @@
 <template>
+<div>
+  <banner></banner>
   <div class=" uk-container ">
+
     <h2>Create you Profile Here</h2>
     <div class="uk-cover-container uk-height-medium">
       <iframe src="https://www.youtube.com/embed/6vUWVIevMVs?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="1920" height="1080" frameborder="0" allowfullscreen uk-cover></iframe>
@@ -7,27 +10,27 @@
     <form @submit.prevent="SaverUsers">
       <fieldset class="uk-fieldset">
 
-       <div class="row">
-         <div class="col"></div>
-         <div class="col"></div>
-       </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
         <div class="row">
           <!--            name input-->
           <div class="col">
             <input
-              class="uk-input"
-              type="text"
-              placeholder="full name"
-              v-model="name"
+                    class="uk-input"
+                    type="text"
+                    placeholder="full name"
+                    v-model="name"
             />
           </div>
           <!--          Job title field  -->
           <div class="col">
             <input
-              class="uk-input"
-              type="text"
-              placeholder="Job Title"
-              v-model="job"
+                    class="uk-input"
+                    type="text"
+                    placeholder="Job Title"
+                    v-model="job"
             />
           </div>
         </div>
@@ -40,10 +43,10 @@
           </div>
           <div class="col">
             <input
-              class="uk-input"
-              type="number"
-              placeholder="Phone Number "
-              v-model="phone"
+                    class="uk-input"
+                    type="number"
+                    placeholder="Phone Number "
+                    v-model="phone"
             />
           </div>
         </div>
@@ -63,10 +66,10 @@
         <div>
           <div>
             <input
-              type="file"
-              ref="uploads"
-              @change="upload"
-              style="display: none"
+                    type="file"
+                    ref="uploads"
+                    @change="upload"
+                    style="display: none"
             />
           </div>
 
@@ -74,11 +77,11 @@
             <div class="col-sm-3">
               <label>
                 <input
-                  type="checkbox"
-                  value="male"
-                  class="filled-in"
-                  v-model="gender"
-                  @click="Checkbox"
+                        type="checkbox"
+                        value="male"
+                        class="filled-in"
+                        v-model="gender"
+                        @click="Checkbox"
                 />
                 <span>Male</span>
               </label>
@@ -86,11 +89,11 @@
             <div class="col-sm-3">
               <label>
                 <input
-                  type="checkbox"
-                  value="female"
-                  class="filled-in"
-                  v-model="gender"
-                  @click="Checkbox"
+                        type="checkbox"
+                        value="female"
+                        class="filled-in"
+                        v-model="gender"
+                        @click="Checkbox"
                 />
                 <span>Female</span>
               </label>
@@ -98,17 +101,17 @@
             <div class="col-sm-3">
               <label>
                 <input
-                  type="checkbox"
-                  value="other"
-                  class="filled-in"
-                  v-model="gender"
-@click="Checkbox"
+                        type="checkbox"
+                        value="other"
+                        class="filled-in"
+                        v-model="gender"
+                        @click="Checkbox"
                 />
                 <span>Other</span>
               </label>
             </div>
           </div>
-<p class="uk-text-center" style="color: red" v-if="feedback">{{feedback}}</p>
+          <p class="uk-text-center" style="color: red" v-if="feedback">{{feedback}}</p>
           <div class="row">
             <div class="col">
               <button class="uk-button uk-button-danger col" @click="photo">
@@ -116,17 +119,18 @@
               ><span v-if="progress">{{ progress }}</span>
               </button>
             </div>
-           <div class="col">
-             <button @click="SaverUsers" class="col uk-button uk-button-secondary">
-               Save
-             </button>
-           </div>
+            <div class="col">
+              <button @click="SaverUsers" class="col uk-button uk-button-secondary">
+                Save
+              </button>
+            </div>
           </div>
         </div>
       </fieldset>
     </form>
 
   </div>
+</div>
 </template>
 
 <script>

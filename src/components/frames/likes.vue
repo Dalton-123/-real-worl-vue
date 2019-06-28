@@ -2,11 +2,11 @@
   <div class="test d-flex">
     <div>
       <div>
-        <span href="#" v-if="ID" style="color: blue" @click="like()"
+        <span href="#" v-if="ID" style="color: blue" @click="like"
           ><i class="fa fa-thumbs-up" style="font-size:24px"></i
           ><span v-if="likenum>1">{{ likenum }}</span></span
         >
-        <span v-else @click="like()"
+        <span v-else @click="like"
           ><i class="fa fa-thumbs-up" style="font-size:24px"></i
           ><span v-if="likenum">{{ likenum }}</span></span
         >

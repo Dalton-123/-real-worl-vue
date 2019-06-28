@@ -1,7 +1,7 @@
 <template>
     <div class="testStep1 test uk-text-center uk-background-fixed">
 
-        <h1 class="uk-heading-divider uk-container uk-container-small">Meet the teem</h1>
+        <h1 class="uk-heading-divider uk-container uk-container-small">Meet the team</h1>
         <div class="uk-container">
             <h3 >Who we are</h3>
             <p>Muscle Crab Diversities is a Jamaican owned company specializing in leading edge Inspirational Meme’s in all the types and forms. Please subscribe today at HTTPS://MemeGalleries.Com.  Our collection of services also include speaking engagements, corporate team building workshops, and healthy living medias.  We provide  SWAG for all your corporate or private events. TSHiRTS, Polos, Coffee Cups and Mugs, Pens, Key Chains, and Plaques.
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-<!--<foot></foot>-->
+<foot></foot>
 
     </div>
 </template>

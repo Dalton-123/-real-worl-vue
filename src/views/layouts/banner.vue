@@ -1,30 +1,31 @@
 <template>
-    <nav class="  container-fluid uk-text-center" uk-navbar>
-        <div class="uk-navbar-right">
+    <nav class="uk-navbar-container" uk-navbar>
 
-            <upload></upload>
+        <div class="uk-navbar-left">
 
-            <ul class="uk-navbar-nav ">
-                <li>
-                    <a href="#">
-                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-                        Features
-                    </a>
-                </li>
+            <ul class="uk-navbar-nav">
+               <li><div class="uk-margin">
+                   <form class="uk-search uk-search-default">
+                       <span uk-search-icon></span>
+                       <input class="uk-search-input" type="search" placeholder="Search...">
+                   </form>
+               </div></li>
             </ul>
 
-            <div class="uk-navbar-item">
-                <div>Some <a href="#">Link</a></div>
-            </div>
+        </div>
 
-<!--            <div class="uk-navbar-item">-->
-<!--                <form action="javascript:void(0)">-->
-<!--                    <input class="uk-input uk-form-width-small" type="text" placeholder="Input">-->
+        <div class="uk-navbar-right">
 
-<!--                </form>-->
-<!--            </div>-->
+            <ul class="uk-navbar-nav">
+                <li><topMemes></topMemes></li>
+                <li ><upload></upload></li>
+               <li><p style="color: blue;font-size: 1.1em" class="uk-margin-small-right" uk-icon="grid"></p></li>
+                <li><pro></pro></li>
+
+            </ul>
 
         </div>
+
     </nav>
 </template>
 
@@ -52,5 +53,8 @@ nav{
 }
 .uk-navbar-container{
     margin-top: 0px;background-color: white;
+}
+li{
+    margin-right: 15px;
 }
 </style>

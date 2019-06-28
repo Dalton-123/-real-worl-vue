@@ -1,30 +1,17 @@
 <template>
   <div class="test" >
-    <div v-for="image in images" class=" ">
-      <div class="  uk-child-width-1-2@s " uk-grid>
-        <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle uk-light" tabindex="0">
-          <img
-            :src="image.image"
-            alt=""
-            uk-cover
-            @click="Goto(image.time)"
 
-          />
-          <div class="uk-position-center">
-            <div class="uk-transition-slide-top-small"><h4 class="uk-margin-remove">Meme</h4></div>
-            <div class="uk-transition-slide-bottom-small"><h4 class="uk-margin-remove">Galleries</h4></div>
-          </div>
-        </div>
-<!--        <p class="uk-margin-small-top">Small Top + Bottom</p>-->
-        <div>
-          <div class="uk-card-body ">
-            <p class="uk-card-title " style="display: inline-block">{{ image.title }}</p>
-<!--            <p>{{image.name[0]}}</p>-->
-            <p class=''>{{image.description}}.</p>
-          </div>
-        </div>
+
+    <div v-for="image in images">
+      <div class="d-flex">
+        <img :src="image.image" alt="" class="p-1"  @click="Goto(image.Meme_id)">
+       <div style="info" > <div class="uk-width-expand">
+         <p class="uk-card-title uk-margin-remove-bottom">{{image.title}}</p>
+         <p class="uk-text-meta uk-margin-remove-top">{{image.description|convert}} ... </p>
+       </div>
+
+       </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -55,9 +42,9 @@ export default {
 
 <style scoped>
 .test {
-  /*padding-top: 20px;*/
-  padding-right: 0px;
-  padding-top: 0px;
+  padding-top: 25px;
+
+
 
 
 
@@ -66,12 +53,11 @@ export default {
 img{
 
 max-width: 100%;
- /*width: 100px;*/
+
     max-height: 70%;
+  width:150px;
+  height: 100px;
 }
-  p{width: 160px}
-  h4 {
-    color: white;
-    font-size: 20px;
-  }
+
+
 </style>

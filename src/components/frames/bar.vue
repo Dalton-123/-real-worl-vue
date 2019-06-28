@@ -12,17 +12,7 @@
 <!--        </div>-->
           <hr>
         <div v-for="crab in crabs">
-          <div class="d-flex">
-            <img
-              class="uk-border-circle"
-              width="60"
-              height="60"
-              :src="crab.image"
-            />
-            <span> {{ crab.name }}</span>
-          </div>
-
-          <hr />
+        <hr />
           <div class="first">
             <p class="user-role">
               <i class="fa fa-briefcase"></i>{{ crab.job }}
@@ -35,10 +25,7 @@
 
          <div class="last">
              <ul >
-                 <li class="header-menu">
-                     <span>General</span>
-                 </li>
-                 <hr>
+
                  <li class="tests">
                      <a href="#">
                          <i class="fa fa-tachometer-alt"></i>
@@ -114,13 +101,13 @@ export default {
   opacity: 0.9;
     overflow-scrolling: auto;
 
-  width: 240px;
+  width: 250px;
 }
 i {
-  /*margin-left: 15px;*/
+
   font-size: 25px;
   color: orangered;
-  margin-top: 5px;
+  /*margin-top: 5px;*/
   margin-right: 8px;
     /*border: 1px solid black;*/
     padding: 3px;

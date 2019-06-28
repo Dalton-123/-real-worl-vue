@@ -10,7 +10,7 @@
         <cor></cor>
         <br><br><br><br><br>
         <about></about>
-        <foot></foot>
+
     </div>
 </template>
 
@@ -18,21 +18,23 @@
     import cor from '@/components/frames/corousel'
     import but from '@/components/frames/buttons'
     import about from '@/components/pages/about'
+    import UIkit from "uikit"
 
 
     export default {
         name: "GMap",
-        props:['alias'],
-        components:{
-            cor,but,about
+        props: ['alias'],
+        components: {
+            cor, but, about
+        },
+        mounted() {
+            UIkit.offcanvas('#offcanvas-usage').hide();
+            window.location.reload()
+
         },
         data() {
             return {}
         },
-    // created() {
-    //         window.location.reload()
-    //     }
-
     }
 </script>
 

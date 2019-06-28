@@ -54,17 +54,38 @@ export default new Vuex.Store({
       "Cyprus",
       "Czech Republic"
     ],
+    categories: [
+      { name:"Animated"},
+
+      {name:"Blessings"},
+      {name:"Divorce"},
+      {name:"Duplicates"},
+      {name:"Finance"},
+      {name:"Humor"},
+      {name:"Ideas",},
+      {name:"Inspirational Business"},
+      {name:"Love",},
+      {name:"Marriage"},
+      {name:"Men against Women"},
+      {name:"Nutrition"},
+      {name:"Political"},
+      {name:"Purpose"},
+      {name:"Relationship"},
+      {name:"Religious"},
+      {name:"Roman"},
+      {name:"Sports"},
+      {name:"Women against"},
+
+
+    ],
+
     viewProfile: [],
     profile: [],
     id: null,
     name: null,
     // image: null,
     Users: [],
-    Gallery: [],
-
-
-
-
+    Gallery: []
   },
   mutations: {
     PROFILE(state, payload) {
@@ -76,17 +97,10 @@ export default new Vuex.Store({
       state.viewProfile.push(payload);
     },
 
-    //load Image gallery
-    // image(state, payload) {
-    //   state.image = payload;
-    // },
 
-    // name(state, payload) {
-    //   state.name = payload;
-    // },
 
     gallery(state, payload) {
-      state.Gallery=payload;
+      state.Gallery = payload;
     },
     USERS(state, payload) {
       state.Users.push(payload);
@@ -152,24 +166,19 @@ export default new Vuex.Store({
     },
 
     ViewImages({ commit }, payload) {
-      var crab=[]
+      var crab = [];
       var observer = db
         .collection("Memes")
         // .orderBy("time")
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
-
             if (change.type === "added") {
               crab.push(change.doc.data());
-
             }
           });
 
           commit("gallery", crab);
-
-        })
-
-
+        });
     },
     //Users
     Users({ commit }, users) {
@@ -178,17 +187,15 @@ export default new Vuex.Store({
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
             // this.id.push(doc.id)
-            users.push(doc.data())
+            users.push(doc.data());
           });
         });
 
       commit("USERS", users);
-    },
-
+    }
   },
 
   getters: {
-
     loadedProfile(state) {
       return meetupId => {
         return state.users.find(meetup => {
@@ -196,14 +203,18 @@ export default new Vuex.Store({
         });
       };
     },
-    loadedallery (state) {
-      return (meetupId) => {
-        return state.Gallery.find((meetup) => {
-          return meetup.message === meetupId
-        })
-      }
+    loadedallery(state) {
+      return meetupId => {
+        return state.Gallery.find(meetup => {
+          return meetup.message === meetupId;
+        });
+      };
     },
-
+    Categories(state){
+      return state.categories.sort((catA,catB)=>{
+        return catA.name>catB.name
+      })
+    }
 
   }
 });

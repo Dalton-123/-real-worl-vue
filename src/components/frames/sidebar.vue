@@ -1,10 +1,10 @@
 <template>
   <div>
-    <a class="" type="" uk-toggle="target: #offcanvas-flip"
+    <a class="" type="" uk-toggle="target: #offcanvas"
       ><i class="fa fa-users">users</i></a
     >
 
-    <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
+    <div id="offcanvas" uk-offcanvas="flip:false; overlay: true">
       <div class="uk-offcanvas-bar">
         <button class="uk-offcanvas-close" type="button" uk-close></button>
 

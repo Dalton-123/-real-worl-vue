@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-container test">
+  <div class=" test">
 
 
     <div
@@ -26,7 +26,7 @@
           <p><i style="" class="fas fa-comment-dots"></i>{{message.message}}</p>
 
 <!--          REPLY-->
-<reply :ids="ids" ></reply>
+<reply :Id="messageId" ></reply>
 
 
 
@@ -52,7 +52,8 @@ export default {
     return {
       messages: [],
       crabs:[],
-        time:null
+        time:null,
+        messageId:null
 
     };
   },
@@ -84,7 +85,7 @@ export default {
                 if (change.type === 'added') {
                    this.messages.unshift(change.doc.data());
                    this.time=moments(change.doc.data().time).format('lll');
-
+                    this.messageId=change.doc.data().message_id
                 }
 
               });

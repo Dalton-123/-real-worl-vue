@@ -1,6 +1,6 @@
 <template>
   <div style="" class="">
-    <a class="" href="#modal-full" uk-toggle><i style="font-size:24px" class="fa">&#xf093;</i></a>
+    <span style="color: red" class="" href="#modal-full" uk-toggle><i style="font-size:24px" class="fa">&#xf093;</i></span>
 
     <div id="modal-full" class="uk-modal-full" uk-modal>
       <div class="uk-modal-dialog">
@@ -66,11 +66,11 @@
         imageUrl:"",
         names:this.$store.state.name,
         cat:null,
-        time:Date.now().toString(),
         categories:['religious','political','social',],
         crabs:[],
         description:null,
-        title: null
+        title:null
+
 
       };
     },
@@ -78,9 +78,8 @@
       sendMessage() {
         if (this.image) {
           var user = firebase.auth().currentUser;
-          db.collection("Memes").doc()
-                  .set({
-                    time: this.time,
+          db.collection("Memes")
+                  .add({
                     image:this.imageUrl,
                     title: this.title,
                     description: this.description,
@@ -89,12 +88,15 @@
                     name:this.Names,
                     Photo:this.Pic,
                     timestamp:Date.now()
-                  }).then(()=>{
-                    window.location.reload()
-          }).then((data)=>{
-            const key= data.id
+                  }).then((data)=>{
+                    const key=data.key
 
-            return key
+            db.collection("Memes").doc(data.id).update({
+              Meme_id:data.id
+            }).then(()=>{
+              return key
+            })
+
           }).then(key=>{
             const filename=this.image.name
             const ext=filename.slice(filename.lastIndexOf('.'))
