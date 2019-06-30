@@ -27,7 +27,7 @@
 
     <p>
       <select class="browser-default" v-model="cat">
-        <option v-for="(cat, index) in categories" :key="index">{{
+        <option v-for="(cat, index) in categories" :key="index" >{{
           cat.name
         }}</option>
       </select>
