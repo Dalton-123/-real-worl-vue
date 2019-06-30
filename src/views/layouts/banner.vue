@@ -7,7 +7,7 @@
                <li><div class="uk-margin">
                    <form class="uk-search uk-search-default">
                        <span uk-search-icon></span>
-                       <input class="uk-search-input" type="search" placeholder="Search...">
+<!--                       <input class="uk-search-input" type="search" placeholder="Search...">-->
                    </form>
                </div></li>
             </ul>
@@ -17,7 +17,7 @@
         <div class="uk-navbar-right">
 
             <ul class="uk-navbar-nav">
-                <li><topMemes></topMemes></li>
+<!--                <li><topMemes></topMemes></li>-->
                 <li ><upload></upload></li>
                <li><p style="color: blue;font-size: 1.1em" class="uk-margin-small-right" uk-icon="grid"></p></li>
                 <li><pro></pro></li>

@@ -1,12 +1,12 @@
 <template>
-  <div v-if="this.$route.path!='/'">
+  <div >
 
     <div class="me"><a href="#offcanvas-usage" uk-toggle><i class="fa fa-navicon"></i></a></div>
 
     <div id="offcanvas-usage" uk-offcanvas="bg-close:false">
       <div class="uk-offcanvas-bar test" >
 <!--        <div class="d-flex">-->
-         <router-link to="/"> <i style="margin-top: 0%" class="fa fa-home me"></i></router-link>
+         <a @click="home"> <i style="margin-top: 0%" class="fa fa-home me"></i></a>
 <!--          <a class="uk-offcanvas-close" type="">-->
 <!--            <i style="font-size:24px;padding-top: 12px" class="fa">&#xf00d;</i></a>-->
 <!--        </div>-->
@@ -83,7 +83,9 @@ export default {
     };
   },
     methods:{
-
+home(){
+    this.$router.push({name:'GMap',params:{id:'Animated'}})
+}
     },
   created() {
     this.$store.dispatch("ViewProfiles", this.crabs);
@@ -96,8 +98,10 @@ export default {
 </script>
 
 <style scoped>
+
 .test {
-  background-color: white;
+  background-color: rgb(230, 230, 230);
+;
   opacity: 0.9;
     overflow-scrolling: auto;
 

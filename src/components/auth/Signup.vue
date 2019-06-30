@@ -74,7 +74,7 @@ export default {
                 });
               })
               .then(() => {
-                this.$router.push({ name: "GMap" ,params:{alias:this.alias}});
+                this.$router.push({ name: "GMap" ,params:{id:'Animated'}});
 
               })
               .catch(err => {

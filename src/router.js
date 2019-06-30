@@ -30,7 +30,7 @@ const router = new Router({
 
   routes: [
     {
-      path: "/",
+      path: "/GMap/:id",
       name: "GMap",
       component: GMap,
       meta: {

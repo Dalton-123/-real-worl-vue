@@ -1,7 +1,15 @@
 <template>
   <div class="uk-container uk-container-small ">
     <div>
-      <topMemes @input="changeMessage" ></topMemes>
+      <topMemes ></topMemes>
+<!--      <form  @click="category" @submit.prevent="category">-->
+<!--        <p>-->
+<!--          <select class="browser-default"  v-model="cat" >-->
+<!--            <option  v-for="(cat,index) in categories" :key="index">{{cat.name}}</option>-->
+<!--          </select>-->
+
+<!--        </p>-->
+<!--      </form>-->
 
     </div>
 
@@ -41,29 +49,53 @@
 </template>
 
 <script>
-import UIkit from "uikit";
+  import db from "@/firebase/init";
+  import firebase from "firebase";
 export default {
+
   name: "corousel",
   data() {
     return {
-      image: [],
-      cate
+      images: [],
+      cat:"",
+      user:firebase.auth().currentUser.uid,
+      chosen:this.$route.params.id
+
     };
   },
   computed: {
-    images() {
-      return this.$store.state.Gallery;
+    // images() {
+    //   return this.$store.state.Gallery;
+    // },
+    categories() {
+      return this.$store.getters.Categories;
     }
   },
 
-  created() {
-    this.$store.dispatch("ViewImages");
-  },
   methods:{
-    changeMessage(event){
 
-    }
-  }
+  },
+  beforeCreate(){
+
+  },
+  created() {
+
+
+      db.collection('Memes').where('category', '==', this.chosen)
+              .onSnapshot(querySnapshot => {
+                querySnapshot.docChanges().forEach(change => {
+                  if (change.type === 'added') {
+                    this.images.push(change.doc.data());
+                  }
+
+                });
+              });
+
+
+
+
+  },
+
 };
 </script>
 

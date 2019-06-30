@@ -1,5 +1,5 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="press">
     <p>
       <label>
         <input name="group1" type="radio" checked />
@@ -26,24 +26,30 @@
     </p>
 
     <p>
-      <select class="browser-default"  v-model="cat" >
-
-        <option  @click="press"  v-for="(cat,index) in categories" :key="index">{{cat.name}}</option>
-
-
+      <select class="browser-default" v-model="cat">
+        <option v-for="(cat, index) in categories" :key="index">{{
+          cat.name
+        }}</option>
       </select>
 
     </p>
-      <p></p>
+
+    <p>  <button @click="press" class="uk-button uk-button-primary">
+      Primary
+    </button></p>
   </form>
 </template>
 
 <script>
+import db from "@/firebase/init";
+import firebase from "firebase";
 export default {
   name: "topMemes",
   data() {
     return {
-        cat:""
+      cat: "",
+      chosen: "tfvc",
+      user: firebase.auth().currentUser.uid,
     };
   },
   computed: {
@@ -51,14 +57,35 @@ export default {
       return this.$store.getters.Categories;
     }
   },
-    methods:{
-      press(){
-          this.$store.dispatch('selectedCategory',this.cat)
-      }
-    },
-    created() {
+  methods: {
 
 
+
+    press() {
+      db.collection("category").doc(this.user).delete()
+      db.collection("category").doc(this.user)
+        .set({
+          category: this.cat
+        }).then(()=>{
+        db.collection("category").doc(this.user)
+        this.$router.push({ name: "GMap", params: { id: this.chosen } });
+        document.location.reload()
+      })
+
+
+
+
+
+    }
+  },
+  created() {
+    db.collection("category").onSnapshot(querySnapshot => {
+      querySnapshot.docChanges().forEach(change => {
+        if (change.type === "added") {
+          this.chosen = change.doc.data().category;
+        }
+      });
+    });
   }
 };
 </script>

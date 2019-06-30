@@ -85,7 +85,8 @@ export default new Vuex.Store({
     name: null,
     // image: null,
     Users: [],
-    Gallery: []
+    Gallery: [],
+
   },
   mutations: {
     PROFILE(state, payload) {

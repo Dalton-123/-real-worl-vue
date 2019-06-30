@@ -39,7 +39,9 @@ Vue.component('upload',upload)
 Vue.component('imageInfo',imageInfo)
 Vue.component('pro',pro)
 Vue.component('topMemes',topMemes)
+import { sync } from 'vuex-router-sync'
 
+sync(store, router, { moduleName: 'RouteModule' } )
 let app = null
 firebase.auth().onAuthStateChanged(()=>{
   if(!app){

@@ -20,7 +20,7 @@
                 </div>
                 <!--          <label>Browser Select</label>-->
                 <select class="uk-select" v-model="cat" >
-                  <option v-for="sta in categories">{{ sta }}</option>
+                  <option v-for="sta in categories">{{ sta.name }}</option>
                 </select>
                 <p v-if="errors">{{ errors }}</p>
 
@@ -66,7 +66,7 @@
         imageUrl:"",
         names:this.$store.state.name,
         cat:null,
-        categories:['religious','political','social',],
+        // categories:['religious','political','social',],
         crabs:[],
         description:null,
         title:null
@@ -143,6 +143,9 @@
       },
       Names(){
         return this.crabs.map(map=>map.name)
+      },
+      categories() {
+        return this.$store.getters.Categories;
       }
     },
     created() {
