@@ -1,5 +1,5 @@
 <template>
-    <div class="uk-background-fixed testStep1 first" style="background-color: rgb(204,255,225)">
+    <div id="offcanvas-usage" class="uk-background-fixed testStep1 first" style="background-color: rgb(204,255,225)">
         <div>
             <router-view /></div>
         <div>
@@ -28,23 +28,25 @@
             cor, but, about
         },
         mounted() {
-            UIkit.offcanvas('#offcanvas-usage').hide();
-            window.location.reload()
+            // UIkit.offcanvas('#offcanvas-usage').show()
+            // window.location.reload()
 
         },
         data() {
-            return {}
+            return {
+
+            }
         },
+        created(){
+          this.$store.dispatch('IDs')
+
+        }
     }
 </script>
 
 <style scoped>
     .testStep1{
         background-image: url("../../../public/space.jpg") ;
-       /* width: 1500px;*/
-       /* height: 1000px;*/
-       /*!*margin-top: 0px;*!*/
-       /* padding-top: 0px;*/
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

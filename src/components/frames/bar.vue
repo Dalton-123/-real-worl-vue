@@ -6,57 +6,59 @@
     <div id="offcanvas-usage" uk-offcanvas="bg-close:false">
       <div class="uk-offcanvas-bar test" >
 <!--        <div class="d-flex">-->
-         <a @click="home"> <i style="margin-top: 0%" class="fa fa-home me"></i></a>
-<!--          <a class="uk-offcanvas-close" type="">-->
-<!--            <i style="font-size:24px;padding-top: 12px" class="fa">&#xf00d;</i></a>-->
-<!--        </div>-->
+         <a @click="home" class="uk-offcanvas-close"> <i style="margin-top: 0%" class="fa fa-home me"></i></a>
+
           <hr>
         <div v-for="crab in crabs">
-        <hr />
+
           <div class="first">
             <p class="user-role">
               <i class="fa fa-briefcase"></i>{{ crab.job }}
             </p>
           </div>
+            <hr>
           <span class="user-status">
             <i style="color:green" class="fa fa-circle"></i>
             <span>Online</span>
           </span>
-
+            <hr>
          <div class="last">
              <ul >
 
-                 <li class="tests">
+                 <span class="tests">
                      <a href="#">
                          <i class="fa fa-tachometer-alt"></i>
                          <router-link to="/profile" class="menu-text"
                          ><span>View Profile</span></router-link
                          >
                      </a>
-                 </li>
-
-                 <li class="tests ">
+                 </span>
+                 <hr>
+                 <span class="tests ">
                      <a href="#" >
                          <i class="far fa-gem"></i>
                          <router-link to="/user" class="menu-text"
                          ><span class="">Create Profile</span></router-link
                          >
                      </a>
-                 </li>
-                 <li class="tests">
+                 </span>
+                 <hr>
+                 <span class="tests">
                      <a href="#">
                          <i class="fa fa-shopping-cart"></i>
                          <span class="menu-text">Add to cart</span>
                      </a>
-                 </li>
-                 <li class="tests">
+                 </span>
+                 <hr>
+                 <span class="tests">
                      <a href="#">
                          <i class="material-icons">broken_image</i>
                          <router-link to="/gallery" class="menu-text"
                          ><span>Gallery</span></router-link
                          >
                      </a>
-                 </li>
+                 </span>
+                 <hr>
              </ul>
 
          </div>
@@ -100,7 +102,14 @@ home(){
 <style scoped>
 
 .test {
-  background-color: rgb(230, 230, 230);
+    background-image: url("https://cdn.pixabay.com/photo/2019/04/27/08/29/forest-4159500__340.jpg") ;
+    /* width: 1500px;*/
+    /* height: 1000px;*/
+    /*!*margin-top: 0px;*!*/
+    /* padding-top: 0px;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 ;
   opacity: 0.9;
     overflow-scrolling: auto;

@@ -9,6 +9,7 @@ import profiles from '@/components/User/viewProfile'
 import navbar from '@/views/layouts/NavBar'
 import foot from '@/views/layouts/foot'
 import photo from '@/components/frames/Photo'
+import loader from '@/components/frames/loader'
 import sidebar from '@/components/frames/sidebar'
 import sidegal from '@/components/frames/sidegallery'
 import bars from '@/components/frames/pushbar'
@@ -17,6 +18,7 @@ import upload from '@/views/UploadImages'
 import imageInfo from '@/components/frames/imageInfo'
 import pro from '@/components/frames/pro'
 import topMemes from '@/components/topMemes/topMemes'
+import news from '@/components/new'
 
 
 Vue.filter('convert',(value)=>{
@@ -39,6 +41,8 @@ Vue.component('upload',upload)
 Vue.component('imageInfo',imageInfo)
 Vue.component('pro',pro)
 Vue.component('topMemes',topMemes)
+Vue.component('new',news)
+Vue.component('loader',loader)
 import { sync } from 'vuex-router-sync'
 
 sync(store, router, { moduleName: 'RouteModule' } )

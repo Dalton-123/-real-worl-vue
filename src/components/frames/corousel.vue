@@ -2,17 +2,8 @@
   <div class="uk-container uk-container-small ">
     <div>
       <topMemes ></topMemes>
-<!--      <form  @click="category" @submit.prevent="category">-->
-<!--        <p>-->
-<!--          <select class="browser-default"  v-model="cat" >-->
-<!--            <option  v-for="(cat,index) in categories" :key="index">{{cat.name}}</option>-->
-<!--          </select>-->
-
-<!--        </p>-->
-<!--      </form>-->
-
     </div>
-
+   <div v-if="loading"><loader></loader></div>
       <div
       class=" uk-position-relative uk-visible-toggle uk-light login"
       tabindex="-1"
@@ -49,7 +40,7 @@
 </template>
 
 <script>
-  import db from "@/firebase/init";
+  import { mapGetters } from 'vuex'
   import firebase from "firebase";
 export default {
 
@@ -59,14 +50,15 @@ export default {
       images: [],
       cat:"",
       user:firebase.auth().currentUser.uid,
-      chosen:this.$route.params.id
+      chosen:this.$route.params.id,
+
 
     };
   },
   computed: {
-    // images() {
-    //   return this.$store.state.Gallery;
-    // },
+    ...mapGetters([
+      'loading',
+    ]),
     categories() {
       return this.$store.getters.Categories;
     }
@@ -79,19 +71,7 @@ export default {
 
   },
   created() {
-
-
-      db.collection('Memes').where('category', '==', this.chosen)
-              .onSnapshot(querySnapshot => {
-                querySnapshot.docChanges().forEach(change => {
-                  if (change.type === 'added') {
-                    this.images.push(change.doc.data());
-                  }
-
-                });
-              });
-
-
+    this.$store.dispatch('carousel',this.images)
 
 
   },
@@ -113,4 +93,6 @@ img {
   border: 4px solid white;
 
 }
+
+
 </style>

@@ -4,7 +4,7 @@
           <div>
               <div class="uk-card uk-card-default flex uk-animation-toggle" style="width: 200px;margin-left: 10px" tabindex="0" >
                   <div class="uk-card-media-top uk-animation-scale-up">
-                      <router-link :to="'/start/' + message.message"><img :src="message.image" alt="" class=""></router-link>
+                      <router-link :to="'/start/' + message.Meme_id"><img :src="message.image" alt="" class=""></router-link>
                   </div>
 
                   <i class="material-icons">send</i>

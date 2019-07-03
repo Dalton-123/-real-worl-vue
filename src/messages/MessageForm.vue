@@ -12,10 +12,18 @@
              </div>
              <div class="input-group col">
                <input type="text" placeholder="Comment..." v-model="message" />
+
+              <div v-for="emoji in showEmoji">
+                <p v-if="show">{{emoji}}</p>
+              </div>
+
                <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
                <p @click="sendMessage"> <i style="color: blue" class="fa fa-send"></i></p>
                <p @click="upload" class="ml-3"> <i style="color: blue" class="fa fa-camera "></i></p>
-
+               <p @click="shows">&#128578;</p>
+               <div v-if="show">
+                 <new></new>
+               </div>
              </div>
            </div>
 
@@ -24,22 +32,7 @@
           <p v-if="errors">{{ errors }}</p>
         </form>
 
-<!--        <button-->
-<!--          @click="sendMessage"-->
-<!--          class="uk-button uk-button-secondary uk-button-small"-->
-<!--        >-->
-<!--          Send-->
-<!--        </button>-->
 
-<!--        <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>-->
-<!--        <button-->
-<!--          raised-->
-<!--          style="background: #F44336;"-->
-<!--          class="uk-button uk-button-primary uk-button-small"-->
-<!--          @click="upload"-->
-<!--        >-->
-<!--          upload-->
-<!--        </button>-->
       </div>
     </div>
   </div>
@@ -58,7 +51,8 @@ export default {
       errors: "",
       image:null,
       imageUrl:"",
-      crabs:[]
+      crabs:[],
+      show:null
 
 
     };
@@ -69,6 +63,9 @@ export default {
     },
     names(){
       return this.crabs.map(map=>map.name)
+    },
+    showEmoji() {
+      return this.$store.state.Emoji
     }
   },
   methods: {
@@ -84,8 +81,11 @@ export default {
             message: this.message,
             pic:this.Pic,
             name:this.names,
+            emoji:this.showEmoji
 
           }).then((data)=>{
+            this.show=null
+
           db.collection('message').doc(data.id).update({
           message_id:data.id
           })
@@ -104,6 +104,7 @@ export default {
         this.message = null;
         this.errors = null;
         this.imageUrl=null
+        this.showEmoji=null
       } else {
         this.errors = "You need to enter a message";
       }
@@ -127,6 +128,14 @@ export default {
 
 
     },
+shows(){
+  if (!this.show) {
+    this.show=true
+  } else {
+    this.show=false
+  }
+
+  }
 
 
   },
@@ -154,7 +163,7 @@ export default {
 p {
   color: red;
 }
-
+p{padding: 3px}
 input {
   color: black;
 }

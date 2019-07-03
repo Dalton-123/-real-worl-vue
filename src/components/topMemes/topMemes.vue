@@ -25,9 +25,9 @@
       </label>
     </p>
 
-    <p>
-      <select class="browser-default" v-model="cat">
-        <option v-for="(cat, index) in categories" :key="index" >{{
+    <p >
+      <select class="browser-default"  v-model="cat" >
+        <option  v-for="(cat, index) in categories" :key="index" >{{
           cat.name
         }}</option>
       </select>
@@ -49,7 +49,7 @@ export default {
     return {
       cat: "",
       chosen: "tfvc",
-      user: firebase.auth().currentUser.uid,
+
     };
   },
   computed: {

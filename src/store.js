@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import firebase from "firebase";
 import db from "@/firebase/init";
 import moments from "moment";
+import router from "@/router";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -55,60 +56,89 @@ export default new Vuex.Store({
       "Czech Republic"
     ],
     categories: [
-      { name:"Animated"},
+      { name: "Animated" },
 
-      {name:"Blessings"},
-      {name:"Divorce"},
-      {name:"Duplicates"},
-      {name:"Finance"},
-      {name:"Humor"},
-      {name:"Ideas",},
-      {name:"Inspirational Business"},
-      {name:"Love",},
-      {name:"Marriage"},
-      {name:"Men against Women"},
-      {name:"Nutrition"},
-      {name:"Political"},
-      {name:"Purpose"},
-      {name:"Relationship"},
-      {name:"Religious"},
-      {name:"Roman"},
-      {name:"Sports"},
-      {name:"Women against"},
-
-
+      { name: "Blessings" },
+      { name: "Divorce" },
+      { name: "Duplicates" },
+      { name: "Finance" },
+      { name: "Humor" },
+      { name: "Ideas" },
+      { name: "Inspirational Business" },
+      { name: "Love" },
+      { name: "Marriage" },
+      { name: "Men against Women" },
+      { name: "Nutrition" },
+      { name: "Political" },
+      { name: "Purpose" },
+      { name: "Relationship" },
+      { name: "Religious" },
+      { name: "Roman" },
+      { name: "Sports" },
+      { name: "Women against" }
     ],
-
     viewProfile: [],
     profile: [],
-    id: null,
+    id: "vygh",
     name: null,
-    // image: null,
     Users: [],
     Gallery: [],
-
+    test: router.currentRoute.params.id,
+    Emoji: [],
+    carousel:[],
+    loading:null
   },
   mutations: {
     PROFILE(state, payload) {
       state.profile.push(payload);
     },
-
     //  View Profile
     ViewProfile(state, payload) {
       state.viewProfile.push(payload);
     },
-
-
-
     gallery(state, payload) {
       state.Gallery = payload;
     },
     USERS(state, payload) {
       state.Users.push(payload);
+    },
+    ID(state, payload) {
+      state.id = payload;
+    },
+    Emoji(state, payload) {
+      state.Emoji.push(payload);
+    },
+    carousel(state,payload){
+      state.carousel=payload
+    },
+    loading(state,payload){
+      state.loading=payload
     }
   },
 
   actions: {
+
+    carousel({commit,getters},payload){
+      commit('loading',true)
+      let me=getters.try
+      db.collection('Memes').where('category','==',me)
+          .onSnapshot(querySnapshot => {
+            querySnapshot.docChanges().forEach(change => {
+              if (change.type === 'added') {
+                commit('loading',false)
+                payload.push(change.doc.data());
+              }
+            })
+            commit('carousel',payload)
+            })
+    },
+    Emoji({ commit }, payload) {
+      commit("Emoji", payload);
+    },
+    IDs({ commit }, payload) {
+      payload = firebase.auth().currentUser.uid;
+      commit("ID", payload);
+    },
     //Add Profile Information
     PROFILE({ commit }, payload) {
       var user = firebase.auth().currentUser;
@@ -140,7 +170,6 @@ export default new Vuex.Store({
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            // doc.data() is never undefined for query doc snapshots
             payload.push(doc.data());
             // commit("image", doc.data().image);
             // commit("name", doc.data().name);
@@ -167,6 +196,7 @@ export default new Vuex.Store({
     },
 
     ViewImages({ commit }, payload) {
+      commit('loading',true)
       var crab = [];
       var observer = db
         .collection("Memes")
@@ -174,6 +204,7 @@ export default new Vuex.Store({
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
             if (change.type === "added") {
+              commit('loading',false)
               crab.push(change.doc.data());
             }
           });
@@ -197,25 +228,16 @@ export default new Vuex.Store({
   },
 
   getters: {
-    loadedProfile(state) {
-      return meetupId => {
-        return state.users.find(meetup => {
-          return meetup.time === meetupId;
-        });
-      };
+    Categories(state) {
+      return state.categories.sort((catA, catB) => {
+        return catA.name > catB.name;
+      });
     },
-    loadedallery(state) {
-      return meetupId => {
-        return state.Gallery.find(meetup => {
-          return meetup.message === meetupId;
-        });
-      };
+    try(state) {
+      return state.RouteModule.params.id;
     },
-    Categories(state){
-      return state.categories.sort((catA,catB)=>{
-        return catA.name>catB.name
-      })
+    loading(state){
+      return state.loading
     }
-
   }
 });

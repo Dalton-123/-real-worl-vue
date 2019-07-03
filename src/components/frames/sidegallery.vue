@@ -1,13 +1,13 @@
 <template>
   <div class="test" >
 
-
+      <div v-if="loading"> <loading></loading></div>
     <div v-for="image in images">
       <div class="d-flex">
         <img :src="image.image" alt="" class="p-1"  @click="Goto(image.Meme_id)">
-       <div style="info" > <div class="uk-width-expand">
+       <div style="info"> <div class="uk-width-expand">
          <p class="uk-card-title uk-margin-remove-bottom">{{image.title}}</p>
-         <p class="uk-text-meta uk-margin-remove-top">{{image.description|convert}} ... </p>
+         <p class="uk-text-meta uk-margin-remove-top">{{image.description}} ... </p>
        </div>
 
        </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
 export default {
   name: "sidegallery",
   props: ["ids"],
@@ -30,6 +31,7 @@ export default {
     }
   },
   computed: {
+      ...mapGetters(["loading"]),
     images() {
       return this.$store.state.Gallery;
     }

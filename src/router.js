@@ -17,11 +17,11 @@ import about from "@/components/pages/about";
 import user from "@/components/User/createProfile";
 import profile from "@/components/User/viewProfile";
 import news from "@/components/new";
-import sidebar from '@/components/frames/sidebar'
-import memes from '@/views/UploadImages'
-import gal from  "@/components/pages/gallery";
-import img from  "@/components/frames/Images";
-import sidegal from '@/components/frames/sidegallery'
+import sidebar from "@/components/frames/sidebar";
+import memes from "@/views/UploadImages";
+import gal from "@/components/pages/gallery";
+import img from "@/components/frames/Images";
+import sidegal from "@/components/frames/sidegallery";
 import main from "./components/frames/bar";
 Vue.use(Router);
 
@@ -33,6 +33,7 @@ const router = new Router({
       path: "/GMap/:id",
       name: "GMap",
       component: GMap,
+      props: true,
       meta: {
         requiresAuth: true
       }
@@ -43,83 +44,66 @@ const router = new Router({
       component: Singup
     },
     {
-      path: "/login",
+      path: "/",
       name: "login",
       component: logins
-    },{
+    },
+    {
       path: "/img",
       name: "Images",
       component: img
     },
 
-
     {
       path: "/bar",
       name: "bar",
       component: main,
-    children:[
+      children: [
         {
-            path: "/gallery",
-            name: "gallery",
-            component: gal,
-            props: true,
+          path: "/gallery",
+          name: "gallery",
+          component: gal,
+          props: true
         },
         {
-            path: "/profile",
-            name: "Profile",
-            component: profile
+          path: "/profile",
+          name: "Profile",
+          component: profile
         },
         {
-            path: "/user",
-            name: "UserProfile",
-            component: user
-        },
-      {
-        path: "/start/:id",
-        name: "GetStarted",
-        component:start,
-        props:true
-
-      },
-        {
-            path: "/profile/:id",
-            name: "profile",
-            component: prof,
-            meta: {
-                requiresAuth: true
-            }
+          path: "/user",
+          name: "UserProfile",
+          component: user
         },
         {
-            path: "/memes",
-            name: "memes",
-            component: memes,
-            props: true,
-
+          path: "/start/:id",
+          name: "GetStarted",
+          component: start,
+          props: true
         },
-
-    ]
-
+        {
+          path: "/profile/:id",
+          name: "profile",
+          component: prof,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: "/memes",
+          name: "memes",
+          component: memes,
+          props: true
+        }
+      ]
     },
 
-
-
-        {
-          path: "/chat",
-          name: "chat",
-          component: chat,
-          // props: true,
-
-        },
-
-
-
-
-
-
-
-
-
-
+    {
+      path: "/chat",
+      name: "chat",
+      component: chat
+      // props: true,
+    },
 
     ,
     {
@@ -143,24 +127,22 @@ const router = new Router({
       component: sidebar
     },
 
-
     {
       path: "/sidegal",
       name: "sidegallery",
-      component:sidegal,
-      props:true
-
+      component: sidegal,
+      props: true
     },
     {
       path: "/mainPage",
       name: "mainPage",
-      component:main,
-
-
+      component: main
     },
-
-
-
+      {
+      path: "/new",
+      name: "new",
+      component: news
+    }
   ]
 });
 router.beforeEach((to, from, next) => {

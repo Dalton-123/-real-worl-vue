@@ -23,7 +23,7 @@
           </div>
         </header>
         <div class="uk-comment-body">
-          <p><i style="" class="fas fa-comment-dots"></i>{{message.message}}</p>
+          <p><i style="" class="fas fa-comment-dots"></i>{{message.message}}</p><p style="margin-left: 4px" v-for="emoji in message.emoji">{{emoji}}</p>
 
 <!--          REPLY-->
 <reply :Id="messageId" ></reply>
@@ -143,5 +143,7 @@ i{margin-right: 15px;
    .uk-width-auto img{
         width: 45px;
        max-height: 45px;
+    }
+    p{display: inline-block;
     }
 </style>
