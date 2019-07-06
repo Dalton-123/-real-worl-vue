@@ -1,7 +1,7 @@
 <template>
   <div>
     <banner></banner>
-     <div v-if="loading"> <loading></loading></div>
+     <div v-if="loading"> <loader></loader></div>
     <div class="container-fluid test">
       <div class="row" v-for="gal in gallery">
         <div class="col">
@@ -59,7 +59,7 @@
 
 <script>
 import chat from "@/components/Chat";
-import db from "@/firebase/init";
+
 import likes from "@/components/frames/likes";
 import imageInfo from "@/components/frames/imageInfo";
 import { mapGetters } from "vuex";
@@ -88,28 +88,8 @@ export default {
     }
   },
   created() {
-    // this.$store.dispatch('ViewImages')
-    db.collection("Memes")
-      .where("Meme_id", "==", this.ids)
-      // .orderBy("time")
-      .onSnapshot(querySnapshot => {
-        querySnapshot.docChanges().forEach(change => {
-          if (change.type === "added") {
-            this.gallery.push(change.doc.data());
-            // console.log(change.doc.id)
-          }
-        });
-      });
-    db.collection("message")
-      .where("Meme_id", "==", this.$route.params.id)
-      .onSnapshot(querySnapshot => {
-        querySnapshot.docChanges().forEach(change => {
-          if (change.type === "added") {
-            this.comments.unshift(change.doc.data());
-            // this.time=moments(change.doc.data().time).format('lll');
-          }
-        });
-      });
+    this.$store.dispatch('SingleMemes',this.gallery)
+    this.$store.dispatch('readMessages',this.comments)
   }
 };
 </script>
@@ -118,12 +98,12 @@ export default {
 .me img {
   padding-top: 27px;
 
-  max-height: 400px;
+  max-height: 500px;
   max-width: 100%;
   width: 1500px !important;
 }
 .test {
-  max-height: 500px;
+  /*max-height: 500px;*/
   overflow-scrolling: auto;
 }
 .uk-width-auto img {

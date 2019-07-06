@@ -19,6 +19,8 @@ import imageInfo from '@/components/frames/imageInfo'
 import pro from '@/components/frames/pro'
 import topMemes from '@/components/topMemes/topMemes'
 import news from '@/components/new'
+import request from '@/components/requests'
+import frens from '@/components/frens'
 
 
 Vue.filter('convert',(value)=>{
@@ -43,6 +45,8 @@ Vue.component('pro',pro)
 Vue.component('topMemes',topMemes)
 Vue.component('new',news)
 Vue.component('loader',loader)
+Vue.component('requests',request)
+Vue.component('frens',frens)
 import { sync } from 'vuex-router-sync'
 
 sync(store, router, { moduleName: 'RouteModule' } )

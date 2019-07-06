@@ -85,8 +85,10 @@ export default new Vuex.Store({
     Gallery: [],
     test: router.currentRoute.params.id,
     Emoji: [],
-    carousel:[],
-    loading:null
+    carousel: [],
+    loading: null,
+    readMessages: [],
+    singleMemes: []
   },
   mutations: {
     PROFILE(state, payload) {
@@ -108,29 +110,34 @@ export default new Vuex.Store({
     Emoji(state, payload) {
       state.Emoji.push(payload);
     },
-    carousel(state,payload){
-      state.carousel=payload
+    carousel(state, payload) {
+      state.carousel = payload;
     },
-    loading(state,payload){
-      state.loading=payload
+    loading(state, payload) {
+      state.loading = payload;
+    },
+    readMessages(state, payload) {
+      state.readMessages = payload;
+    },
+    singleMeme(state, payload) {
+      state.singleMemes = payload;
     }
   },
 
   actions: {
-
-    carousel({commit,getters},payload){
-      commit('loading',true)
-      let me=getters.try
-      db.collection('Memes').where('category','==',me)
-          .onSnapshot(querySnapshot => {
-            querySnapshot.docChanges().forEach(change => {
-              if (change.type === 'added') {
-                commit('loading',false)
-                payload.push(change.doc.data());
-              }
-            })
-            commit('carousel',payload)
-            })
+    carousel({ commit, getters }, payload) {
+      commit("loading", true);
+      let me = getters.try;
+      db.collection("Memes").where('category','==',me)
+        .onSnapshot(querySnapshot => {
+          querySnapshot.docChanges().forEach(change => {
+            if (change.type === "added") {
+              commit("loading", false);
+              payload.push(change.doc.data());
+            }
+          });
+          commit("carousel", payload);
+        });
     },
     Emoji({ commit }, payload) {
       commit("Emoji", payload);
@@ -171,8 +178,6 @@ export default new Vuex.Store({
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
             payload.push(doc.data());
-            // commit("image", doc.data().image);
-            // commit("name", doc.data().name);
           });
         })
         .catch(error => {
@@ -196,7 +201,7 @@ export default new Vuex.Store({
     },
 
     ViewImages({ commit }, payload) {
-      commit('loading',true)
+      commit("loading", true);
       var crab = [];
       var observer = db
         .collection("Memes")
@@ -204,7 +209,7 @@ export default new Vuex.Store({
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
             if (change.type === "added") {
-              commit('loading',false)
+              commit("loading", false);
               crab.push(change.doc.data());
             }
           });
@@ -214,16 +219,56 @@ export default new Vuex.Store({
     },
     //Users
     Users({ commit }, users) {
-      db.collection("users")
+      let id=firebase.auth().currentUser.uid
+      db.collection("Profile").where('id','<',id).get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              users.push(doc.data());
+            });
+          });
+      db.collection("Profile").where('id','>',id)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            // this.id.push(doc.id)
             users.push(doc.data());
           });
         });
 
       commit("USERS", users);
+    },
+    //  Read Message
+
+    readMessages({ commit, getters }, payload) {
+      commit("loading", true);
+      db.collection("message")
+        .where("Meme_id", "==", getters.try)
+        .onSnapshot(querySnapshot => {
+          querySnapshot.docChanges().forEach(change => {
+            if (change.type === "added") {
+              commit("loading", false);
+              payload.unshift(change.doc.data());
+              // this.time=moments(change.doc.data().time).format('lll');
+            }
+          });
+          commit("readMessages", payload);
+        });
+    },
+
+    //load Single Memes
+    SingleMemes({ commit, getters }, payload) {
+      commit("loading", true);
+      db.collection("Memes")
+        .where("Meme_id", "==", getters.try)
+        // .orderBy("time")
+        .onSnapshot(querySnapshot => {
+          querySnapshot.docChanges().forEach(change => {
+            if (change.type === "added") {
+              commit("loading", false);
+              payload.push(change.doc.data());
+            }
+          });
+          // commit(" singleMeme", payload);
+        });
     }
   },
 
@@ -236,8 +281,8 @@ export default new Vuex.Store({
     try(state) {
       return state.RouteModule.params.id;
     },
-    loading(state){
-      return state.loading
+    loading(state) {
+      return state.loading;
     }
   }
 });

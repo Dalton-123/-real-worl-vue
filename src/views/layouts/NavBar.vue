@@ -39,6 +39,12 @@
           <li v-if="user">
             <span> <sidebar></sidebar></span>
           </li>
+            <li v-if="user">
+            <span> <requests></requests></span>
+          </li>
+            <li v-if="user">
+            <span> <frens></frens></span>
+          </li>
           <li v-if="user">
             <a href="" @click="logout"
               ><i class="fa fa-sign-out" >logout</i></a

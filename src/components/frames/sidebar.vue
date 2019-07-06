@@ -1,51 +1,84 @@
 <template>
   <div>
     <a class="" type="" uk-toggle="target: #offcanvas"
-      ><i class="fa fa-users">users</i></a
+      ><i class="fa fa-users" style="color: orangered">users</i></a
     >
 
     <div id="offcanvas" uk-offcanvas="flip:false; overlay: true">
       <div class="uk-offcanvas-bar">
         <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-        <h3 class="uk-text-center">Users</h3>
-        <div v-for="use in users" class="me">
-          <a href=""
-            ><router-link :to='"/profile/" + use.alias'
-              ><i style="color:green" class="fa fa-circle"></i
-              ><span>{{ use.alias }}</span></router-link
-            ></a
-          >
+        <h3 >Users</h3>
+        <hr>
+        <div v-for="use in users" class="uk-flex">
+
+               <div >
+                 <img class="uk-border-circle" width="40" height="40" :src="use.image">
+
+                 <span >{{use.name}}</span><button @click="addfren(use.id)">
+                <i class="fa fa-user-plus"> fren</i>
+          </button>
+               </div>
+
+          </div>
+
+
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import db from "@/firebase/init";
+import firebase from "firebase";
 export default {
   name: "sidebar",
 
   data() {
     return {
       users: [],
-      id: []
+      gallery:[],
+      id: firebase.auth().currentUser.uid,
+      msg:'request sent'
     };
   },
-  // methods:{
-  //     profile(id){
-  //      this.$router.push({name:'profile'})
-  //     }
-  // },
-  created() {
-    this.$store.dispatch("Users", this.users);
-  },
+
+
   methods: {
-    Reload() {
-      window.location.reload();
+    addfren(id) {
+      db.collection("friendships")
+        .add({
+          requester: this.id,
+          user_requested: id,
+          status: null,
+          name:this.name,
+          image:this.image
+        }).then(ref => {
+        db.collection("friendships").doc(ref.id).update({
+          request_id: ref.id
+        })
+      }).then(() => {
+        db.collection("Profile").doc(this.id).update({
+          user_requested:id
+        })
+      })
+
+
     }
-  }
+  },
+  computed:{
+   name(){
+    return this.gallery.map(map=>map.name)
+   },
+    image(){
+    return this.gallery.map(map=>map.image)
+   }
+  },
+  created() {
+    this.$store.dispatch("ViewProfiles",this.gallery)
+    this.$store.dispatch("Users",this.users)
+  },
+
 };
 </script>
 
@@ -67,7 +100,8 @@ export default {
   /*margin-bottom: -4px;*/
   /*bottom: -5;*/
 }
-.test {
+.uk-offcanvas-bar{
+  background-color: #0a2b4e;
 }
 
 .me {
@@ -81,10 +115,18 @@ export default {
 i {
   margin-right: 5px;
   font-size: 1.2em;
-  color: orangered;
+  color: #0a2b4e;
 }
 a {
   color: orangered;
   font-size: 1.2em;
 }
+button {
+  margin-left: 15px;
+  background-color: orangered;
+}
+  img{width: 30px;
+  height: 30px}
+  .uk-flex{margin-top: 15px}
+  span{margin-left: 5px}
 </style>

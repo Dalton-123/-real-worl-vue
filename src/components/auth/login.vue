@@ -75,13 +75,13 @@ export default {
 }
 .testStep1{
   background-image: url("../../../public/space.jpg") ;
-  width: 1500px;
   height: 1000px;
   margin-top: 0px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
+  width: 100%;
 }
 .test{
   color: #F44336;
@@ -90,6 +90,7 @@ export default {
   background: #F44336;
   height: 50px;
   width: 100px;
+
 }
 
 </style>

@@ -3,40 +3,46 @@
     <p>
       <label>
         <input name="group1" type="radio" checked />
-        <span>Red</span>
+        <span>Most Liked</span>
       </label>
     </p>
     <p>
       <label>
         <input name="group1" type="radio" />
-        <span>Yellow</span>
+        <span>My Memes</span>
       </label>
     </p>
     <p>
       <label>
         <input class="with-gap" name="group1" type="radio" />
-        <span>Green</span>
+        <span>Most Comments</span>
       </label>
     </p>
+    <div>
+      <i class="fa fa-link"></i>
+      <label>
+        <input name="group1" type="radio" v-model="recent"/>
+        <span>Most Recent</span>
+      </label>
+    </div>
     <p>
       <label>
         <input name="group1" type="radio" />
-        <span>Brown</span>
+        <span>Awarded Memes</span>
       </label>
     </p>
 
-    <p >
+    <div class="uk-flex cat">
+      <i @click="press" class="fa fa-link"></i>
       <select class="browser-default"  v-model="cat" >
         <option  v-for="(cat, index) in categories" :key="index" >{{
           cat.name
         }}</option>
       </select>
 
-    </p>
+    </div>
 
-    <p>  <button @click="press" class="uk-button uk-button-primary">
-      Primary
-    </button></p>
+
   </form>
 </template>
 
@@ -48,8 +54,9 @@ export default {
   data() {
     return {
       cat: "",
+      recent:"Recent",
       chosen: "tfvc",
-
+      user: firebase.auth().currentUser.uid,
     };
   },
   computed: {
@@ -69,7 +76,7 @@ export default {
         }).then(()=>{
         db.collection("category").doc(this.user)
         this.$router.push({ name: "GMap", params: { id: this.chosen } });
-        document.location.reload()
+        window.location.reload()
       })
 
 
@@ -94,11 +101,14 @@ export default {
 button {
   margin-left: 10px;
 }
-div {
-  background: white;
-}
+
 p {
   display: inline-block;
   padding-right: 60px;
 }
+  label span{color: black}
+  i{font-size: 30px}
+  .cat{
+    width: 150px;
+  }
 </style>

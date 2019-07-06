@@ -79,17 +79,7 @@ export default {
     }
 },
   created() {
-    let observer = db.collection('message').where('Meme_id', '==', this.$route.params.id)
-            .onSnapshot(querySnapshot => {
-              querySnapshot.docChanges().forEach(change => {
-                if (change.type === 'added') {
-                   this.messages.unshift(change.doc.data());
-                   this.time=moments(change.doc.data().time).format('lll');
-                    this.messageId=change.doc.data().message_id
-                }
-
-              });
-            });
+    this.$store.dispatch('readMessages',this.messages)
 
 
 

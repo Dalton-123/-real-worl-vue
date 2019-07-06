@@ -23,6 +23,7 @@ import gal from "@/components/pages/gallery";
 import img from "@/components/frames/Images";
 import sidegal from "@/components/frames/sidegallery";
 import main from "./components/frames/bar";
+import test from "./components/requests";
 Vue.use(Router);
 
 const router = new Router({
@@ -48,11 +49,7 @@ const router = new Router({
       name: "login",
       component: logins
     },
-    {
-      path: "/img",
-      name: "Images",
-      component: img
-    },
+
 
     {
       path: "/bar",
@@ -98,12 +95,6 @@ const router = new Router({
       ]
     },
 
-    {
-      path: "/chat",
-      name: "chat",
-      component: chat
-      // props: true,
-    },
 
     ,
     {
@@ -111,38 +102,10 @@ const router = new Router({
       name: "about",
       component: about
     },
-    {
-      path: "/user",
-      name: "UserProfile",
-      component: user
-    },
-    {
-      path: "/profile",
-      name: "Profile",
-      component: profile
-    },
-    {
-      path: "/sidebar",
-      name: "sidebar",
-      component: sidebar
-    },
 
-    {
-      path: "/sidegal",
-      name: "sidegallery",
-      component: sidegal,
-      props: true
-    },
-    {
-      path: "/mainPage",
-      name: "mainPage",
-      component: main
-    },
-      {
-      path: "/new",
-      name: "new",
-      component: news
-    }
+
+
+
   ]
 });
 router.beforeEach((to, from, next) => {
