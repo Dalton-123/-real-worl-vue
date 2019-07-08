@@ -6,23 +6,42 @@
            <div class="uk-offcanvas-bar">
 
                <button class="uk-offcanvas-close" type="button" uk-close></button>
-               <div v-if="frens.length !=0">
-                   <h3>Your Frens</h3>
-                   <div
-                           v-for="request in frens"
-                           :key="request.requester"
-                           class="uk-flex"
-                   >
-                       <img
-                               class="uk-border-circle"
-                               width="40"
-                               height="40"
-                               :src="request.image"
-                       />
+              <div v-if="frens.length !=0 || Friends.length !=0">
+                  <div  uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+                      <h3>Your Frens</h3>
+                      <hr>
+                      <div
+                              v-for="request in frens"
+                              :key="request.requester"
+                              class="uk-flex uk-card"
+                      >
+                          <img
+                                  class="uk-border-circle"
+                                  width="40"
+                                  height="40"
+                                  :src="request.requesterImage"
+                          />
 
-                       <span>{{ request.name[0]}}</span>
-                   </div>
-               </div>
+                          <span>{{ request.name[0]}}</span>
+                      </div>
+                  </div>
+                  <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+                      <div
+                              v-for="requests in Friends"
+                              :key="requests.requester"
+                              class="uk-flex uk-card"
+                      >
+                          <img
+                                  class="uk-border-circle"
+                                  width="40"
+                                  height="40"
+                                  :src="requests.user_requestedImage"
+                          />
+
+                          <span>{{ requests.user_requestedName}}</span>
+                      </div>
+                  </div>
+              </div>
                <div v-else>
                    <h3>You have no frens</h3>
                    <span style='font-size:200px;'>&#128577;</span></div>
@@ -40,7 +59,9 @@
         data(){
           return{
               frens:[],
+              Friends:[],
               id: firebase.auth().currentUser.uid,
+
 
           }
         },
@@ -50,6 +71,13 @@
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === "added") {
                             this.frens.push(change.doc.data());
+                        }
+                    });
+                });db.collection("friendships").where("requester", "==", this.id).where('status','==',1)
+                .onSnapshot(querySnapshot => {
+                    querySnapshot.docChanges().forEach(change => {
+                        if (change.type === "added") {
+                            this.Friends.push(change.doc.data());
                         }
                     });
                 });

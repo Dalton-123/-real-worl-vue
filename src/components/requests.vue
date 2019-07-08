@@ -21,7 +21,7 @@
                    class="uk-border-circle"
                    width="40"
                    height="40"
-                   :src="request.image"
+                   :src="request.requesterImage"
            />
 
            <span>{{ request.name[0]}}</span>

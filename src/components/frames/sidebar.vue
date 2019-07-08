@@ -15,7 +15,7 @@
                <div >
                  <img class="uk-border-circle" width="40" height="40" :src="use.image">
 
-                 <span >{{use.name}}</span><button @click="addfren(use.id)">
+                 <span >{{use.name}}</span><button @click="addfren(use.id,use.image,use.name)" >
                 <i class="fa fa-user-plus"> fren</i>
           </button>
                </div>
@@ -45,14 +45,16 @@ export default {
 
 
   methods: {
-    addfren(id) {
+    addfren(id,image,name) {
       db.collection("friendships")
         .add({
           requester: this.id,
           user_requested: id,
+          user_requestedImage:image,
           status: null,
           name:this.name,
-          image:this.image
+          user_requestedName:name,
+          requesterImage:this.image
         }).then(ref => {
         db.collection("friendships").doc(ref.id).update({
           request_id: ref.id
@@ -77,6 +79,8 @@ export default {
   created() {
     this.$store.dispatch("ViewProfiles",this.gallery)
     this.$store.dispatch("Users",this.users)
+
+
   },
 
 };
