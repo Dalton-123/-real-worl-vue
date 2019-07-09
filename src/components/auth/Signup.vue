@@ -106,7 +106,7 @@ export default {
 
  .testStep1{
    background-image: url('../../../public/space.jpg');
-   width: 1500px;
+   width: 100%;
    height: 1000px;
    margin-top: 0px;
    background-position: center;

@@ -27,6 +27,8 @@
            <span>{{ request.name[0]}}</span>
            <button  @click="confirm(request.request_id,request.name[0])">
              <i class="fa fa-user-plus">confirm</i>
+           </button> <button  @click=" remove(request.request_id)">
+             remove
            </button>
          </div>
        </div>
@@ -60,7 +62,13 @@ export default {
         window.location.reload()
       })
 
-    }
+    },
+      remove(id){
+          db.collection("friendships").doc(id).delete().then(()=>{
+              window.location.reload()
+          })
+      }
+
   },
   created() {
     db.collection("friendships")

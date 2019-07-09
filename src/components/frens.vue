@@ -22,7 +22,7 @@
                                   :src="request.requesterImage"
                           />
 
-                          <span>{{ request.name[0]}}</span>
+                          <span>{{ request.name[0]}}</span><span @click="remove(request.request_id)" style="color: red">Unfren</span>
                       </div>
                   </div>
                   <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
@@ -38,7 +38,7 @@
                                   :src="requests.user_requestedImage"
                           />
 
-                          <span>{{ requests.user_requestedName}}</span>
+                          <span>{{ requests.user_requestedName}}</span><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
                       </div>
                   </div>
               </div>
@@ -64,6 +64,13 @@
 
 
           }
+        },
+        methods:{
+            remove(id){
+                db.collection("friendships").doc(id).delete().then(()=>{
+                    window.location.reload()
+                })
+            }
         },
         created() {
             db.collection("friendships").where("user_requested", "==", this.id).where('status','==',1)
@@ -99,4 +106,5 @@
     .uk-offcanvas-bar{
         background-color: #0a2b4e;
     }
+    button{margin-left: 7px}
 </style>
