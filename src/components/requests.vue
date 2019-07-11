@@ -2,9 +2,9 @@
   <div>
    <div>
      <a class="" uk-toggle="target: #friends"
-     ><i class="fa fa-user-plus">requests</i><span style="position: absolute;top:-7px;font-size: 0.7em;border-radius: 25px;color:green;">{{requests.length}}</span></a
+     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-20px;left:-10px;margin-top: 5px;background-color: red" class="uk-badge">{{requests.length}}</span>
+     </a
      >
-
      <div id="friends" uk-offcanvas="overlay: true">
        <div class="uk-offcanvas-bar">
          <button class="uk-offcanvas-close" type="button" uk-close></button>
@@ -55,7 +55,9 @@ export default {
       db.collection("friendships")
         .doc(id)
         .update({
-          status: 1
+          status: 1,
+          check:null
+
         }).then(()=>{
         UIkit.notification("Ypu are now frens with" + ' ' + name)
       }).then(()=>{

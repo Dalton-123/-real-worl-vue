@@ -10,17 +10,19 @@
 
         <h3 >Users</h3>
         <hr>
-        <div v-for="use in users" class="uk-flex">
+       <div>
+         <div v-for="use in users" class="uk-flex">
 
-               <div >
-                 <img class="uk-border-circle" width="40" height="40" :src="use.image">
+           <div >
+             <img class="uk-border-circle" width="40" height="40" :src="use.image">
 
-                 <span >{{use.name}}</span><button @click="addfren(use.id,use.image,use.name)" >
-                <i class="fa fa-user-plus"> fren</i>
-          </button>
-               </div>
+             <span >{{use.name}}</span><button @click="addfren(use.id,use.image,use.name)">
+             <i  class="fa fa-user-plus"> fren</i>
+           </button>
+           </div>
 
-          </div>
+         </div>
+       </div>
 
 
         </div>
@@ -54,16 +56,13 @@ export default {
           status: null,
           name:this.name,
           user_requestedName:name,
-          requesterImage:this.image
+          requesterImage:this.image,
         }).then(ref => {
         db.collection("friendships").doc(ref.id).update({
           request_id: ref.id
         })
-      }).then(() => {
-        db.collection("Profile").doc(this.id).update({
-          user_requested:id
-        })
       })
+
 
 
     }
@@ -74,12 +73,22 @@ export default {
    },
     image(){
     return this.gallery.map(map=>map.image)
-   }
+   },
+
+
   },
   created() {
     this.$store.dispatch("ViewProfiles",this.gallery)
     this.$store.dispatch("Users",this.users)
 
+    let observer = db.collection('friendships').where('requester', '==', this.id)
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === 'added') {
+                  console.log('New city: ', change.doc.data());
+                }
+              });
+            });
 
   },
 

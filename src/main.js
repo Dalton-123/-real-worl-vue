@@ -21,6 +21,7 @@ import topMemes from '@/components/topMemes/topMemes'
 import news from '@/components/new'
 import request from '@/components/requests'
 import frens from '@/components/frens'
+import notification from '@/components/notification'
 
 
 Vue.filter('convert',(value)=>{
@@ -47,6 +48,7 @@ Vue.component('new',news)
 Vue.component('loader',loader)
 Vue.component('requests',request)
 Vue.component('frens',frens)
+Vue.component('notification',notification)
 import { sync } from 'vuex-router-sync'
 
 sync(store, router, { moduleName: 'RouteModule' } )

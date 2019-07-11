@@ -13,6 +13,9 @@
       </div>
       <div style="" class="right">
         <ul class= "" style="margin-left: 550px">
+            <li v-if="user">
+                <span> <notification></notification></span>
+            </li>
           <li v-if="user">
             <router-link to="/about"
             ><i class="fas fa-grin-alt" >about us</i></router-link
@@ -76,7 +79,7 @@ import bar from '@/components/frames/bar'
 export default {
   name: "NavBar",
   components:{
-    bar
+
   },
   data() {
     return {

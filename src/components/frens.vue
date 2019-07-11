@@ -12,7 +12,7 @@
                       <hr>
                       <div
                               v-for="request in frens"
-                              :key="request.requester"
+
                               class="uk-flex uk-card"
                       >
                           <img
@@ -28,7 +28,6 @@
                   <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
                       <div
                               v-for="requests in Friends"
-                              :key="requests.requester"
                               class="uk-flex uk-card"
                       >
                           <img
@@ -80,7 +79,8 @@
                             this.frens.push(change.doc.data());
                         }
                     });
-                });db.collection("friendships").where("requester", "==", this.id).where('status','==',1)
+                })
+            ;db.collection("friendships").where("requester", "==", this.id).where('status','==',1)
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === "added") {
