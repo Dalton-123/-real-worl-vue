@@ -13,9 +13,7 @@
       </div>
       <div style="" class="right">
         <ul class= "" style="margin-left: 550px">
-            <li v-if="user">
-                <span> <notification></notification></span>
-            </li>
+
           <li v-if="user">
             <router-link to="/about"
             ><i class="fas fa-grin-alt" >about us</i></router-link
@@ -45,6 +43,9 @@
             <li v-if="user">
             <span> <requests></requests></span>
           </li>
+            <li v-if="user">
+                <span> <notification></notification></span>
+            </li>
             <li v-if="user">
             <span> <frens></frens></span>
           </li>

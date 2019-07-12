@@ -2,7 +2,7 @@
   <div>
    <div>
      <a class="" uk-toggle="target: #friends"
-     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-20px;left:-10px;margin-top: 5px;background-color: red" class="uk-badge">{{requests.length}}</span>
+     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: red" class="uk-badge">{{requests.length}}</span>
      </a
      >
      <div id="friends" uk-offcanvas="overlay: true">

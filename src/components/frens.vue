@@ -1,56 +1,61 @@
 <template>
-   <div>
-       <a  uk-toggle="target: #offcanvas-overlay"><i style="color:orangered " class="material-icons">&#xe7f0;</i></a>
+    <div>
+    <a href="#me" uk-toggle><i style="color:orangered " class="material-icons">&#xe7f0;</i></a>
 
-       <div id="offcanvas-overlay" uk-offcanvas="overlay: true">
-           <div class="uk-offcanvas-bar">
+    <div id="me" uk-offcanvas="flip: true;bg-close:false">
+        <div class="uk-offcanvas-bar test" style="margin-top: 145px;position: absolute">
 
-               <button class="uk-offcanvas-close" type="button" uk-close></button>
-              <div v-if="frens.length !=0 || Friends.length !=0">
-                  <div  uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
-                      <h3>Your Frens</h3>
-                      <hr>
-                      <div
-                              v-for="request in frens"
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-                              class="uk-flex uk-card"
-                      >
-                          <img
-                                  class="uk-border-circle"
-                                  width="40"
-                                  height="40"
-                                  :src="request.requesterImage"
-                          />
+            <h3>Your Frens</h3>
+            <hr>
+            <hr>
+            <div v-if="frens.length !=0 || Friends.length !=0">
+                <div  uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
 
-                          <span>{{ request.name[0]}}</span><span @click="remove(request.request_id)" style="color: red">Unfren</span>
-                      </div>
-                  </div>
-                  <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
-                      <div
-                              v-for="requests in Friends"
-                              class="uk-flex uk-card"
-                      >
-                          <img
-                                  class="uk-border-circle"
-                                  width="40"
-                                  height="40"
-                                  :src="requests.user_requestedImage"
-                          />
+                    <div
+                            v-for="request in frens"
 
-                          <span>{{ requests.user_requestedName}}</span><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
-                      </div>
-                  </div>
-              </div>
-               <div v-else>
-                   <h3>You have no frens</h3>
-                   <span style='font-size:200px;'>&#128577;</span></div>
-               </div>
-           </div>
-       </div>
-   </div>
+                            class="uk-flex uk-card"
+                    >
+                        <img
+                                class="uk-border-circle"
+                                width="40"
+                                height="40"
+                                :src="request.requesterImage"
+                        />
+
+                        <span>{{ request.name[0]}}</span><span @click="remove(request.request_id)" style="color: red">Unfren</span>
+                    </div>
+                </div>
+                <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+                    <div
+                            v-for="requests in Friends"
+                            class="uk-flex uk-card"
+                    >
+                        <img
+                                class="uk-border-circle"
+                                width="40"
+                                height="40"
+                                :src="requests.user_requestedImage"
+                        />
+
+                        <span>{{ requests.user_requestedName}}</span><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <h3>You have no frens</h3>
+                <span style='font-size:200px;'>&#128577;</span></div>
+        </div>
+
+        </div>
+    </div>
 </template>
 
+
 <script>
+    import UIkit from "uikit";
     import db from "@/firebase/init";
     import firebase from "firebase";
     export default {
@@ -88,6 +93,9 @@
                         }
                     });
                 });
+        },
+        mounted() {
+            UIkit.offcanvas("#me").show();
         }
     }
 </script>
@@ -104,7 +112,10 @@
         margin-left: 5px;
     }
     .uk-offcanvas-bar{
-        background-color: #0a2b4e;
+        background-color: rgb(144, 148, 156);;
     }
     button{margin-left: 7px}
+    .test{width: 320px;
+    }
+
 </style>

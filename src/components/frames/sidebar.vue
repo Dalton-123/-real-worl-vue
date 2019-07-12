@@ -81,7 +81,7 @@ export default {
     this.$store.dispatch("ViewProfiles",this.gallery)
     this.$store.dispatch("Users",this.users)
 
-    let observer = db.collection('friendships').where('requester', '==', this.id)
+    db.collection('friendships').where('requester', '==', this.id)
             .onSnapshot(querySnapshot => {
               querySnapshot.docChanges().forEach(change => {
                 if (change.type === 'added') {
