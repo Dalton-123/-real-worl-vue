@@ -24,7 +24,7 @@
                    :src="request.requesterImage"
            />
 
-           <span>{{ request.name[0]}}</span>
+           <span>{{ request.name}}</span>
            <button  @click="confirm(request.request_id,request.name[0])">
              <i class="fa fa-user-plus">confirm</i>
            </button> <button  @click=" remove(request.request_id)">

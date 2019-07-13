@@ -158,7 +158,8 @@ export default new Vuex.Store({
         phone: payload.phone,
         job: payload.job,
         gender: payload.gender,
-        id: user.uid
+        id: user.uid,
+        alias:payload.alias
       };
       db.collection("Profile")
         .doc(user.uid)
@@ -170,10 +171,11 @@ export default new Vuex.Store({
     },
 
     //Read Profile Info
-    ViewProfiles({ commit }, payload) {
+    ViewProfiles({ commit,getters }, payload) {
       var user = firebase.auth().currentUser;
+      var alias=getters.try
       db.collection("Profile")
-        .where("id", "==", user.uid)
+        .where('alias','==',alias)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {

@@ -3,14 +3,16 @@
     <a href="#me" uk-toggle><i style="color:orangered " class="material-icons">&#xe7f0;</i></a>
 
     <div id="me" uk-offcanvas="flip: true;bg-close:false">
-        <div class="uk-offcanvas-bar test" style="margin-top: 145px;position: absolute">
+        <div class="uk-offcanvas-bar uk-section uk-section-muted test" style="margin-top: 145px;position: absolute">
 
             <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-            <h3>Your Frens</h3>
-            <hr>
-            <hr>
+
+
             <div v-if="frens.length !=0 || Friends.length !=0">
+                <h3>Your Frens</h3>
+                <hr>
+                <hr>
                 <div  uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
 
                     <div
@@ -25,7 +27,7 @@
                                 :src="request.requesterImage"
                         />
 
-                        <span>{{ request.name[0]}}</span><span @click="remove(request.request_id)" style="color: red">Unfren</span>
+                        <router-link :to="'/profile/' + request.myAlias  "><span>{{ request.name}}</span></router-link><span @click="remove(request.request_id)" style="color: red">Unfren</span>
                     </div>
                 </div>
                 <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
@@ -40,12 +42,14 @@
                                 :src="requests.user_requestedImage"
                         />
 
-                        <span>{{ requests.user_requestedName}}</span><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
+                        <router-link :to="'/profile/' + requests.userRequestedAlias"><span>{{ requests.user_requestedName}}</span></router-link><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
                     </div>
                 </div>
             </div>
             <div v-else>
                 <h3>You have no frens</h3>
+                <hr>
+                <hr>
                 <span style='font-size:200px;'>&#128577;</span></div>
         </div>
 
@@ -85,7 +89,7 @@
                         }
                     });
                 })
-            ;db.collection("friendships").where("requester", "==", this.id).where('status','==',1)
+            ;db.collection("friendships").where("requester", "==", this.id).where('status','==',1).where('check','==',1)
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === "added") {
@@ -112,7 +116,7 @@
         margin-left: 5px;
     }
     .uk-offcanvas-bar{
-        background-color: rgb(144, 148, 156);;
+
     }
     button{margin-left: 7px}
     .test{width: 320px;

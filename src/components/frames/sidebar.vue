@@ -5,21 +5,24 @@
     >
 
     <div id="offcanvas" uk-offcanvas="flip:false; overlay: true">
-      <div class="uk-offcanvas-bar">
+      <div class="uk-offcanvas-bar test">
         <button class="uk-offcanvas-close" type="button" uk-close></button>
 
         <h3 >Users</h3>
         <hr>
        <div>
-         <div v-for="use in users" class="uk-flex">
+         <div v-for="use in users" class="uk-flex uk-child-width-expand@s " uk-grid>
 
            <div >
              <img class="uk-border-circle" width="40" height="40" :src="use.image">
-
-             <span >{{use.name}}</span><button @click="addfren(use.id,use.image,use.name)">
-             <i  class="fa fa-user-plus"> fren</i>
-           </button>
+             <span >{{use.name}}</span>
            </div>
+
+               <button @click="addfren(use.id,use.image,use.name,use.alias)">
+               <i  class="fa fa-user-plus"> fren</i>
+             </button>
+
+
 
          </div>
        </div>
@@ -41,13 +44,16 @@ export default {
       users: [],
       gallery:[],
       id: firebase.auth().currentUser.uid,
-      msg:'request sent'
+      msg:'request sent',
+        name:null,
+        image:null,
+        myAlias:null
     };
   },
 
 
   methods: {
-    addfren(id,image,name) {
+    addfren(id,image,name,alias) {
       db.collection("friendships")
         .add({
           requester: this.id,
@@ -57,6 +63,8 @@ export default {
           name:this.name,
           user_requestedName:name,
           requesterImage:this.image,
+            userRequestedAlias:alias,
+            myAlias:this.myAlias
         }).then(ref => {
         db.collection("friendships").doc(ref.id).update({
           request_id: ref.id
@@ -68,27 +76,32 @@ export default {
     }
   },
   computed:{
-   name(){
-    return this.gallery.map(map=>map.name)
-   },
-    image(){
-    return this.gallery.map(map=>map.image)
-   },
+   // name(){
+   //  return this.gallery.map(map=>map.name)
+   // },
+   //  image(){
+   //  return this.gallery.map(map=>map.image)
+   // },
 
 
   },
   created() {
-    this.$store.dispatch("ViewProfiles",this.gallery)
+      db.collection("Profile")
+          .where('id','==',this.id)
+          .get()
+          .then(querySnapshot => {
+              querySnapshot.forEach(doc => {
+                  this.name=doc.data().name
+                  this.image=doc.data().image
+                  this.myAlias=doc.data().alias
+              });
+          })
+          .catch(error => {
+              console.log("Error getting documents: ", error);
+          });
     this.$store.dispatch("Users",this.users)
 
-    db.collection('friendships').where('requester', '==', this.id)
-            .onSnapshot(querySnapshot => {
-              querySnapshot.docChanges().forEach(change => {
-                if (change.type === 'added') {
-                  console.log('New city: ', change.doc.data());
-                }
-              });
-            });
+
 
   },
 
@@ -135,11 +148,13 @@ a {
   font-size: 1.2em;
 }
 button {
-  margin-left: 15px;
+  margin-right: 15px;
   background-color: orangered;
+  width: 10px;
 }
   img{width: 30px;
   height: 30px}
   .uk-flex{margin-top: 15px}
   span{margin-left: 5px}
+  .test{width: 500px}
 </style>

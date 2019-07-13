@@ -1,8 +1,7 @@
 <template>
  <div>
-
+     <pro></pro>
      <div class="profile container">
-
          <div class="card">
              <router-link to="/"><i class="fa fa-home"></i></router-link>
              <div v-for="profile in profiles">
@@ -27,11 +26,15 @@
 
 <script>
 import db from "@/firebase/init";
-
+import pro from '@/components/User/viewProfile'
 import firebase from "firebase";
 
 export default {
   name: "profile",
+    components:{
+        pro
+    },
+
   data() {
     return {
       profiles: [],
@@ -49,7 +52,6 @@ export default {
     ref.where("user_id", "==", firebase.auth().currentUser.uid).get().then(snapshot => {
         snapshot.forEach(doc => {
           (this.user = doc.data()), (this.user.id = doc.id);
-          console.log(this.user);
         });
       });
     //profile data
@@ -76,12 +78,7 @@ export default {
 
   },
     computed:{
-      // profile(){
-      //     return this.$store.state.viewProfile
-      // },
-      meetus () {
-        return this.$store.getters.loadedProfile().find(map=>map.id==this.id)
-      },
+
 
     },
   methods: {

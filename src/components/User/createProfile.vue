@@ -134,7 +134,7 @@
 </template>
 
 <script>
-
+  import db from "@/firebase/init";
 import firebase from "firebase";
 export default {
   name: "UserProfile",
@@ -150,7 +150,9 @@ export default {
       status: ["single", "married", "divorced", "widowed"],
       gender: [],
       feedback:null,
-      progress:null
+      progress:null,
+      alias:null,
+      id:firebase.auth().currentUser.uid
     };
   },
 
@@ -175,11 +177,12 @@ countries(){
         stat:this.stat,
         phone:this.phone,
         job:this.job,
-        gender:this.gender
+        gender:this.gender,
+        alias:this.alias
       }
       if(this.name&&this.age&&this.address&&this.stat&&this.phone&&this.phone&&this.job&&this.gender&&this.image){
         this.$store.dispatch("PROFILE", data)
-        this.$router.push('/profile')
+        this.$router.push({ name: "profile", params: { id: this.alias } });
       }
       else{
         this.feedback="Please fill out all fields in the form"
@@ -213,7 +216,13 @@ countries(){
     }
   },
   created() {
-    this.SaverUsers;
+    // this.SaverUsers;
+    db.collection("users").where('user_id','==',this.id).get()
+            .then(querySnapshot => {
+              querySnapshot.forEach(doc => {
+                this.alias=doc.data().alias;
+              });
+            });
   }
 };
 </script>

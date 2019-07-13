@@ -12,7 +12,7 @@
         ></a>
 
         <hr />
-        <div v-for="">
+        <div >
 <!--          <div class="first">-->
 <!--            <p class="user-role">-->
 <!--              <i class="fa fa-briefcase"></i>{{ crab.job }}-->
