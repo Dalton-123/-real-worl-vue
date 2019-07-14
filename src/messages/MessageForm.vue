@@ -128,14 +128,14 @@ export default {
 
 
     },
-shows(){
-  if (!this.show) {
-    this.show=true
-  } else {
-    this.show=false
-  }
+      shows(){
+          if (!this.show) {
+              this.show=true
+          } else {
+              this.show=false
+          }
 
-  }
+      }
 
 
   },
