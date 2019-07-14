@@ -1,7 +1,8 @@
 <template>
   <div class="test" >
 
-      <div>
+      <div class="uk-section uk-section-muted">
+          <div style="background-color: #ddd"><h2>Meme Galleries</h2></div>
           <div v-if="loading"> <loader></loader></div>
           <div v-for="image in images">
               <div class="d-flex">
@@ -47,14 +48,6 @@ export default {
 <style scoped>
 .test {
   margin-top: 25px;
-    /*background-image: url("https://cdn.pixabay.com/photo/2019/04/27/08/29/forest-4159500__340.jpg");*/
-    /*background-position: center;*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: cover;*/
-    /*opacity: 0.9;*/
-    /*overflow-scrolling: auto;*/
-
-    /*width: 250px;*/
 
 
 
@@ -68,6 +61,7 @@ max-width: 100%;
     max-height: 70%;
   width:150px;
   height: 100px;
+    padding: 15px;
 }
 
 

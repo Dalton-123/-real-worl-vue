@@ -42,7 +42,8 @@
                                 :src="requests.user_requestedImage"
                         />
 
-                        <router-link :to="'/profile/' + requests.userRequestedAlias"><span>{{ requests.user_requestedName}}</span></router-link><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
+                        <router-link :to="'/profile/' + requests
+                        .userRequestedAlias"><span>{{ requests.user_requestedName}}</span></router-link><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
                     </div>
                 </div>
             </div>

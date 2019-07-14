@@ -79,7 +79,7 @@ export default new Vuex.Store({
     ],
     viewProfile: [],
     profile: [],
-    id: "vygh",
+    id: null,
     name: null,
     Users: [],
     Gallery: [],

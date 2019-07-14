@@ -4,7 +4,7 @@
 
     <div
       v-for="message in messages"
-      :key="message.message"
+      :key="message.message_id"
       class=" uk-card  uk-width-1-1@m"
     >
 
@@ -14,7 +14,7 @@
             <img class="uk-border-circle" :src="message.pic"  alt="">
           </div>
           <div class="uk-width-expand">
-            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.name[0]}}</a></h4>
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.name}}</a></h4>
             <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
               <li><a href="#">{{time}}</a></li>
 <!--              <a href="#" @click="deletes(message.id)" class="uk-icon-link" uk-icon="trash"></a>-->

@@ -15,15 +15,31 @@
 </template>
 
 <script>
+    import db from "@/firebase/init";
+    import firebase from "firebase";
     export default {
         name: "pro",
         data(){
           return{
-              crabs:[]
+              crabs:[],
+              id:firebase.auth().currentUser.uid,
           }
         },
         created() {
-            this.$store.dispatch("ViewProfiles", this.crabs);
+            db.collection("Profile")
+                .where('id','==',this.id)
+                .get()
+                .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        this.crabs.push(doc.data())
+
+                    });
+                })
+                .catch(error => {
+                    console.log("Error getting documents: ", error);
+                });
+
+            this.$store.dispatch('IDs')
         },
     }
 </script>

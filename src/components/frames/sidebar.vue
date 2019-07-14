@@ -76,12 +76,7 @@ export default {
     }
   },
   computed:{
-   // name(){
-   //  return this.gallery.map(map=>map.name)
-   // },
-   //  image(){
-   //  return this.gallery.map(map=>map.image)
-   // },
+
 
 
   },

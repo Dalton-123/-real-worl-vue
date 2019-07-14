@@ -31,8 +31,7 @@
               <span class="tests">
                 <a href="#">
                   <i class="fa fa-tachometer-alt"></i>
-                  <router-link to="/profile" class="menu-text"
-                    ><span>View Profile</span></router-link
+                  <span @click="profile">View Profile</span>
                   >
                 </a>
               </span>
@@ -75,20 +74,38 @@
 
 <script>
 import UIkit from "uikit";
+import db from "@/firebase/init";
+import firebase from "firebase";
 export default {
   name: "mainPage",
   data() {
     return {
-      crabs: []
+      crabs: [],
+      alias:null,
+      id:firebase.auth().currentUser.uid,
     };
   },
   methods: {
     home() {
       this.$router.push({ name: "GMap", params: { id: "Animated" } });
+    },
+    profile() {
+      this.$router.push({ name: "profile", params: { id:this.alias } });
     }
   },
   created() {
-    this.$store.dispatch("ViewProfiles", this.crabs);
+    db.collection("Profile")
+            .where('id','==',this.id)
+            .get()
+            .then(querySnapshot => {
+              querySnapshot.forEach(doc => {
+
+                this.alias=doc.data().alias
+              });
+            })
+            .catch(error => {
+              console.log("Error getting documents: ", error);
+            });
   },
   mounted() {
     UIkit.offcanvas("#offcanvas-usage").show();

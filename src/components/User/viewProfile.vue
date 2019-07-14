@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--      <navbar></navbar>-->
-      <div v-for="test in crabs" class="uk-container">
+      <div v-for="test in crabs" class="uk-container card">
           <h2> {{test.name}} Profile</h2>
           <div class="row">
               <div class="col try">
@@ -91,7 +91,7 @@ computed:{
   }
 
     .try p{
-margin-left: 0px;
+/*margin-left: 0px;*/
         margin-top: 25px;
     }
 
@@ -104,6 +104,6 @@ margin-left: 0px;
 
     .me{
         font-size: 1em;
-        margin-right: 15px
+        /*margin-right: 15px*/
     }
 </style>

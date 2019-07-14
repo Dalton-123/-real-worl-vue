@@ -52,18 +52,18 @@ export default {
       image:null,
       imageUrl:"",
       crabs:[],
-      show:null
+      show:null,
+        Pic:null,
+        names:null,
+        id:firebase.auth().currentUser.uid,
+
 
 
     };
   },
   computed:{
-    Pic(){
-      return this.crabs.map(map=>map.image)
-    },
-    names(){
-      return this.crabs.map(map=>map.name)
-    },
+
+
     showEmoji() {
       return this.$store.state.Emoji
     }
@@ -142,7 +142,16 @@ shows(){
   created() {
     this.sendMessage;
     this.$store.dispatch('ViewProfiles',this.crabs)
+      db.collection("Profile")
+          .where('id','==',this.id)
+          .get()
+          .then(querySnapshot => {
+              querySnapshot.forEach(doc => {
+                  this.Pic=doc.data().image
+                  this.names=doc.data().name
 
+              });
+          })
   }
 };
 </script>

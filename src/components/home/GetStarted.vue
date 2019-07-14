@@ -68,7 +68,7 @@ export default {
   components: {
     chat,
     likes,
-    imageInfo
+
   },
 
   data() {

@@ -1,8 +1,9 @@
 <template>
  <div>
+     <banner></banner>
      <pro></pro>
-     <div class="profile container">
-         <div class="card">
+     <div class="profile uk-container">
+         <div class="card" style="width: 700px">
              <router-link to="/"><i class="fa fa-home"></i></router-link>
              <div v-for="profile in profiles">
                  <h1 class="uk-text-center">{{profile.alias}}'s  wall</h1>
@@ -131,5 +132,8 @@ export default {
   }
      .card{
         width:1050px;
+    }
+    .profile{
+
     }
 </style>
