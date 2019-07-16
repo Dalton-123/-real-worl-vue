@@ -22,6 +22,7 @@ import news from '@/components/new'
 import request from '@/components/requests'
 import frens from '@/components/frens'
 import notification from '@/components/notification'
+import userMemes from '@/views/userMemes'
 
 
 
@@ -50,6 +51,9 @@ Vue.component('loader',loader)
 Vue.component('requests',request)
 Vue.component('frens',frens)
 Vue.component('notification',notification)
+Vue.component('userMemes',userMemes)
+
+
 import { sync } from 'vuex-router-sync'
 
 sync(store, router, { moduleName: 'RouteModule' } )

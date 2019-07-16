@@ -19,8 +19,15 @@
                   <input type="text" placeholder="descriptiion..." v-model="description" />
                 </div>
                 <!--          <label>Browser Select</label>-->
+                <br>
+                <label for="">Categories</label>
                 <select class="uk-select" v-model="cat" >
                   <option v-for="sta in categories">{{ sta.name }}</option>
+                </select>
+                <br>
+                <label for="">Acount Pivacy</label>
+                <select class="uk-select" v-model="choose" >
+                  <option v-for="cho in Options">{{ cho }}</option>
                 </select>
                 <p v-if="errors">{{ errors }}</p>
 
@@ -66,10 +73,10 @@
         imageUrl:"",
         names:this.$store.state.name,
         cat:null,
-        // categories:['religious','political','social',],
         crabs:[],
         description:null,
-        title:null
+        title:null,
+        choose:null
 
 
       };
@@ -87,7 +94,8 @@
                     category:this.cat,
                     name:this.Names,
                     Photo:this.Pic,
-                    timestamp:Date.now()
+                    timestamp:Date.now(),
+                    privacy:this.choose
                   }).then((data)=>{
                     const key=data.key
 
@@ -146,6 +154,9 @@
       },
       categories() {
         return this.$store.getters.Categories;
+      },
+     Options() {
+        return this.$store.state.Options;
       }
     },
     created() {

@@ -77,6 +77,7 @@ export default new Vuex.Store({
       { name: "Sports" },
       { name: "Women against" }
     ],
+    Options:['Only Me','Frens','Public'],
     viewProfile: [],
     profile: [],
     id: null,

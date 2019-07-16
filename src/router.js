@@ -62,11 +62,7 @@ const router = new Router({
           component: gal,
           props: true
         },
-        {
-          path: "/profile",
-          name: "Profile",
-          component: profile
-        },
+
         {
           path: "/user",
           name: "UserProfile",
@@ -78,14 +74,7 @@ const router = new Router({
           component: start,
           props: true
         },
-        {
-          path: "/profile/:id",
-          name: "profile",
-          component: prof,
-          meta: {
-            requiresAuth: true
-          }
-        },
+
         {
           path: "/memes",
           name: "memes",
@@ -102,7 +91,14 @@ const router = new Router({
       name: "about",
       component: about
     },
-
+    {
+      path: "/profile/:id",
+      name: "profile",
+      component: prof,
+      meta: {
+        requiresAuth: true
+      }
+    },
 
 
 

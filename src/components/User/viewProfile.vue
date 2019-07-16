@@ -1,10 +1,10 @@
 <template>
   <div>
 <!--      <navbar></navbar>-->
-      <div v-for="test in crabs" class="uk-container card">
+      <div v-for="test in crabs" class=" card" style="margin: 40px">
           <h2> {{test.name}} Profile</h2>
           <div class="row">
-              <div class="col try">
+              <div class="col try" style="margin: 20px">
                  <div v-if="test.image">
                      <img :src="test.image" alt="Avatar" style="width:200px">
                  </div>
@@ -105,5 +105,8 @@ computed:{
     .me{
         font-size: 1em;
         /*margin-right: 15px*/
+    }
+    .card{
+        width: 1350px;
     }
 </style>

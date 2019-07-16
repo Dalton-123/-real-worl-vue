@@ -2,25 +2,32 @@
  <div>
      <banner></banner>
      <pro></pro>
-     <div class="profile uk-container">
-         <div class="card" style="width: 700px">
-             <router-link to="/"><i class="fa fa-home"></i></router-link>
-             <div v-for="profile in profiles">
-                 <h1 class="uk-text-center">{{profile.alias}}'s  wall</h1>
-             </div>
-             <ul v-for="(comment,index) in comments" :key="comment.index" class="comments collection">
-                 <li >Comment</li>
-                 <div class="deep-purple-text">{{comment.from}}</div>
-                 <div class="grey-text text-darken-2">{{comment.content}}</div>
-             </ul>
-             <form @submit.prevent="addComment">
-                 <div class="field">
-                     <label for="comment">Add a comment</label>
-                     <input type="text" name="comment" v-model="newComment" />
-                     <p v-if="feedback" class="red-text center">{{ feedback }}</p>
-                 </div>
-             </form>
-         </div>
+     <div class="row">
+        <div class="col">
+            <div class="profile uk-container ">
+                <div class="card" style="width: 700px">
+                    <router-link to="/"><i class="fa fa-home"></i></router-link>
+                    <div v-for="profile in profiles">
+                        <h1 class="uk-text-center">{{profile.alias}}'s  wall</h1>
+                    </div>
+                    <ul v-for="(comment,index) in comments" :key="comment.index" class="comments collection">
+                        <li >Comment</li>
+                        <div class="deep-purple-text">{{comment.from}}</div>
+                        <div class="grey-text text-darken-2">{{comment.content}}</div>
+                    </ul>
+                    <form @submit.prevent="addComment">
+                        <div class="field">
+                            <label for="comment">Add a comment</label>
+                            <input type="text" name="comment" v-model="newComment" />
+                            <p v-if="feedback" class="red-text center">{{ feedback }}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+         <div class="col">
+         <userMemes></userMemes>
+     </div>
      </div>
  </div>
 </template>
@@ -131,7 +138,7 @@ export default {
       color: orangered;
   }
      .card{
-        width:1050px;
+        width:1400px;
     }
     .profile{
 
