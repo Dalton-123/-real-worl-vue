@@ -19,7 +19,7 @@
             <ul class="uk-navbar-nav">
 <!--                <li><topMemes></topMemes></li>-->
                 <li ><upload></upload></li>
-               <li><p style="color: blue;font-size: 1.1em" class="uk-margin-small-right" uk-icon="grid"></p></li>
+               <li><p style="costyle=lue;font-size: 1.1em" class="uk-margin-small-right" uk-icon="grid"></p></li>
                 <li><pro></pro></li>
 
             </ul>
