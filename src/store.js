@@ -199,7 +199,6 @@ export default new Vuex.Store({
         .then(ref => {
           console.log("Added document with ID: ", ref.id);
         });
-
       commit("Images", payload);
     },
 
