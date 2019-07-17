@@ -207,8 +207,7 @@ export default new Vuex.Store({
       commit("loading", true);
       var crab = [];
       var observer = db
-        .collection("Memes")
-        // .orderBy("time")
+        .collection("Memes").where('privacy','==','Public')
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
             if (change.type === "added") {

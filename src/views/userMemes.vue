@@ -55,7 +55,7 @@
         },
         created() {
             // this.$store.dispatch("ViewImages");
-            db.collection('Memes').where('user_id','==',this.id)
+            db.collection('Memes').where('user_id','==',this.id).where('privacy','==','Frens')
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === 'added') {

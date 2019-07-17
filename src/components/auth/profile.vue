@@ -3,9 +3,9 @@
      <banner></banner>
      <pro></pro>
      <div class="row">
-        <div class="col">
+        <div class="col ">
             <div class="profile uk-container ">
-                <div class="card" style="width: 700px">
+                <div class="card uk-section uk-section-muted" style="width: 700px">
                     <router-link to="/"><i class="fa fa-home"></i></router-link>
                     <div v-for="profile in profiles">
                         <h1 class="uk-text-center">{{profile.alias}}'s  wall</h1>
