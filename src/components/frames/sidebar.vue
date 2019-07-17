@@ -18,9 +18,12 @@
              <span >{{use.name}}</span>
            </div>
 
-               <button @click="addfren(use.id,use.image,use.name,use.alias)">
-               <i  class="fa fa-user-plus"> fren</i>
-             </button>
+
+                 <button v-if="!test(use.id)"    @click="addfren(use.id,use.image,use.name,use.alias)">
+                     <i  class="fa fa-user-plus"> fren</i>
+                 </button>
+             <span v-else>{{msg}}</span>
+
 
 
 
@@ -47,7 +50,10 @@ export default {
       msg:'request sent',
         name:null,
         image:null,
-        myAlias:null
+        myAlias:null,
+        testing:[],
+        requester:null,
+
     };
   },
 
@@ -70,10 +76,13 @@ export default {
           request_id: ref.id
         })
       })
+    },
+test(id){
+    return this.testing.find(map=>{
+        return map.user_requested == id && map.requester==this.id
+    })
+}
 
-
-
-    }
   },
   computed:{
 
@@ -95,6 +104,18 @@ export default {
               console.log("Error getting documents: ", error);
           });
     this.$store.dispatch("Users",this.users)
+
+
+      let observer = db.collection('friendships')
+          .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                  if (change.type === 'added') {
+                      this.testing.push(change.doc.data())
+                  }
+
+              });
+          });
+
 
 
 

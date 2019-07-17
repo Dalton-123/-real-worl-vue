@@ -32,7 +32,7 @@
                 <a href="#">
                   <i class="fa fa-tachometer-alt"></i>
                   <span @click="profile">View Profile</span>
-                  >
+
                 </a>
               </span>
               <hr />
