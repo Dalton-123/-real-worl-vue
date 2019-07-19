@@ -18,8 +18,9 @@
                 <img :src="image.image" alt="">
             </div>
             <div class="uk-card-body">
-                <h3 class="uk-card-title">{{image.title}}</h3>
-                <p>{{image.description}}</p>
+                <h4 class=""><b>Title:</b> {{image.title}}</h4>
+                <p><b>Description:</b> {{image.description}}</p>
+                <p><b>Category:</b> {{image.category}}</p>
             </div>
         </div>
     </div>
@@ -55,7 +56,7 @@
         },
         created() {
             // this.$store.dispatch("ViewImages");
-            db.collection('Memes').where('privacy','==','Frens')
+            db.collection('Memes').where('user_id','==',this.id)
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === 'added') {

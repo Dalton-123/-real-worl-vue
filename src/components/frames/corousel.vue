@@ -1,27 +1,32 @@
 <template>
   <div class="uk-container uk-container-small ">
     <div>
-      <topMemes ></topMemes>
+      <topMemes></topMemes>
     </div>
-   <div v-if="loading"><loader></loader></div>
-      <div
-      class=" uk-position-relative uk-visible-toggle uk-light login"
+    <div v-if="loading"><loader></loader></div>
+
+
+    <div  class="uk-position-relative uk-visible-toggle uk-light"
       tabindex="-1"
-      uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 7000;"
+      uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 3000;"
     >
-      <div>
-        <ul class="uk-slideshow-items">
-          <li v-for="image in images">
-            <div
-              class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-top-right"
-            >
-              <router-link :to="'/start/' + image.Meme_id"
-                ><img :src="image.image" alt=""
-              /></router-link>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul class="uk-slideshow-items">
+        <li v-for="image in images" >
+          <router-link :to="'/start/' + image.Meme_id"
+            ><img :src="image.image" alt=""
+          /></router-link>
+          <div v-if="!test(image.Meme_id)"
+            style="opacity: 0.9"
+            class="uk-overlay uk-overlay-primary uk-position-bottom  uk-transition-slide-bottom "
+          >
+            <h5 class="uk-margin-remove">Name: {{ image.title }}</h5>
+            <p class="uk-margin-remove">
+              Description: {{ image.description }}.
+            </p>
+            <p class="uk-margin-remove">Category: {{ image.category }}</p>
+          </div>
+        </li>
+      </ul>
 
       <a
         class="uk-position-center-left uk-position-small uk-hidden-hover"
@@ -35,47 +40,52 @@
         uk-slidenav-next
         uk-slideshow-item="next"
       ></a>
-    </div>
+  </div>
+    <p>{{test.length}}</p>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import firebase from "firebase";
+import { mapGetters } from "vuex";
+import firebase from "firebase";
+import db from "@/firebase/init";
 export default {
-
   name: "corousel",
   data() {
     return {
       images: [],
-      cat:"",
-      user:firebase.auth().currentUser.uid,
-      chosen:this.$route.params.id,
-
-
+      cat: "",
+      user: firebase.auth().currentUser.uid,
+      chosen: this.$route.params.id,
+      testing:[],
+      id:[]
     };
   },
   computed: {
-    ...mapGetters([
-      'loading',
-    ]),
+    ...mapGetters(["loading"]),
     categories() {
       return this.$store.getters.Categories;
-    }
-  },
-
-  methods:{
-
-  },
-  beforeCreate(){
-
-  },
-  created() {
-    this.$store.dispatch('carousel',this.images)
-
+    },
 
   },
 
+  methods: {
+    test(id) {
+    this.id=id
+  },
+  },
+
+  beforeMount() {
+    this.$store.dispatch("carousel", this.images);
+
+    db.collection("message").where('Meme_id','==','eCvJd9QC3RbgdvRkpHBe').onSnapshot(querySnapshot => {
+      querySnapshot.docChanges().forEach(change => {
+        if (change.type === "added") {
+          this.testing.push(change.doc.data());
+        }
+      });
+    });
+  }
 };
 </script>
 
@@ -91,8 +101,5 @@ img {
   max-height: 100% !important;
   /*height:400px !important;*/
   border: 4px solid white;
-
 }
-
-
 </style>

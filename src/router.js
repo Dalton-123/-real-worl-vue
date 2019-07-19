@@ -11,19 +11,14 @@ import start from "./components/home/GetStarted.vue";
 import Singup from "./components/auth/Signup.vue";
 import logins from "./components/auth/login.vue";
 import prof from "./components/auth/profile.vue";
-import chat from "./components/Chat";
 import firebase from "firebase";
 import about from "@/components/pages/about";
 import user from "@/components/User/createProfile";
-import profile from "@/components/User/viewProfile";
-import news from "@/components/new";
-import sidebar from "@/components/frames/sidebar";
 import memes from "@/views/UploadImages";
 import gal from "@/components/pages/gallery";
-import img from "@/components/frames/Images";
-import sidegal from "@/components/frames/sidegallery";
 import main from "./components/frames/bar";
-import test from "./components/requests";
+import testing from "./components/testing";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -49,7 +44,6 @@ const router = new Router({
       name: "login",
       component: logins
     },
-
 
     {
       path: "/bar",
@@ -84,13 +78,19 @@ const router = new Router({
       ]
     },
 
-
     ,
     {
       path: "/about",
       name: "about",
       component: about
     },
+
+    {
+      path: "/testing",
+      name: "testing",
+      component: testing
+    },
+
     {
       path: "/profile/:id",
       name: "profile",
@@ -98,10 +98,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
-
-
-
+    }
   ]
 });
 router.beforeEach((to, from, next) => {

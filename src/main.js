@@ -30,6 +30,10 @@ Vue.filter('convert',(value)=>{
   return value.slice(0,80)
 })
 
+Vue.filter('test',(value)=>{
+  return value.toUpperCase()
+})
+
 Vue.use(VueChatScroll)
 
 

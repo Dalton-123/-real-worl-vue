@@ -8,32 +8,79 @@
       <div class="uk-offcanvas-bar test">
         <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-        <h3 >Users</h3>
-        <hr>
-       <div>
-         <div v-for="use in users" class="uk-flex uk-child-width-expand@s " uk-grid>
+        <h3>Users</h3>
+        <form class="uk-search uk-search-default" style="width: 220px">
+          <span uk-search-icon></span>
+          <input
+            class="uk-search-input"
+            type="search"
+            placeholder="Search..."
+            v-model="search"
+          />
+        </form>
+        <!--The first four Users-->
+        <div>
+          <div
+            v-show="Show"
+            v-for="use in sliceList"
+            class="uk-flex uk-child-width-expand@s "
+            uk-grid
+          >
+            <div>
+              <img
+                class="uk-border-circle"
+                width="40"
+                height="40"
+                :src="use.image"
+              />
+              <span>{{ use.name }}</span>
+            </div>
 
-           <div >
-             <img class="uk-border-circle" width="40" height="40" :src="use.image">
-             <span >{{use.name}}</span>
-           </div>
+            <button
+              v-if="!test(use.id)"
+              @click="addfren(use.id, use.image, use.name, use.alias)"
+            >
+              <i class="fa fa-user-plus"> fren</i>
+            </button>
+            <span v-else style="color: green">{{ msg }}</span>
+          </div>
 
+<!--            Show all users-->
+            <br>
+            <a style="color: orange" @click="change">Show <span v-show="Show" >all  </span><span v-show="Show" uk-icon="triangle-down"></span>
+                <span v-show="!Show">less</span><span v-show="!Show" uk-icon="triangle-up"></span></a>
+          <!--           All users -->
+          <div
+            v-show="!Show"
+            v-for="use in filteredList"
+            class="uk-flex uk-child-width-expand@s "
+            uk-grid
+          >
+            <div>
+              <img
+                class="uk-border-circle"
+                width="40"
+                height="40"
+                :src="use.image"
+              />
+              <span>{{ use.name }}</span>
+            </div>
 
-                 <button v-if="!test(use.id)"    @click="addfren(use.id,use.image,use.name,use.alias)">
-                     <i  class="fa fa-user-plus"> fren</i>
-                 </button>
-             <span v-else>{{msg}}</span>
-
-
-
-
-         </div>
-       </div>
+            <button
+              v-if="!test(use.id)"
+              @click="addfren(use.id, use.image, use.name, use.alias)"
+            >
+              <i class="fa fa-user-plus"> fren</i>
+            </button>
+            <span v-else style="color: green">{{ msg }}</span>
+          </div>
+            <br>
 
 
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -45,82 +92,89 @@ export default {
   data() {
     return {
       users: [],
-      gallery:[],
+      gallery: [],
       id: firebase.auth().currentUser.uid,
-      msg:'request sent',
-        name:null,
-        image:null,
-        myAlias:null,
-        testing:[],
-        requester:null,
-
+      msg: "request sent",
+      name: null,
+      image: null,
+      myAlias: null,
+      testing: [],
+      requester: null,
+      search: "",
+      Show: true
     };
   },
 
-
   methods: {
-    addfren(id,image,name,alias) {
+    addfren(id, image, name, alias) {
       db.collection("friendships")
         .add({
           requester: this.id,
           user_requested: id,
-          user_requestedImage:image,
+          user_requestedImage: image,
           status: null,
-          name:this.name,
-          user_requestedName:name,
-          requesterImage:this.image,
-            userRequestedAlias:alias,
-            myAlias:this.myAlias
-        }).then(ref => {
-        db.collection("friendships").doc(ref.id).update({
-          request_id: ref.id
+          name: this.name,
+          user_requestedName: name,
+          requesterImage: this.image,
+          userRequestedAlias: alias,
+          myAlias: this.myAlias
         })
-      })
+        .then(ref => {
+          db.collection("friendships")
+            .doc(ref.id)
+            .update({
+              request_id: ref.id
+            });
+        });
     },
-test(id){
-    return this.testing.find(map=>{
-        return map.user_requested == id && map.requester==this.id
-    })
-}
-
+    test(id) {
+      return this.testing.find(map => {
+        return map.user_requested == id && map.requester == this.id
+      });
+    },
+    change() {
+      if (!this.Show) {
+        this.Show = true;
+      } else {
+        this.Show = false;
+      }
+    }
   },
-  computed:{
-
-
-
+  computed: {
+    filteredList() {
+      return this.users.filter(post => {
+        return post.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+    sliceList() {
+      return this.filteredList.slice(0, 4);
+    }
   },
+
   created() {
-      db.collection("Profile")
-          .where('id','==',this.id)
-          .get()
-          .then(querySnapshot => {
-              querySnapshot.forEach(doc => {
-                  this.name=doc.data().name
-                  this.image=doc.data().image
-                  this.myAlias=doc.data().alias
-              });
-          })
-          .catch(error => {
-              console.log("Error getting documents: ", error);
-          });
-    this.$store.dispatch("Users",this.users)
+    db.collection("Profile")
+      .where("id", "==", this.id)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.name = doc.data().name;
+          this.image = doc.data().image;
+          this.myAlias = doc.data().alias;
+        });
+      })
+      .catch(error => {
+        console.log("Error getting documents: ", error);
+      });
+    this.$store.dispatch("Users", this.users);
 
-
-      let observer = db.collection('friendships')
-          .onSnapshot(querySnapshot => {
-              querySnapshot.docChanges().forEach(change => {
-                  if (change.type === 'added') {
-                      this.testing.push(change.doc.data())
-                  }
-
-              });
-          });
-
-
-
-
-  },
-
+    let observer = db.collection("friendships").onSnapshot(querySnapshot => {
+      querySnapshot.docChanges().forEach(change => {
+        if (change.type === "added") {
+          this.testing.push(change.doc.data());
+        }
+      });
+    });
+  }
 };
 </script>
 
@@ -142,7 +196,7 @@ test(id){
   /*margin-bottom: -4px;*/
   /*bottom: -5;*/
 }
-.uk-offcanvas-bar{
+.uk-offcanvas-bar {
   background-color: #0a2b4e;
 }
 
@@ -168,9 +222,17 @@ button {
   background-color: orangered;
   width: 10px;
 }
-  img{width: 30px;
-  height: 30px}
-  .uk-flex{margin-top: 15px}
-  span{margin-left: 5px}
-  .test{width: 500px}
+img {
+  width: 30px;
+  height: 30px;
+}
+.uk-flex {
+  margin-top: 15px;
+}
+span {
+  margin-left: 5px;
+}
+.test {
+  width: 500px;
+}
 </style>
