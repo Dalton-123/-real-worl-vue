@@ -97,7 +97,7 @@ export default {
         querySnapshot.docChanges().forEach(change => {
           if (change.type === "added") {
             this.likes.push(change.doc.data());
-            console.log(change.doc.data());
+
           }
         });
       });
@@ -107,7 +107,7 @@ export default {
         querySnapshot.docChanges().forEach(change => {
           if (change.type === "added") {
             this.dislikes.push(change.doc.data());
-            console.log(change.doc.data());
+
           }
         });
       });

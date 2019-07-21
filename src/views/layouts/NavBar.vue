@@ -48,6 +48,8 @@
             </li>
             <li v-if="user">
             <span> <frens></frens></span>
+          </li> <li v-if="user">
+            <span> <upload></upload></span>
           </li>
           <li v-if="user">
             <a href="" @click="logout"
