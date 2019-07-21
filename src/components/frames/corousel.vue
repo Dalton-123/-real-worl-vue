@@ -111,7 +111,8 @@ export default {
       chosen: this.$route.params.id,
       comments: [],
       likes:[],
-      dislikes: []
+      dislikes: [],
+      id: firebase.auth().currentUser.uid,
     };
   },
   computed: {
@@ -142,7 +143,7 @@ export default {
               this.likes.push(change.doc.data());
             }
           });
-        });db.collection("unlikes")
+        });db.collection("dislikes")
         .where("Meme_id", "==", id)
         .onSnapshot(querySnapshot => {
           querySnapshot.docChanges().forEach(change => {
