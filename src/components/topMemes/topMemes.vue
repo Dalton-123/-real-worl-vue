@@ -1,49 +1,51 @@
 <template>
+<div class="uk-container" style="padding-bottom: 50px;margin-top: 50px;margin-left: 400px">
   <form action="#" @submit.prevent="press">
-    <p>
+    <div>
       <label>
         <input name="group1" type="radio" checked />
         <span>Most Liked</span>
       </label>
-    </p>
-    <p>
+    </div>
+    <div>
       <label>
         <input name="group1" type="radio" />
         <span>My Memes</span>
       </label>
-    </p>
-    <p>
+    </div>
+    <div>
       <label>
         <input class="with-gap" name="group1" type="radio" />
         <span>Most Comments</span>
       </label>
-    </p>
-    <div>
-      <i class="fa fa-link"></i>
-      <label>
-        <input name="group1" type="radio" v-model="recent"/>
-        <span>Most Recent</span>
-      </label>
     </div>
-    <p>
+
+    <div>
       <label>
         <input name="group1" type="radio" />
         <span>Awarded Memes</span>
       </label>
-    </p>
-
-    <div class="uk-flex cat">
-      <i @click="press" class="fa fa-link"></i>
-      <select class="browser-default"  v-model="cat" >
+    </div>
+    <div>
+      <i class="fa fa-link" @click="mostRecent"></i>
+      <label>
+        <input name="group1" type="radio" value="Recent" v-model="recent"/>
+        <span>Most Recent</span>
+      </label>
+    </div>
+    <div class=" cat " style="display: inline-block">
+      <span><i @click="press" class="fa fa-link "></i></span>
+      <select class="browser-default "  v-model="cat" >
         <option  v-for="(cat, index) in categories" :key="index" >{{
           cat.name
-        }}</option>
+          }}</option>
       </select>
 
     </div>
 
 
   </form>
+</div>
 </template>
 
 <script>
@@ -54,7 +56,7 @@ export default {
   data() {
     return {
       cat: "",
-      recent:"Recent",
+      recent:"",
       chosen: "tfvc",
       user: firebase.auth().currentUser.uid,
     };
@@ -65,9 +67,6 @@ export default {
     }
   },
   methods: {
-
-
-
     press() {
       db.collection("category").doc(this.user).delete()
       db.collection("category").doc(this.user)
@@ -78,11 +77,14 @@ export default {
         this.$router.push({ name: "GMap", params: { id: this.chosen } });
         window.location.reload()
       })
+    },
 
-
-
-
-
+    mostRecent(){
+      if(this.recent)
+      {
+        this.$router.push({ name: "GMap", params: { id: this. recent} })
+        window.location.reload()
+      }
     }
   },
   created() {
@@ -102,13 +104,13 @@ button {
   margin-left: 10px;
 }
 
-p {
+div {
   display: inline-block;
   padding-right: 60px;
 }
   label span{color: black}
   i{font-size: 30px}
   .cat{
-    width: 150px;
+    width: 200px;
   }
 </style>

@@ -30,8 +30,12 @@ Vue.filter('convert',(value)=>{
   return value.slice(0,80)
 })
 
-Vue.filter('test',(value)=>{
-  return value.toUpperCase()
+import moments from "moment";
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moments((value)).format('lll')
+  }
 })
 
 Vue.use(VueChatScroll)
@@ -59,7 +63,6 @@ Vue.component('userMemes',userMemes)
 
 
 import { sync } from 'vuex-router-sync'
-
 sync(store, router, { moduleName: 'RouteModule' } )
 let app = null
 firebase.auth().onAuthStateChanged(()=>{

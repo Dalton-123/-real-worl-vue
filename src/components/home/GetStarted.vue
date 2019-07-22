@@ -31,7 +31,7 @@
                   class="uk-text-meta uk-margin-remove-top"
                 >
                   Published on
-                  <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                  <time>{{gal.timestamp|formatDate}}</time>
                 </p>
                 <p>{{ gal.description }}</p>
               </div>

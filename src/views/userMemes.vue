@@ -18,9 +18,10 @@
                 <img :src="image.image" alt="">
             </div>
             <div class="uk-card-body">
-                <h4 class=""><b>Title:</b> {{image.title}}</h4>
+                <h3 class=""><b>Title:</b> {{image.title}}</h3>
                 <p><b>Description:</b> {{image.description}}</p>
                 <p><b>Category:</b> {{image.category}}</p>
+                <p><b>Published:</b> {{image.timestamp|formatDate}}</p>
             </div>
         </div>
     </div>
@@ -95,5 +96,7 @@
 .card{
     width: 500px;
 }
-
+.uk-card-body h3{
+    font-size: 1.4rem;
+}
 </style>

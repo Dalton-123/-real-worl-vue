@@ -6,6 +6,7 @@ import moments from "moment";
 import router from "@/router";
 Vue.use(Vuex);
 
+
 export default new Vuex.Store({
   state: {
     countries: [
@@ -62,6 +63,13 @@ export default new Vuex.Store({
       { name: "Divorce" },
       { name: "Duplicates" },
       { name: "Finance" },
+      { name: "Political" },
+      { name: "Purpose" },
+      { name: "Relationship" },
+      { name: "Religious" },
+      { name: "Roman" },
+      { name: "Sports" },
+      { name: "Women against" },
       { name: "Humor" },
       { name: "Ideas" },
       { name: "Inspirational Business" },
@@ -69,13 +77,7 @@ export default new Vuex.Store({
       { name: "Marriage" },
       { name: "Men against Women" },
       { name: "Nutrition" },
-      { name: "Political" },
-      { name: "Purpose" },
-      { name: "Relationship" },
-      { name: "Religious" },
-      { name: "Roman" },
-      { name: "Sports" },
-      { name: "Women against" }
+
     ],
     Options:['Only Me','Frens','Public'],
     viewProfile: [],
@@ -129,16 +131,30 @@ export default new Vuex.Store({
     carousel({ commit, getters }, payload) {
       commit("loading", true);
       let me = getters.try;
-      db.collection("Memes").where('category','==',me)
-        .onSnapshot(querySnapshot => {
-          querySnapshot.docChanges().forEach(change => {
-            if (change.type === "added") {
-              commit("loading", false);
-              payload.push(change.doc.data());
-            }
-          });
-          commit("carousel", payload);
-        });
+      if(me=='Recent'){
+        db.collection("Memes").orderBy('timestamp').limit(5)
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                  commit("loading", false);
+                  payload.push(change.doc.data());
+                }
+              });
+              commit("carousel", payload);
+            });
+      }else{
+        db.collection("Memes").where('category','==',me).orderBy('timestamp')
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                  commit("loading", false);
+                  payload.push(change.doc.data());
+                }
+              });
+              commit("carousel", payload);
+            });
+      }
+
     },
     Emoji({ commit }, payload) {
       commit("Emoji", payload);

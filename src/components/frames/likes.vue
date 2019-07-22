@@ -4,7 +4,7 @@
       <div>
         <span href="#" v-if="ID" style="color: blue" @click="like"
           ><i class="fa fa-thumbs-up" style="font-size:24px"></i
-          ><span v-if="likenum>1">{{ likenum }} {{likemsg}}</span></span
+          ><span v-if="likenum>=1">{{ likenum }} You liked this image</span></span
         >
         <span v-else @click="like"
           ><i class="fa fa-thumbs-up" style="font-size:24px"></i
@@ -13,7 +13,7 @@
 
         <span v-if="UID" style="margin-left: 10px;color: blue" @click="unlike"
         ><i class="fa fa-thumbs-down" style="font-size:24px"></i>
-            <span v-if=" dislikenum>1">{{  dislikenum }} {{dislikemsg}}</span>
+            <span v-if=" dislikenum>=1">{{  dislikenum }} You disliked this image</span>
         </span>
 
           <span v-else style="margin-left: 10px" @click="unlike"

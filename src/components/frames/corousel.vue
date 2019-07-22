@@ -1,8 +1,8 @@
 <template>
+  <div>
+    <topMemes></topMemes>
+
   <div class="uk-container uk-container-small ">
-    <div>
-      <topMemes></topMemes>
-    </div>
     <div v-if="loading"><loader></loader></div>
 
     <div
@@ -11,7 +11,7 @@
       uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 3000;"
     >
       <ul class="uk-slideshow-items">
-        <li v-for="image in images">
+        <li v-for="image in testing">
           <router-link :to="'/start/' + image.Meme_id"
             ><img :src="image.image"
           /></router-link>
@@ -23,7 +23,9 @@
             <p class="uk-margin-remove">Author: {{ image.name[0] }}</p>
             <p class="uk-margin-remove">
               Description: {{ image.description }}.
+
             </p>
+            <p>Published: {{ image.timestamp|formatDate }}.</p>
             <p class="uk-margin-remove">Category: {{ image.category }}</p>
             <p
               class="uk-margin-remove btn btn-secondary"
@@ -49,7 +51,7 @@
       ></a>
     </div>
     <div style="max-height: 500px;overflow: auto"
-      uk-dropdown="pos: right-center animation: uk-animation-slide-top-small; duration: 1000"
+      uk-dropdown="mode:click;pos: right-center;duration:2000"
     >
       <div v-if="comments.length != 0">
         <h3 v-if="comments.length > 1">{{ comments.length }} Comments</h3>
@@ -61,7 +63,7 @@
         <article
           class="uk-comment"
           v-for="message in comments"
-          :key="message.time"
+          :key="message.timestamp"
         >
           <header
             class="uk-comment-header uk-grid-medium uk-flex-middle"
@@ -83,10 +85,12 @@
             <p style="margin-left: 4px" v-for="emoji in message.emoji">
               {{ emoji }}
             </p>
+
           </div>
           <div class="first me">
             <img :src="message.image" alt="" height="100px" width="100px" />
           </div>
+          <hr>
         </article>
       </div>
       <div v-else>
@@ -94,13 +98,14 @@
         <span style="font-size:100px;">&#128577;</span>
       </div>
     </div>
-  </div>
+  </div></div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
 import db from "@/firebase/init";
+
 export default {
   name: "corousel",
   data() {
@@ -118,8 +123,14 @@ export default {
   computed: {
     ...mapGetters(["loading"]),
     categories() {
-      return this.$store.getters.Categories;
+      return this.$store.getters. loadedCategory;
+    },
+    testing(){
+      return this.images.slice().sort(function(a, b) {
+        return b.timestamp - a.timestamp;
+      });
     }
+
   },
 
   methods: {
@@ -222,6 +233,6 @@ a {
   display: inline-block;
 }
   .uk-width-medium p{
-    padding-bottom: 15px;
+    padding-bottom: 6px;
   }
 </style>
