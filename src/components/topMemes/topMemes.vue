@@ -7,12 +7,7 @@
         <span>Most Liked</span>
       </label>
     </div>
-    <div>
-      <label>
-        <input name="group1" type="radio" />
-        <span>My Memes</span>
-      </label>
-    </div>
+
     <div>
       <label>
         <input class="with-gap" name="group1" type="radio" />
@@ -27,6 +22,13 @@
       </label>
     </div>
     <div>
+      <div>
+        <i class="fa fa-link" @click="myMemes"></i>
+        <label>
+          <input name="group1" type="radio" value="myMemes" v-model="mine"/>
+          <span>My Memes</span>
+        </label>
+      </div>
       <i class="fa fa-link" @click="mostRecent"></i>
       <label>
         <input name="group1" type="radio" value="Recent" v-model="recent"/>
@@ -36,7 +38,7 @@
     <div class=" cat " style="display: inline-block">
       <span><i @click="press" class="fa fa-link "></i></span>
       <select class="browser-default "  v-model="cat" >
-        <option  v-for="(cat, index) in categories" :key="index" >{{
+        <option  v-for="(cat, index) in Cats" :key="index" >{{
           cat.name
           }}</option>
       </select>
@@ -57,32 +59,42 @@ export default {
     return {
       cat: "",
       recent:"",
-      chosen: "tfvc",
+      chosen: "",
       user: firebase.auth().currentUser.uid,
+      mine:null
     };
   },
   computed: {
-    categories() {
-      return this.$store.getters.Categories;
+    Cats() {
+      return this.$store.state.categories;
     }
   },
   methods: {
     press() {
-      db.collection("category").doc(this.user).delete()
-      db.collection("category").doc(this.user)
-        .set({
-          category: this.cat
-        }).then(()=>{
+      if(this.cat){
+        db.collection("category").doc(this.user).delete()
         db.collection("category").doc(this.user)
-        this.$router.push({ name: "GMap", params: { id: this.chosen } });
-        window.location.reload()
-      })
+                .set({
+                  category: this.cat
+                }).then(()=>{
+          db.collection("category").doc(this.user)
+          this.$router.push({ name: "GMap", params: { id: this.chosen } });
+          window.location.reload()
+        })
+      }
     },
 
     mostRecent(){
       if(this.recent)
       {
         this.$router.push({ name: "GMap", params: { id: this. recent} })
+        window.location.reload()
+      }
+    },
+    myMemes(){
+      if(this. mine)
+      {
+        this.$router.push({ name: "GMap", params: { id: this.  mine} })
         window.location.reload()
       }
     }

@@ -2,7 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
 import db from "@/firebase/init";
-import moments from "moment";
 import router from "@/router";
 Vue.use(Vuex);
 
@@ -63,21 +62,25 @@ export default new Vuex.Store({
       { name: "Divorce" },
       { name: "Duplicates" },
       { name: "Finance" },
-      { name: "Political" },
-      { name: "Purpose" },
-      { name: "Relationship" },
-      { name: "Religious" },
-      { name: "Roman" },
-      { name: "Sports" },
-      { name: "Women against" },
       { name: "Humor" },
       { name: "Ideas" },
       { name: "Inspirational Business" },
       { name: "Love" },
-      { name: "Marriage" },
+      {name: "Marriage" },
       { name: "Men against Women" },
       { name: "Nutrition" },
+      { name: "Political" },
+      { name: "Purpose" },
 
+      { name: "Relationship" },
+      { name: "Religious" },
+      { name: "Roman" },
+      { name: "Sports" },
+
+
+
+
+      { name: "Women against" },
     ],
     Options:['Only Me','Frens','Public'],
     viewProfile: [],
@@ -90,6 +93,7 @@ export default new Vuex.Store({
     Emoji: [],
     carousel: [],
     loading: null,
+    error:null,
     readMessages: [],
     singleMemes: []
   },
@@ -119,6 +123,9 @@ export default new Vuex.Store({
     loading(state, payload) {
       state.loading = payload;
     },
+    error(state, payload) {
+      state.error = payload;
+    },
     readMessages(state, payload) {
       state.readMessages = payload;
     },
@@ -131,8 +138,9 @@ export default new Vuex.Store({
     carousel({ commit, getters }, payload) {
       commit("loading", true);
       let me = getters.try;
+      var id = firebase.auth().currentUser.uid;
       if(me=='Recent'){
-        db.collection("Memes").orderBy('timestamp').limit(10)
+        db.collection("Memes").orderBy('timestamp','desc').limit(10)
             .onSnapshot(querySnapshot => {
               querySnapshot.docChanges().forEach(change => {
                 if (change.type === "added") {
@@ -142,8 +150,19 @@ export default new Vuex.Store({
               });
               commit("carousel", payload);
             });
-      }else{
-        db.collection("Memes").where('category','==',me).orderBy('timestamp')
+      } else if(me=='myMemes'){
+        db.collection("Memes").where('user_id','==',id)
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                  commit("loading", false);
+                  payload.push(change.doc.data());
+                }
+              });
+              commit("carousel", payload);
+            });
+      } else{
+        db.collection("Memes").where('category','==',me).orderBy('timestamp','desc')
             .onSnapshot(querySnapshot => {
               querySnapshot.docChanges().forEach(change => {
                 if (change.type === "added") {
@@ -291,10 +310,9 @@ export default new Vuex.Store({
 
   getters: {
     Categories(state) {
-      return state.categories.sort((catA, catB) => {
-        return catA.name > catB.name;
-      });
-    },
+      return state.cat
+    }
+    ,
     try(state) {
       return state.RouteModule.params.id;
     },

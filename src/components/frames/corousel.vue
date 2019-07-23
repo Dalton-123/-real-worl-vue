@@ -11,7 +11,7 @@
       uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 3000;"
     >
       <ul class="uk-slideshow-items">
-        <li v-for="image in testing">
+        <li v-for="image in images" :key="image.timestamp">
           <router-link :to="'/start/' + image.Meme_id"
             ><img :src="image.image"
           /></router-link>
@@ -20,7 +20,7 @@
             class="uk-overlay uk-overlay-primary uk-position-right uk-transition-slide-right uk-width-medium"
           >
             <p class="uk-margin-remove">Title: {{ image.title }}</p>
-            <p class="uk-margin-remove">Author: {{ image.name[0] }}</p>
+            <p class="uk-margin-remove">Author: {{ image.name }}</p>
             <p class="uk-margin-remove">
               Description: {{ image.description }}.
 
@@ -125,11 +125,11 @@ export default {
     categories() {
       return this.$store.getters. loadedCategory;
     },
-    testing(){
-      return this.images.slice().sort(function(a, b) {
-        return b.timestamp - a.timestamp;
-      });
-    }
+    // testing(){
+    //   return this.images.slice().sort(function(a, b) {
+    //     return b.timestamp - a.timestamp;
+    //   });
+    // }
 
   },
 

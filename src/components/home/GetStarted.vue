@@ -24,7 +24,7 @@
               />
               <div class="uk-width-expand ml-3">
                 <b
-                  ><p class=" uk-margin-remove-bottom">{{ gal.name[0] }}</p></b
+                  ><p class=" uk-margin-remove-bottom">{{ gal.name}}</p></b
                 >
                 <p
                   style="font-size: 0.7em"

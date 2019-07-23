@@ -22,7 +22,7 @@
                 <br>
                 <label for="">Categories</label>
                 <select class="uk-select" v-model="cat" >
-                  <option v-for="sta in categories">{{ sta.name }}</option>
+                  <option v-for="sta in Cats">{{ sta.name }}</option>
                 </select>
                 <br>
                 <label for="">Acount Pivacy</label>
@@ -71,12 +71,14 @@
         errors: "",
         image:null,
         imageUrl:"",
-        names:this.$store.state.name,
         cat:null,
         crabs:[],
         description:null,
         title:null,
-        choose:null
+        choose:null,
+        id:firebase.auth().currentUser.uid,
+        Names:null,
+        Pic:null
 
 
       };
@@ -94,8 +96,7 @@
                     category:this.cat,
                     name:this.Names,
                     Photo:this.Pic,
-                    timestamp:Date.now(),
-                    privacy:this.choose
+                    timestamp:Date.now()
                   }).then((data)=>{
                     const key=data.key
 
@@ -115,6 +116,11 @@
           this.message = null;
           this.errors = null;
           this.imageUrl=null
+          this.description=null
+          this.title=null
+                  this.choose=null
+          this.cat=null
+
         } else {
           this.errors = "You need to enter a message";
         }
@@ -146,22 +152,26 @@
 
     },
     computed:{
-      Pic(){
-        return this.crabs.map(map=>map.image)
-      },
-      Names(){
-        return this.crabs.map(map=>map.name)
-      },
-      categories() {
-        return this.$store.getters.Categories;
+
+      Cats() {
+        return this.$store.state.categories
       },
      Options() {
         return this.$store.state.Options;
       }
     },
     created() {
-      this.$store.dispatch('ViewProfiles',this.crabs)
-      // this.$store.dispatch('name')
+      db.collection('Profile').where('id', '==', this.id)
+              .onSnapshot(querySnapshot => {
+                querySnapshot.docChanges().forEach(change => {
+                  if (change.type === 'added') {
+                    this.Names=change.doc.data().name
+                    this.Pic=change.doc.data().image
+                  }
+
+                });
+              });
+
 
     }
   };
@@ -199,8 +209,10 @@
     /*margin-top: 80px;*/
 
   }
-  a i{
+  a i {
     color: blue;
   }
-  .pointer {cursor: pointer;}
+  .pointer{
+    cursor: pointer;
+  }
 </style>
