@@ -94,6 +94,7 @@
                     description: this.description,
                     user_id:user.uid,
                     category:this.cat,
+                    privacy:this.choose,
                     name:this.Names,
                     Photo:this.Pic,
                     timestamp:Date.now()
@@ -120,6 +121,7 @@
           this.title=null
                   this.choose=null
           this.cat=null
+
 
         } else {
           this.errors = "You need to enter a message";

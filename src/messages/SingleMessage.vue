@@ -94,12 +94,12 @@ export default {
 <style scoped>
 .test {
   /*margin-left: 330px;*/
-    max-height: 400px;
-    /*overflow: auto;*/
+    max-height: 400px;padding-bottom: 100px;
 
 }
 .test::-webkit-scrollbar-track{
     background-color: white;
+
 }
 
 .rcorners {
@@ -136,4 +136,5 @@ i{margin-right: 15px;
     }
     p{display: inline-block;
     }
+
 </style>

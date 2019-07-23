@@ -31,7 +31,7 @@
               class="uk-margin-remove btn btn-secondary"
               @mouseover="messages(image.Meme_id)"
             >
-              View Comments<span uk-icon="icon: triangle-down"></span>
+              View Comments<span uk-icon="icon: triangle-right"></span>
             </p>
           </div>
         </li>
@@ -50,7 +50,7 @@
         uk-slideshow-item="next"
       ></a>
     </div>
-    <div style="max-height: 500px;overflow: auto"
+    <div style="max-height: 500px;overflow: auto;border-radius:15px"
       uk-dropdown="mode:click;pos: right-center;duration:2000"
     >
       <div v-if="comments.length != 0">

@@ -35,7 +35,7 @@
         <span>Most Recent</span>
       </label>
     </div>
-    <div class=" cat " style="display: inline-block">
+    <div class=" cat " >
       <span><i @click="press" class="fa fa-link "></i></span>
       <select class="browser-default "  v-model="cat" >
         <option  v-for="(cat, index) in Cats" :key="index" >{{
@@ -116,13 +116,15 @@ button {
   margin-left: 10px;
 }
 
-div {
+div  ,i{
   display: inline-block;
-  padding-right: 60px;
+  margin-left: 25px;
+
 }
   label span{color: black}
   i{font-size: 30px}
   .cat{
     width: 200px;
   }
+
 </style>

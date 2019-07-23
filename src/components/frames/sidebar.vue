@@ -26,7 +26,7 @@
             class="uk-flex uk-child-width-expand@s "
             uk-grid
           >
-            <div>
+            <div v-if="!test(use.id) && !confirm(use.id)">
               <img
                 class="uk-border-circle"
                 width="40"
@@ -37,18 +37,27 @@
             </div>
 
             <button
-              v-if="!test(use.id)"
+              v-if="!test(use.id) && !confirm(use.id)"
               @click="addfren(use.id, use.image, use.name, use.alias)"
             >
               <i class="fa fa-user-plus"> fren</i>
             </button>
-            <span v-else style="color: green">{{ msg }}</span>
+            <div style="margin: 30px" v-else class="uk-alert-primary" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p>
+                {{ msg }}<span>{{ use.name }}</span>
+              </p>
+            </div>
           </div>
 
-<!--            Show all users-->
-            <br>
-            <a style="color: orange" @click="change">Show <span v-show="Show" >all  </span><span v-show="Show" uk-icon="triangle-down"></span>
-                <span v-show="!Show">less</span><span v-show="!Show" uk-icon="triangle-up"></span></a>
+          <!--            Show all users-->
+          <br />
+          <a style="color: orange" @click="change"
+            >Show <span v-show="Show">all </span
+            ><span v-show="Show" uk-icon="triangle-down"></span>
+            <span v-show="!Show">less</span
+            ><span v-show="!Show" uk-icon="triangle-up"></span
+          ></a>
           <!--           All users -->
           <div
             v-show="!Show"
@@ -56,7 +65,7 @@
             class="uk-flex uk-child-width-expand@s "
             uk-grid
           >
-            <div>
+            <div v-if="!test(use.id) && !confirm(use.id)">
               <img
                 class="uk-border-circle"
                 width="40"
@@ -67,16 +76,20 @@
             </div>
 
             <button
-              v-if="!test(use.id)"
+              v-if="!test(use.id) && !confirm(use.id)"
               @click="addfren(use.id, use.image, use.name, use.alias)"
             >
               <i class="fa fa-user-plus"> fren</i>
             </button>
-            <span v-else style="color: green">{{ msg }}</span>
+
+            <div style="margin: 30px" v-else class="uk-alert-primary" uk-alert>
+              <a class="uk-alert-close" uk-close ></a>
+              <p>
+                {{ msg }}<span>{{ use.name }}</span>
+              </p>
+            </div>
           </div>
-            <br>
-
-
+          <br />
         </div>
       </div>
     </div>
@@ -86,6 +99,7 @@
 <script>
 import db from "@/firebase/init";
 import firebase from "firebase";
+
 export default {
   name: "sidebar",
 
@@ -94,7 +108,7 @@ export default {
       users: [],
       gallery: [],
       id: firebase.auth().currentUser.uid,
-      msg: "request sent",
+      msg: "",
       name: null,
       image: null,
       myAlias: null,
@@ -129,7 +143,15 @@ export default {
     },
     test(id) {
       return this.testing.find(map => {
-        return map.user_requested == id && map.requester == this.id
+        this.msg='request sent to '
+        return map.user_requested == id && map.requester == this.id;
+      });
+
+    },
+    confirm(id) {
+      return this.testing.find(map => {
+        this.msg='confirm with'
+        return map.user_requested == this.id && map.requester == id;
       });
     },
     change() {

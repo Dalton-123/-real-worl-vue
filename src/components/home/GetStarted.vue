@@ -2,7 +2,7 @@
   <div>
     <banner></banner>
      <div v-if="loading"> <loader></loader></div>
-    <div class="container-fluid test">
+    <div class="container-fluid test uk-section uk-section-muted" >
       <div class="row" v-for="gal in gallery">
         <div class="col">
           <div>
@@ -98,13 +98,14 @@ export default {
 .me img {
   padding-top: 27px;
 
-  max-height: 500px;
+  max-height: 100%;
   max-width: 100%;
+  height: 500px;
   width: 1500px !important;
 }
 .test {
   /*max-height: 500px;*/
-  overflow-scrolling: auto;
+  /*overflow-scrolling: auto;*/
 }
 .uk-width-auto img {
   width: 50px;
