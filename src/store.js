@@ -132,7 +132,7 @@ export default new Vuex.Store({
       commit("loading", true);
       let me = getters.try;
       if(me=='Recent'){
-        db.collection("Memes").orderBy('timestamp').limit(5)
+        db.collection("Memes").orderBy('timestamp').limit(10)
             .onSnapshot(querySnapshot => {
               querySnapshot.docChanges().forEach(change => {
                 if (change.type === "added") {
