@@ -152,7 +152,8 @@ export default {
       feedback:null,
       progress:null,
       alias:null,
-      id:firebase.auth().currentUser.uid
+      id:firebase.auth().currentUser.uid,
+      email:firebase .auth().currentUser.email
     };
   },
 
@@ -178,7 +179,8 @@ countries(){
         phone:this.phone,
         job:this.job,
         gender:this.gender,
-        alias:this.alias
+        alias:this.alias,
+        email:this.email
       }
       if(this.name&&this.age&&this.address&&this.stat&&this.phone&&this.phone&&this.job&&this.gender&&this.image){
         this.$store.dispatch("PROFILE", data)

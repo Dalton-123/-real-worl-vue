@@ -82,7 +82,7 @@
               <i class="fa fa-user-plus"> fren</i>
             </button>
 
-            <div style="margin: 30px" v-else class="uk-alert-primary" uk-alert>
+            <div style="margin-bottom: auto;margin-left: 25px" v-else class="uk-alert-primary" uk-alert>
               <a class="uk-alert-close" uk-close ></a>
               <p>
                 {{ msg }}<span>{{ use.name }}</span>
@@ -143,14 +143,14 @@ export default {
     },
     test(id) {
       return this.testing.find(map => {
-        this.msg='request sent to '
+
         return map.user_requested == id && map.requester == this.id;
       });
 
     },
     confirm(id) {
       return this.testing.find(map => {
-        this.msg='confirm with'
+
         return map.user_requested == this.id && map.requester == id;
       });
     },
@@ -189,7 +189,7 @@ export default {
       });
     this.$store.dispatch("Users", this.users);
 
-    let observer = db.collection("friendships").onSnapshot(querySnapshot => {
+    db.collection("friendships").onSnapshot(querySnapshot => {
       querySnapshot.docChanges().forEach(change => {
         if (change.type === "added") {
           this.testing.push(change.doc.data());

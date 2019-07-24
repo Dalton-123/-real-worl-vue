@@ -33,7 +33,6 @@
                   Published on
                   <time>{{gal.timestamp|formatDate}}</time>
                 </p>
-                <p>{{ gal.description }}</p>
               </div>
             </div>
           </div>

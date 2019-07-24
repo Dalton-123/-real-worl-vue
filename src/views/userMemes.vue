@@ -9,13 +9,13 @@
                         <img class="uk-border-circle" width="40" height="40" :src="image.Photo">
                     </div>
                     <div class="uk-width-expand">
-                        <h3 class="uk-card-title uk-margin-remove-bottom">{{image.name[0]}}</h3>
-                        <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+                        <h3 class="uk-card-title uk-margin-remove-bottom">{{image.name}}</h3>
+                        <p class="uk-text-meta uk-margin-remove-top"><time >Published: {{image.timestamp|formatDate}}</time></p>
                     </div>
                 </div>
             </div>
             <div class="uk-card-media-top">
-                <img :src="image.image" alt="">
+                <router-link :to="'/start/' + image.Meme_id"><img :src="image.image" alt=""></router-link>
             </div>
             <div class="uk-card-body">
                 <h3 class=""><b>Title:</b> {{image.title}}</h3>
@@ -42,7 +42,7 @@
         data() {
             return {
                 images:[],
-                id:firebase.auth().currentUser.uid
+                id:this.$route.params.id
             };
         },
         methods: {
@@ -57,7 +57,7 @@
         },
         created() {
             // this.$store.dispatch("ViewImages");
-            db.collection('Memes').where('user_id','==',this.id)
+            db.collection('Memes').where('alias','==',this.id)
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === 'added') {

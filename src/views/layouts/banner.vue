@@ -5,9 +5,9 @@
 
             <ul class="uk-navbar-nav">
                <li><div class="uk-margin">
-                   <form class="uk-search uk-search-default">
+                   <form class="uk-search uk-search-default uk-container uk-container-small">
                        <span uk-search-icon></span>
-<!--                       <input class="uk-search-input" type="search" placeholder="Search...">-->
+                       <input class="uk-search-input" type="search" placeholder="Search..." style="border: 1px solid black">
                    </form>
                </div></li>
             </ul>
@@ -17,9 +17,9 @@
         <div class="uk-navbar-right">
 
             <ul class="uk-navbar-nav">
-<!--                <li><topMemes></topMemes></li>-->
+
                 <li ><upload></upload></li>
-               <li><p style="costyle=lue;font-size: 1.1em" class="uk-margin-small-right" uk-icon="grid"></p></li>
+               <li style="color: blue" @click=" home"><i class="fa fa-home" style="font-size: 30px"></i></li>
                 <li><pro></pro></li>
 
             </ul>
@@ -34,6 +34,11 @@
     export default {
         name: "banner",
         components:{upload},
+        methods:{
+            home() {
+                this.$router.push({ name: "GMap", params: { id: "Animated" } });
+            },
+        }
     }
 </script>
 

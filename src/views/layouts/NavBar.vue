@@ -34,7 +34,7 @@
             <i href=""><span class="fa fa-shopping-cart">cart</span></i>
           </li>
           <li v-if="user">
-            <router-link to="/profile"><i class="fa fa-user">{{ user.email }}</i></router-link>
+            <a href="" @click="profile"><i class="fa fa-user">{{ user.email }}</i></a>
           </li>
 
           <li v-if="user">
@@ -77,7 +77,7 @@
 
 <script>
 import firebase from "firebase";
-import bar from '@/components/frames/bar'
+import db from "@/firebase/init";
 
 export default {
   name: "NavBar",
@@ -87,7 +87,9 @@ export default {
   data() {
     return {
       user: null,
-      password: ""
+      password: "",
+        id: firebase.auth().currentUser.uid,
+        alias:null
     };
   },
   computed: {
@@ -104,7 +106,9 @@ export default {
           this.$router.push("/login")
         });
     },
-
+      profile() {
+          this.$router.push({ name: "profile", params: { id:this.alias } });
+      }
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
@@ -114,6 +118,18 @@ export default {
         this.user = user
       }
     });
+      db.collection("Profile")
+          .where('id','==',this.id)
+          .get()
+          .then(querySnapshot => {
+              querySnapshot.forEach(doc => {
+
+                  this.alias=doc.data().alias
+              });
+          })
+          .catch(error => {
+              console.log("Error getting documents: ", error);
+          });
 
   }
 };

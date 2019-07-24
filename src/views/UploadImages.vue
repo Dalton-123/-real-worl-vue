@@ -78,7 +78,8 @@
         choose:null,
         id:firebase.auth().currentUser.uid,
         Names:null,
-        Pic:null
+        Pic:null,
+        alias:null
 
 
       };
@@ -97,6 +98,7 @@
                     privacy:this.choose,
                     name:this.Names,
                     Photo:this.Pic,
+                    alias:this.alias,
                     timestamp:Date.now()
                   }).then((data)=>{
                     const key=data.key
@@ -169,6 +171,7 @@
                   if (change.type === 'added') {
                     this.Names=change.doc.data().name
                     this.Pic=change.doc.data().image
+                    this.alias=change.doc.data().alias
                   }
 
                 });

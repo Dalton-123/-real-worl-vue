@@ -21,7 +21,7 @@
 <!--    -->
               <div class="col test">
                 <h4 style="">Contact Information</h4>
-                  <p><i class="fa fa-fa fa-envelope-open"></i> {{email}}</p>
+                  <p><i class="fa fa-fa fa-envelope-open"></i> {{test.email}}</p>
                   <p><i class="fa fa-phone-square"></i> {{test.phone}}</p>
 
 

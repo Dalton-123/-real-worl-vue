@@ -27,7 +27,11 @@ import userMemes from '@/views/userMemes'
 
 
 Vue.filter('convert',(value)=>{
-  return value.slice(0,80)
+  return value.toUpperCase()
+})
+
+Vue.filter('smallOne',(value)=>{
+  return value.slice(0,13)
 })
 
 import moments from "moment";

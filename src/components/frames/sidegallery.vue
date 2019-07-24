@@ -8,7 +8,7 @@
               <div class="d-flex">
                   <img :src="image.image" alt="" class="p-1 pointer"  @click="Goto(image.Meme_id)">
                   <div style="info"> <div class="uk-width-expand">
-                      <p class="uk-card-title uk-margin-remove-bottom">{{image.title}}</p>
+                      <p style="font-weight: bold" class=" uk-margin-remove-bottom">{{image.title|convert}}</p>
                       <p class="uk-text-meta uk-margin-remove-top">{{image.description}} ... </p>
                   </div>
 

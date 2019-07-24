@@ -13,11 +13,7 @@
 
         <hr />
         <div >
-<!--          <div class="first">-->
-<!--            <p class="user-role">-->
-<!--              <i class="fa fa-briefcase"></i>{{ crab.job }}-->
-<!--            </p>-->
-<!--          </div>-->
+
           <hr />
           <span class="user-status">
             <i style="color:green" class="fa fa-circle"></i>
