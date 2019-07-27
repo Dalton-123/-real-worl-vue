@@ -99,6 +99,7 @@
 <script>
 import db from "@/firebase/init";
 import firebase from "firebase";
+import {fb} from "@/firebase/init";
 
 export default {
   name: "sidebar",
@@ -162,6 +163,11 @@ export default {
       }
     }
   },
+  firestore() {
+    return {
+      testing: fb.collection('friendships')
+    }
+  },
   computed: {
     filteredList() {
       return this.users.filter(post => {
@@ -189,13 +195,7 @@ export default {
       });
     this.$store.dispatch("Users", this.users);
 
-    db.collection("friendships").onSnapshot(querySnapshot => {
-      querySnapshot.docChanges().forEach(change => {
-        if (change.type === "added") {
-          this.testing.push(change.doc.data());
-        }
-      });
-    });
+
   }
 };
 </script>

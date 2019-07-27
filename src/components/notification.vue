@@ -39,6 +39,11 @@ export default {
       id: firebase.auth().currentUser.uid
     };
   },
+    firestore() {
+        return {
+            Friends: db.collection('friendships')
+        }
+    },
   methods: {
       checked(id) {
           db.collection("friendships")
@@ -46,25 +51,21 @@ export default {
               .update({
                   check:1
 
-              }).then(()=>{
-              window.location.reload()
-          })
-
+              })
 
     }
   },
   created() {
+      this.$binding("Friends",  db.collection("friendships")
+          .where("requester", "==", this.id)
+          .where("status", "==", 1).where("check", "==", null))
+          .then((ford) => {
+              this.Friends === ford // => __ob__: Observer
+          }).catch(err => {
+          console.error(err)
+      })
 
-    db.collection("friendships")
-      .where("requester", "==", this.id)
-      .where("status", "==", 1).where("check", "==", null)
-      .onSnapshot(querySnapshot => {
-        querySnapshot.docChanges().forEach(change => {
-          if (change.type === "added") {
-            this.Friends.push(change.doc.data());
-          }
-        });
-      });
+
   }
 };
 </script>

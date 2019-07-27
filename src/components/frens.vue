@@ -30,20 +30,20 @@
                         <router-link :to="'/profile/' + request.myAlias  "><span>{{ request.name}}</span></router-link><span @click="remove(request.request_id)" style="color: red">Unfren</span>
                     </div>
                 </div>
-                <div uk-grid uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+                <div class="uk-grid-divider uk-child-width-expand@s" uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true" uk grid>
                     <div
                             v-for="requests in Friends"
                             class="uk-flex uk-card"
                     >
-                        <img
-                                class="uk-border-circle"
-                                width="40"
-                                height="40"
-                                :src="requests.user_requestedImage"
-                        />
-
-                        <router-link :to="'/profile/' + requests
-                        .userRequestedAlias"><span>{{ requests.user_requestedName}}</span></router-link><button @click="remove(requests.request_id)" style="color: red">Unfren</button>
+                      <div>  <img
+                              class="uk-border-circle"
+                              width="40"
+                              height="40"
+                              :src="requests.user_requestedImage"
+                      /></div>
+<div> <router-link :to="'/profile/' + requests
+                        .userRequestedAlias"><span>{{ requests.user_requestedName}}</span></router-link></div>
+                       <div><button @click="remove(requests.request_id)" style="color: red">Unfren</button></div>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,7 @@
     import UIkit from "uikit";
     import db from "@/firebase/init";
     import firebase from "firebase";
+    import {fb} from "@/firebase/init";
     export default {
         name: "frens",
         data(){
@@ -77,27 +78,29 @@
         methods:{
             remove(id){
                 db.collection("friendships").doc(id).delete().then(()=>{
-                    window.location.reload()
+
                 })
             }
         },
+        firestore() {
+            return {
+                frens: fb.collection('friendships'),
+                Friends: fb.collection('friendships')
+            }
+        },
         created() {
-            db.collection("friendships").where("user_requested", "==", this.id).where('status','==',1)
-                .onSnapshot(querySnapshot => {
-                    querySnapshot.docChanges().forEach(change => {
-                        if (change.type === "added") {
-                            this.frens.push(change.doc.data());
-                        }
-                    });
-                })
-            ;db.collection("friendships").where("requester", "==", this.id).where('status','==',1).where('check','==',1)
-                .onSnapshot(querySnapshot => {
-                    querySnapshot.docChanges().forEach(change => {
-                        if (change.type === "added") {
-                            this.Friends.push(change.doc.data());
-                        }
-                    });
-                });
+            this.$binding("frens", fb.collection("friendships").where('user_requested', '==', this.id).where('status','==',1).where('check','==',1))
+                .then((ford) => {
+                    this.frens === ford // => __ob__: Observer
+                }).catch(err => {
+                console.error(err)
+            })
+            this.$binding("Friends", fb.collection("friendships").where('requester', '==', this.id).where('status','==',1).where('check','==',1))
+                .then((ford) => {
+                    this.Friends === ford // => __ob__: Observer
+                }).catch(err => {
+                console.error(err)
+            })
         },
         mounted() {
             UIkit.offcanvas("#me").show();

@@ -23,7 +23,12 @@ import request from '@/components/requests'
 import frens from '@/components/frens'
 import notification from '@/components/notification'
 import userMemes from '@/views/userMemes'
+import likes from "@/components/frames/likes";
 
+import VueFirestore from 'vue-firestore'
+
+
+Vue.use(VueFirestore)
 
 
 Vue.filter('convert',(value)=>{
@@ -64,6 +69,7 @@ Vue.component('requests',request)
 Vue.component('frens',frens)
 Vue.component('notification',notification)
 Vue.component('userMemes',userMemes)
+Vue.component('likes',likes)
 
 
 import { sync } from 'vuex-router-sync'

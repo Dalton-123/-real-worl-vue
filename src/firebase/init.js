@@ -15,3 +15,8 @@ var config = {
 
  export default firebaseApp.firestore()
 
+
+
+const fb = firebase.firestore();
+
+export {fb}

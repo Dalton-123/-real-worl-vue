@@ -2,18 +2,18 @@
   <div>
    <div>
      <a class="" uk-toggle="target: #friends"
-     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color:deepskyblue" class="uk-badge">{{requests.length}}</span>
+     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color:deepskyblue" class="uk-badge">{{friends.length}}</span>
      </a
      >
      <div id="friends" uk-offcanvas="overlay: true">
        <div class="uk-offcanvas-bar">
          <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-         <h3 v-if="requests.length !=0">Friend Requests</h3>
+         <h3 v-if="friends.length !=0">Friend Requests</h3>
          <div v-else><h3 >You have no requests</h3>
            <span style='font-size:200px;'>&#128577;</span></div>
          <div
-                 v-for="request in requests"
+                 v-for="request in friends"
                  :key="request.requester"
                  class="uk-flex"
          >
@@ -25,9 +25,9 @@
            />
 
            <span>{{ request.name}}</span>
-           <button  @click="confirm(request.request_id,request.name[0])">
+           <button  @click="confirm(request.request_id,request.name)">
              <i class="fa fa-user-plus">confirm</i>
-           </button> <button  @click=" remove(request.request_id)">
+           </button> <button  @click="removeRequest(request)">
              remove
            </button>
          </div>
@@ -41,16 +41,27 @@
   import UIkit from "uikit";
 import firebase from "firebase";
 import db from "@/firebase/init";
+import {fb} from "@/firebase/init";
+
 export default {
   name: "requests",
   data() {
     return {
       id: firebase.auth().currentUser.uid,
-      requests: [],
-      status: null
+      status: null,
+      friends:[]
     };
   },
+  firestore() {
+    return {
+      friends: fb.collection('friendships')
+    }
+  },
+  computed:{
+
+  },
   methods: {
+
     confirm(id,name) {
       db.collection("friendships")
         .doc(id)
@@ -59,29 +70,23 @@ export default {
           check:null
 
         }).then(()=>{
-        UIkit.notification("Ypu are now frens with" + ' ' + name)
-      }).then(()=>{
-        window.location.reload()
+        UIkit.notification("You are now frens with" + ' ' + name)
       })
 
     },
-      remove(id){
-          db.collection("friendships").doc(id).delete().then(()=>{
-              window.location.reload()
-          })
+    removeRequest(id) {
+      db.collection('friendships').doc(id['.key']).delete();
+
       }
 
   },
-  created() {
-    db.collection("friendships")
-      .where("user_requested", "==", this.id).where('status','==',null)
-      .onSnapshot(querySnapshot => {
-        querySnapshot.docChanges().forEach(change => {
-          if (change.type === "added") {
-            this.requests.push(change.doc.data());
-          }
-        });
-      });
+  mounted() {
+    this.$binding("friends", fb.collection("friendships").where('user_requested', '==', this.id).where('status','==',null))
+            .then((ford) => {
+              this.friends === ford // => __ob__: Observer
+            }).catch(err => {
+      console.error(err)
+    })
   }
 };
 </script>

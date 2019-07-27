@@ -59,14 +59,14 @@
 <script>
 import chat from "@/components/Chat";
 
-import likes from "@/components/frames/likes";
-import imageInfo from "@/components/frames/imageInfo";
+
+
 import { mapGetters } from "vuex";
 export default {
   name: "GetStarted",
   components: {
     chat,
-    likes,
+
 
   },
 

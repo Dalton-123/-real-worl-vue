@@ -25,7 +25,7 @@ export default {
   name: "sidegallery",
   props: ["ids"],
   data() {
-    return {};
+    return {d};
   },
   methods: {
     Goto(id) {

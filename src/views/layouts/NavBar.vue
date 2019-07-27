@@ -88,7 +88,6 @@ export default {
     return {
       user: null,
       password: "",
-        id: firebase.auth().currentUser.uid,
         alias:null
     };
   },
@@ -118,18 +117,21 @@ export default {
         this.user = user
       }
     });
-      db.collection("Profile")
-          .where('id','==',this.id)
-          .get()
-          .then(querySnapshot => {
-              querySnapshot.forEach(doc => {
+     if(this.user){
+         db.collection("Profile")
+             .where('id','==',this.user.uid)
+             .get()
+             .then(querySnapshot => {
+                 querySnapshot.forEach(doc => {
 
-                  this.alias=doc.data().alias
-              });
-          })
-          .catch(error => {
-              console.log("Error getting documents: ", error);
-          });
+                     this.alias=doc.data().alias
+                 });
+             })
+             .catch(error => {
+                 console.log("Error getting documents: ", error);
+             });
+     }
+
 
   }
 };

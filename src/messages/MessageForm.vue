@@ -18,9 +18,10 @@
               </div>
 
                <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
-               <p @click="sendMessage"> <i style="color: blue" class="fa fa-send"></i></p>
-               <p @click="upload" class="ml-3"> <i style="color: blue" class="fa fa-camera "></i></p>
-               <p @click="shows">&#128578;</p>
+
+               <span @click="sendMessage" class="uk-badge" style="background-color: red"> <i style="color: blue" class="fa fa-send"></i></span>
+               <span @click="upload" class="ml-3 uk-badge"> <i style="color: blue" class="fa fa-camera "></i></span>
+               <span @click="shows" class="uk-badge" style="background-color: blue">&#128578;</span>
                <div v-if="show">
                  <new></new>
                </div>
@@ -180,7 +181,7 @@ input {
 
   max-height: 100px;
 }
-  /*.test{*/
-  /*  margin-left: 0%;*/
-  /*}*/
+ span{
+     margin-left: 15px;
+ }
 </style>

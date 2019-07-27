@@ -18,7 +18,7 @@
     import cor from '@/components/frames/corousel'
     import but from '@/components/frames/buttons'
     import about from '@/components/pages/about'
-    import UIkit from "uikit"
+
 
 
     export default {
