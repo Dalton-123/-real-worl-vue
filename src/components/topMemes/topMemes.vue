@@ -4,23 +4,18 @@
     <div>
       <label>
         <input name="group1" type="radio" checked />
-        <span>Most Liked</span>
+        <span>Most Liked(last two months)</span>
       </label>
     </div>
 
     <div>
       <label>
         <input class="with-gap" name="group1" type="radio" />
-        <span>Most Comments</span>
+        <span>Most Comments(last two months)</span>
       </label>
     </div>
 
-    <div>
-      <label>
-        <input name="group1" type="radio" />
-        <span>Awarded Memes</span>
-      </label>
-    </div>
+
     <div>
       <div>
         <i class="fa fa-link" @click="myMemes"></i>
