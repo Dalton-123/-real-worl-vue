@@ -76,7 +76,11 @@
         width: 40px;height: 40px;
     }
     .test {
-        margin-top: 25px;
+        /*margin-top: 25px;*/
+        /*max-width: 300px;*/
+        margin-left: 100px;
+
+
 
 
 

@@ -3,7 +3,7 @@
     <navbar></navbar>
     <div class="testStep1">
       <div class="login container ">
-        <form @submit.prevent="login" class="card-panel">
+        <form @submit.prevent="login" class="card">
           <h2 class=" center test">login</h2>
           <div class="field">
             <label for="email">Email</label>

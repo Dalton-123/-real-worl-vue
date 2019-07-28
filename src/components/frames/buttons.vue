@@ -5,7 +5,7 @@
       <div uk-lightbox>
         <a  style="margin-left: 100px" href="https://www.youtube.com/watch?v=c2pz2mlSfXA" data-caption="YouTube"><i class="fas fa-video" uk-tooltip="title: Watch Video; pos: bottom"></i></a>
       </div>
-      <router-link to="/chat"
+      <router-link to="/testing"
                    style="margin-left: 400px;background: #0a2b4e;"
                    class="waves-effect waves-light btn-small"
       ><p style="color:white" class="uk-text-center">Chat</p></router-link

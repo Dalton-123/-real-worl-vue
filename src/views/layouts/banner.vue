@@ -1,32 +1,36 @@
 <template>
-    <nav class="uk-navbar-container" uk-navbar>
+   <div class="uk-margin-remove">
+       <div class="uk-position-relative">
+           <nav class="uk-navbar-container " uk-navbar >
 
-        <div class="uk-navbar-left">
+           <div class="uk-navbar-left">
 
-            <ul class="uk-navbar-nav">
-               <li><div class="uk-margin">
-                   <form class="uk-search uk-search-default uk-container uk-container-small">
-                       <span uk-search-icon></span>
-                       <input class="uk-search-input" type="search" placeholder="Search..." style="border: 1px solid black">
-                   </form>
-               </div></li>
-            </ul>
+               <ul class="uk-navbar-nav">
+                   <li><div class="uk-margin">
+                       <form class="uk-search uk-search-default uk-container uk-container-small">
+                           <span uk-search-icon></span>
+                           <input class="uk-search-input" type="search" placeholder="Search..." style="border: 1px solid black">
+                       </form>
+                   </div></li>
+               </ul>
 
-        </div>
+           </div>
 
-        <div class="uk-navbar-right">
+           <div class="uk-navbar-right">
 
-            <ul class="uk-navbar-nav">
+               <ul class="uk-navbar-nav">
 
-                <li ><upload></upload></li>
-               <li style="color: blue" @click=" home"><i class="fa fa-home" style="font-size: 30px"></i></li>
-                <li><pro></pro></li>
+                   <li ><upload></upload></li>
+                   <li style="color: blue" @click=" home"><i class="fa fa-home" style="font-size: 30px"></i></li>
+                   <li><pro></pro></li>
 
-            </ul>
+               </ul>
 
-        </div>
+           </div>
 
-    </nav>
+           </nav>
+       </div>
+   </div>
 </template>
 
 <script>

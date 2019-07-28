@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class=" uk-container ">
+    <div class=" uk-container-small card">
 
         <div v-if="!image" @click="photo">
             <img src="https://cdn.pixabay.com/photo/2017/07/11/10/43/upload-2493114__340.png" alt="">
@@ -55,8 +55,8 @@
 
 
 <!--    cards with memes  -->
-      <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
-          <div class="uk-card uk-card-default uk-card-body uk-width-1-3@l " v-for="dat in data">
+      <div class=" uk-grid-small uk-grid-match uk-margin uk-container" uk-grid>
+          <div class="card uk-card-body uk-width-1-1@l" v-for="dat in data" >
               <div class="uk-height-medium   uk-background-cover uk-light"
                    :data-src="dat.image"   uk-img >
                   <h1 class="uk-text-center" style="font-weight: bold;font-size: 4.0em ">{{dat.top}}</h1>
@@ -143,4 +143,8 @@ comment:null,
 button{
     width:80px
 }
+
+    img,button,span{
+        margin-left: 30px;
+    }
 </style>

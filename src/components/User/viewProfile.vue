@@ -107,6 +107,6 @@ computed:{
         /*margin-right: 15px*/
     }
     .card{
-        width: 1350px;
+        /*width: 1480px;*/
     }
 </style>

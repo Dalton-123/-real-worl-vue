@@ -16,11 +16,13 @@ import bars from '@/components/frames/pushbar'
 import banner from '@/views/layouts/banner'
 import upload from '@/views/UploadImages'
 import imageInfo from '@/components/frames/imageInfo'
+import profileComment from '@/components/frames/profileComment'
 import pro from '@/components/frames/pro'
 import topMemes from '@/components/topMemes/topMemes'
 import news from '@/components/new'
 import request from '@/components/requests'
 import frens from '@/components/frens'
+import memeGenerator from '@/components/testing'
 import notification from '@/components/notification'
 import userMemes from '@/views/userMemes'
 import likes from "@/components/frames/likes";
@@ -70,6 +72,8 @@ Vue.component('frens',frens)
 Vue.component('notification',notification)
 Vue.component('userMemes',userMemes)
 Vue.component('likes',likes)
+Vue.component('profileComment',profileComment)
+Vue.component('memeGenerator',memeGenerator)
 
 
 import { sync } from 'vuex-router-sync'
