@@ -89,7 +89,7 @@
             }
         },
         created() {
-            this.$binding("frens", fb.collection("friendships").where('user_requested', '==', this.id).where('status','==',1).where('check','==',1))
+            this.$binding("frens", fb.collection("friendships").where('user_requested', '==', this.id).where('status','==',1))
                 .then((ford) => {
                     this.frens === ford // => __ob__: Observer
                 }).catch(err => {

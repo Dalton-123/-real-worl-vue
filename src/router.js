@@ -18,6 +18,8 @@ import memes from "@/views/UploadImages";
 import gal from "@/components/pages/gallery";
 import main from "./components/frames/bar";
 import testing from "./components/testing";
+import timestamp from "./components/timestamp";
+import Gif from "./components/Gif";
 
 Vue.use(Router);
 
@@ -89,6 +91,18 @@ const router = new Router({
       path: "/testing",
       name: "testing",
       component: testing
+    },
+
+    {
+      path: "/timestamp",
+      name: "timestamp",
+      component: timestamp
+    },
+
+    {
+      path: "/Gif",
+      name: "Gif",
+      component:Gif
     },
 
     {
