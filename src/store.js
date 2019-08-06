@@ -161,6 +161,34 @@ export default new Vuex.Store({
               });
               commit("carousel", payload);
             });
+      } else if(me=='mostComments'){
+          const TwoMonths = 1000 * 60 * 60 * 24 * 60
+          var startTime= Date.now() - TwoMonths;
+          const endTime = Date.now()
+          db.collection('Memes').orderBy('counter','desc').startAt(startTime).limit(10)
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                  commit("loading", false);
+                  payload.push(change.doc.data());
+                }
+              });
+              commit("carousel", payload);
+            });
+      } else if(me=='mostLikes'){
+          const TwoMonths = 1000 * 60 * 60 * 24 * 60
+          var startTime= Date.now() - TwoMonths;
+          const endTime = Date.now()
+          db.collection('Memes').orderBy('likes','desc').startAt(startTime).limit(10)
+            .onSnapshot(querySnapshot => {
+              querySnapshot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                  commit("loading", false);
+                  payload.push(change.doc.data());
+                }
+              });
+              commit("carousel", payload);
+            });
       } else{
         db.collection("Memes").where('category','==',me).orderBy('timestamp','desc')
             .onSnapshot(querySnapshot => {

@@ -1,5 +1,6 @@
 <template>
     <div>
+        {{images.length}} count
         <div v-for="image in images" class="p-1">
             <img :src="image.image" alt="">
         </div>
@@ -16,10 +17,11 @@
           }
         },
         created(){
-            var startTime=1564002303315;
-            var endTime=1563921758067;
+            const TwoMonths = 1000 * 60 * 60 * 24 * 60
+            var startTime= Date.now() - TwoMonths;
 
-            db.collection('Memes').orderBy('timestamp').startAt(endTime).endAt(startTime)
+
+            db.collection('Memes').orderBy('counter','desc').startAt(startTime).limit(10)
                 .onSnapshot(querySnapshot => {
                     querySnapshot.docChanges().forEach(change => {
                         if (change.type === 'added') {

@@ -45,7 +45,7 @@ import firebase from 'firebase'
 
 export default {
   name: "MessageForm",
-  props: ["ids"],
+  props: ["ids","Counter"],
   data() {
     return {
       message: "",
@@ -84,14 +84,13 @@ export default {
             name:this.names,
             emoji:this.showEmoji
 
-          }).then((data)=>{
+          }).then(()=>{
+             db.collection("Memes").doc(this.ids).update({
+                 counter:this.Counter
+             })
+        }).then((data)=>{
             this.show=null
-
-          db.collection('message').doc(data.id).update({
-          message_id:data.id
-          })
-          db.collection('reply').doc(data.id)
-
+d
             const key= data.id
           return key
         }).then(key=>{

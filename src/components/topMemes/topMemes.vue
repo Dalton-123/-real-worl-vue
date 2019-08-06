@@ -3,14 +3,16 @@
   <form action="#" @submit.prevent="press">
     <div>
       <label>
-        <input name="group1" type="radio" checked />
+        <i class="fa fa-link" @click="Likes"></i>
+        <input name="group1" type="radio" value="mostLikes" v-model="mostLikes"/>
         <span>Most Liked(last two months)</span>
       </label>
     </div>
 
     <div>
       <label>
-        <input class="with-gap" name="group1" type="radio" />
+        <i class="fa fa-link" @click="Comments"></i>
+        <input class="with-gap" name="group1" type="radio" value="mostComments" v-model="mostComments"/>
         <span>Most Comments(last two months)</span>
       </label>
     </div>
@@ -55,6 +57,8 @@ export default {
       cat: "",
       recent:"",
       chosen: "",
+      mostComments:"",
+      mostLikes:"",
       user: firebase.auth().currentUser.uid,
       mine:null
     };
@@ -66,33 +70,44 @@ export default {
   },
   methods: {
     press() {
-      if(this.cat){
+      if (this.cat) {
         db.collection("category").doc(this.user).delete()
         db.collection("category").doc(this.user)
                 .set({
                   category: this.cat
-                }).then(()=>{
+                }).then(() => {
           db.collection("category").doc(this.user)
-          this.$router.push({ name: "GMap", params: { id: this.chosen } });
+          this.$router.push({name: "GMap", params: {id: this.chosen}});
           window.location.reload()
         })
       }
     },
 
-    mostRecent(){
-      if(this.recent)
-      {
-        this.$router.push({ name: "GMap", params: { id: this. recent} })
+    mostRecent() {
+      if (this.recent) {
+        this.$router.push({name: "GMap", params: {id: this.recent}})
         window.location.reload()
       }
     },
-    myMemes(){
-      if(this. mine)
-      {
-        this.$router.push({ name: "GMap", params: { id: this.  mine} })
+    myMemes() {
+      if (this.mine) {
+        this.$router.push({name: "GMap", params: {id: this.mine}})
         window.location.reload()
       }
-    }
+    },
+    Comments() {
+      if (this.mostComments) {
+        this.$router.push({name: "GMap", params: {id: this.mostComments}})
+        window.location.reload()
+      }
+    },
+    Likes() {
+      if (this.mostLikes) {
+        this.$router.push({name: "GMap", params: {id: this.mostLikes}})
+        window.location.reload()
+      }
+    },
+
   },
   created() {
     db.collection("category").onSnapshot(querySnapshot => {
@@ -117,7 +132,7 @@ div  ,i{
 
 }
   label span{color: black}
-  i{font-size: 30px}
+  i{font-size: 30px;color: black}
   .cat{
     width: 200px;
   }

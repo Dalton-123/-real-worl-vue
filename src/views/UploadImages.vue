@@ -99,7 +99,8 @@
                     name:this.Names,
                     Photo:this.Pic,
                     alias:this.alias,
-                    timestamp:Date.now()
+                    timestamp:Date.now(),
+                    counter:0
                   }).then((data)=>{
                     const key=data.key
 

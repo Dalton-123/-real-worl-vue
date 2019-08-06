@@ -46,7 +46,7 @@
             <span style="font-size: 20px;color: blue">Comments</span>
           </p>
 
-          <chat :ids="ids"></chat>
+          <chat :ids="ids" :Counter="Counter"></chat>
         </div>
         <div class="col-md-4">
           <sidegal :ids="ids"></sidegal>
@@ -76,6 +76,7 @@ export default {
       ids: this.$route.params.id,
       comments: [],
 
+
       meme_id: null
     };
   },
@@ -84,6 +85,9 @@ export default {
     ...mapGetters(["loading"]),
     comment() {
       return this.comments.length == 1;
+    },
+    Counter(){
+      return this.comments.length
     }
   },
   created() {

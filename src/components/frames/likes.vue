@@ -60,7 +60,10 @@ export default {
             Meme_id: this.ids
         });
         db.collection('dislikes').doc(this.ids + this.id).delete().then(()=>{
-
+        }).then(()=>{
+            db.collection('Memes').doc(this.ids).update({
+                likes:this.likenum
+            })
         })
 
     },
@@ -80,30 +83,18 @@ export default {
   },
   computed: {
     likenum() {
-      if(this.likes.length == 2){
-        return this.likes.length + 'K'
-      }
-       if(this.likes.length == 3) {
-        return this.likes.length + 'M'
-      }
-     else{
+
         return this.likes.length;
-      }
+
     },
     ID() {
 
       return this.likes.find(map => map.user_id === this.id);
     },
       dislikenum() {
-      if(this.dislikes.length ==2){
-        return this.dislikes.length +'K'
-      }
-      if(this.dislikes.length == 3) {
-        return this.dislikes.length + 'M'
-      }
-      else{
+
         return this.dislikes.length;
-      }
+
 
       },
       UID() {
