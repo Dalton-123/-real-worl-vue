@@ -52,32 +52,44 @@ export default {
   methods: {
     like() {
       var user = firebase.auth().currentUser;
-      db.collection("likes")
-        .doc(this.ids + this.id )
-        .set({
-          time: Date.now(),
-          user_id: user.uid,
-            Meme_id: this.ids
-        });
-        db.collection('dislikes').doc(this.ids + this.id).delete().then(()=>{
-        }).then(()=>{
-            db.collection('Memes').doc(this.ids).update({
-                likes:this.likenum
+        if(this.ID){
+            db.collection('likes').doc(this.ids + this.id).delete()
+        }else{
+            db.collection("likes")
+                .doc(this.ids + this.id )
+                .set({
+                    time: Date.now(),
+                    user_id: user.uid,
+                    Meme_id: this.ids
+                });
+            db.collection('dislikes').doc(this.ids + this.id).delete().then(()=>{
+            }).then(()=>{
+                db.collection('Memes').doc(this.ids).update({
+                    likes:this.likenum
+                })
             })
-        })
+        }
 
     },
     unlike() {
         var user = firebase.auth().currentUser;
-        db.collection("dislikes")
-            .doc(this.ids + this.id)
-            .set({
-                time: Date.now(),
-                user_id: user.uid,
-                Meme_id: this.ids
-            });
-        db.collection('likes').doc(this.ids + this.id).delete().then(()=>{
-        })
+        if(this.UID){
+            db.collection('dislikes').doc(this.ids + this.id).delete()
+        }else{
+            db.collection("dislikes")
+                .doc(this.ids + this.id)
+                .set({
+                    time: Date.now(),
+                    user_id: user.uid,
+                    Meme_id: this.ids
+                });
+            db.collection('likes').doc(this.ids + this.id).delete().then(()=>{
+              db.collection('Memes').doc(this.ids).update({
+                dislikes:this.dislikenum
+              })
+            })
+        }
+
 
     }
   },

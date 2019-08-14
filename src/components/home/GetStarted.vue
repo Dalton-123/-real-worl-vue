@@ -2,33 +2,36 @@
   <div>
     <banner></banner>
      <div v-if="loading"> <loader></loader></div>
-    <div class="container-fluid test uk-section uk-section-muted" >
-      <div class="row" v-for="gal in gallery">
+    <div class="test uk-section uk-section-muted" >
+      <div class="row uk-container" v-for="gal in gallery">
         <div class="col">
           <div>
             <div class="me"><img :src="gal.image" alt="" /></div>
             <h3>{{ gal.title }}</h3>
 
+<!--  Display like button-->
             <div style="float: right;padding-right: 15px">
               <likes :ids="ids"></likes>
             </div>
+
+
           </div>
           <hr />
           <div class="">
             <div class="uk-width-auto d-flex">
               <img
-                class="uk-border-circle"
-                width="40"
-                height="40"
-                :src="gal.Photo"
+                      class="uk-border-circle"
+                      width="40"
+                      height="40"
+                      :src="gal.Photo"
               />
               <div class="uk-width-expand ml-3">
                 <b
-                  ><p class=" uk-margin-remove-bottom">{{ gal.name}}</p></b
+                ><p class=" uk-margin-remove-bottom">{{ gal.name}}</p></b
                 >
                 <p
-                  style="font-size: 0.7em"
-                  class="uk-text-meta uk-margin-remove-top"
+                        style="font-size: 0.7em"
+                        class="uk-text-meta uk-margin-remove-top"
                 >
                   Published on
                   <time>{{gal.timestamp|formatDate}}</time>
@@ -107,11 +110,14 @@ export default {
   width: 1500px !important;
 }
 .test {
-  /*max-height: 500px;*/
-  /*overflow-scrolling: auto;*/
+
 }
 .uk-width-auto img {
   width: 50px;
   height: 50px;
 }
+
+  .row{
+
+  }
 </style>

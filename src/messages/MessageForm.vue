@@ -8,9 +8,9 @@
          <div>
            <div class="d-flex" style="margin-top: 10px">
              <div class="uk-width-auto ">
-               <img width="50" height="100" class="uk-border-circle" src="@/assets/avatar.svg">
+               <img width="40" height="40" class="uk-border-circle" src="@/assets/avatar.svg">
              </div>
-             <div class="input-group col">
+             <div class="input-group ">
                <input type="text" placeholder="Comment..." v-model="message" />
 
               <div v-for="emoji in showEmoji">
@@ -181,6 +181,10 @@ input {
   max-height: 100px;
 }
  span{
-     margin-left: 15px;
+     /*margin-left: 15px;*/
  }
+    img{
+        with:60px;
+        height: 60px;
+    }
 </style>

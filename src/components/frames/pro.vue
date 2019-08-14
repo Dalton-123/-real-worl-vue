@@ -1,7 +1,7 @@
 <template>
    <div>
        <div v-for="crab in crabs">
-           <div class="d-flex">
+           <div class="">
                <img
                        class="uk-border-circle"
 
@@ -45,5 +45,5 @@
 </script>
 
 <style scoped>
-img{width: 40px;height: 40px}
+img{width: 40px;height: 40px;border: 2px solid white}
 </style>

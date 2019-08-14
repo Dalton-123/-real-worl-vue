@@ -64,12 +64,7 @@ const router = new Router({
           name: "UserProfile",
           component: user
         },
-        {
-          path: "/start/:id",
-          name: "GetStarted",
-          component: start,
-          props: true
-        },
+
 
         {
           path: "/memes",
@@ -96,8 +91,11 @@ const router = new Router({
     {
       path: "/timestamp",
       name: "timestamp",
-      component: timestamp
+      component: timestamp,
+
+
     },
+
 
     {
       path: "/Gif",
@@ -109,22 +107,39 @@ const router = new Router({
       path: "/profile/:id",
       name: "profile",
       component: prof,
-      meta: {
-        requiresAuth: true
+        meta: {
+          requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/start/:id",
+      name: "GetStarted",
+      component: start,
+      props: true
+    },
   ]
 });
 router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
     let user = firebase.auth().currentUser;
-    if (user) {
+    if (user.emailVerified == true) {
       next();
     } else {
-      next({ name: "login" });
+      next('/');
+
+        UIkit.notification({
+          message: '<span uk-icon=\'icon: lock\'></span> You need to check your email for a confirmation link!',
+          status: 'danger',
+          timeout: 5000
+
+
+
+      })
+
     }
   } else {
     next();
   }
 });
+
 export default router;

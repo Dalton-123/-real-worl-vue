@@ -9,7 +9,10 @@
         <but :alias="alias"></but>
         <cor></cor>
         <br><br><br><br><br>
+
+        <br><br>
         <about></about>
+
 
     </div>
 </template>

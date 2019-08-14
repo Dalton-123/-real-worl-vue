@@ -1,15 +1,14 @@
 <template>
-   <div class="uk-margin-remove">
+   <div style="background-color: #0a2b4e">
        <div class="uk-position-relative">
-           <nav class="uk-navbar-container " uk-navbar >
+           <nav class="uk-navbar-container " uk-navbar  style="background-color: #0a2b4e">
 
-           <div class="uk-navbar-left">
+           <div class="uk-navbar-left container uk-text-center">
 
-               <ul class="uk-navbar-nav">
+               <ul class="uk-navbar-nav ">
                    <li><div class="uk-margin">
                        <form class="uk-search uk-search-default uk-container uk-container-small">
-                           <span uk-search-icon></span>
-                           <input class="uk-search-input" type="search" placeholder="Search..." style="border: 1px solid black">
+                           <input class="uk-search-input" type="search" placeholder="Search..." style="border: 1px solid black;border-radius: 10px;background-color: white;margin: 4px">
                        </form>
                    </div></li>
                </ul>

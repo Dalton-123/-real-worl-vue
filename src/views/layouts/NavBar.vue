@@ -101,13 +101,10 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.setUser=""
-          this.$router.push("/login")
+
+          this.$router.push("/")
         });
     },
-      profile() {
-          this.$router.push({ name: "profile", params: { id:this.alias } });
-      }
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {

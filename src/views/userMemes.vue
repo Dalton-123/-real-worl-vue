@@ -22,6 +22,19 @@
                 <p><b>Description:</b> {{image.description}}</p>
                 <p><b>Category:</b> {{image.category}}</p>
                 <p><b>Published:</b> {{image.timestamp|formatDate}}</p>
+                <p><b>Comments:</b> {{image.counter}}</p>
+
+<!--                <span href="#"-->
+<!--                ><i class="fa fa-thumbs-up" style="font-size:24px">{{image.likes}}</i-->
+<!--                >-->
+<!--                </span>-->
+
+<!--                <span href="#" style=" margin-left: 10px;"-->
+<!--                ><i class="fa fa-thumbs-down" style="font-size:24px">{{image.dislikes}}</i-->
+<!--                ></span>-->
+
+
+
             </div>
         </div>
     </div>
@@ -103,4 +116,5 @@
 .uk-card-body h3{
     font-size: 1.4rem;
 }
+
 </style>

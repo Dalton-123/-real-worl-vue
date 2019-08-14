@@ -41,11 +41,16 @@ export default {
   methods: {
     login() {
       if (this.password, this.email) {
-       firebase.auth().signInWithEmailAndPassword( this.email,this.password,)
-           .then(cred=>{
-             console.log(cred.user)
-               this.$router.push({name:'GMap',params:{id:'Animated'}})
-
+       firebase.auth().signInWithEmailAndPassword( this.email,this.password,).then((cred)=>{
+        if(cred.user.emailVerified != true){
+          cred.user.sendEmailVerification().then(()=>{
+            // Email sent.
+          }).catch((error)=> {
+            // An error happened.
+          });
+        }
+       }).then(cred=>{
+             this.$router.push({name:'GMap',params:{id:'Animated'}})
            }).catch(err=>{
            this.feedback = err.message
 
@@ -55,6 +60,8 @@ export default {
       } else {
         this.feedback = "you need to enter email and password";
       }
+
+
     },
 
 
@@ -66,6 +73,7 @@ export default {
 .login {
   max-width: 40%;
   margin-top: 60px;
+
 }
 .login h2 {
   font-size: 2.4em;

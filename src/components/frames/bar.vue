@@ -178,7 +178,7 @@ img {
 }
 .main {
   margin-left: 250px; /* Same as the width of the sidenav */
-  height: 700px;
+  /*height: 700px;*/
   overflow: auto;
 }
 span {

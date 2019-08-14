@@ -1,44 +1,80 @@
 <template>
     <div>
-        {{images.length}} count
-        <div v-for="image in images" class="p-1">
-            <img :src="image.image" alt="">
-        </div>
+
+
+<!--       <div class="test" @submit.prevent="me">-->
+<!--           <div>-->
+<!--               <label for="name">Name</label>-->
+<!--               <input type="text" v-model="email">-->
+<!--           </div>-->
+<!--           <div>-->
+<!--               <label for="password">Password</label>-->
+<!--               <input type="text" v-model="password">-->
+<!--           </div>-->
+<!--       </div>-->
+<!--        <p v-if="feedback" style="color: red">{{feedback}}</p>-->
+<!--<button @click="me">test</button>-->
+
+<h1>jlkfsjdlfdjslfh</h1>
+
     </div>
 </template>
 
 <script>
     import db from '@/firebase/init'
+    import firebase from "firebase";
     export default {
         name: "timestamp",
         data(){
           return{
-              images:[]
+              images:[],
+              feedback:null,
+              email:null,
+              password:null
           }
         },
+
         created(){
-            const TwoMonths = 1000 * 60 * 60 * 24 * 60
-            var startTime= Date.now() - TwoMonths;
+
+        },
+
+        methods:{
+           me(){
+
+               firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(()=>{
+                   db.collection("users").doc('kfldj').set({
+                      email:this.email,
+                       password:this.password
+
+                   });
+
+           });
 
 
-            db.collection('Memes').orderBy('counter','desc').startAt(startTime).limit(10)
-                .onSnapshot(querySnapshot => {
-                    querySnapshot.docChanges().forEach(change => {
-                        if (change.type === 'added') {
+           }
 
-                            this.images.push(change.doc.data())
-                        }
 
-                    });
-                });
         }
+
+
+
+
+
+
+
+
+
+
+
     }
 </script>
 
-<style lang="scss" >
-img{
-    width: 200px;
-    height: 200px;
-}
+<style lang="scss"scoped>
 
+.test{
+    margin:150px
+}
+    h1{
+        text-transform: uppercase;
+    }
 </style>

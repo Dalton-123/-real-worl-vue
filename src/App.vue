@@ -6,6 +6,11 @@
       <div class="">
           <router-view />
       </div>
+
+
+      <!-- Homepage Leaderboard -->
+
+
   </div>
 </template>
 <script>

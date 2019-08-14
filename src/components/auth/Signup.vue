@@ -72,7 +72,14 @@ export default {
                   geolocation: "",
                   user_id: creds.user.uid
                 });
-              })
+              }).then(()=>{
+              var user = firebase.auth().currentUser;
+              user.sendEmailVerification().then(()=> {
+                // Email sent.
+              }).catch((error)=>{
+                // An error happened.
+              });
+            })
               .then(() => {
                 this.$router.push({ name: "GMap" ,params:{id:'Animated'}});
 
