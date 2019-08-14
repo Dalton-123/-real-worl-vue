@@ -69,7 +69,7 @@
     }
 </script>
 
-<style lang="scss"scoped>
+<style scoped>
 
 .test{
     margin:150px
