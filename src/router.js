@@ -20,6 +20,7 @@ import main from "./components/frames/bar";
 import testing from "./components/testing";
 import timestamp from "./components/timestamp";
 import Gif from "./components/Gif";
+import Home from "./components/Home";
 
 Vue.use(Router);
 
@@ -42,9 +43,13 @@ const router = new Router({
       component: Singup
     },
     {
-      path: "/",
+      path: "/login",
       name: "login",
       component: logins
+    },{
+      path: "/",
+      name: "Home",
+      component: Home
     },
 
     {

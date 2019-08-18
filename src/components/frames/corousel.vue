@@ -1,6 +1,6 @@
 <template>
   <div>
-    <topMemes></topMemes>
+
 
   <div class="uk-container uk-container-small ">
     <div v-if="loading"><loader></loader></div>

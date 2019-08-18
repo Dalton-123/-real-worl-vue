@@ -93,7 +93,7 @@ export default {
 
 <style scoped>
 i {
-  color: orangered;
+  color: black;
 }
 img {
   width: 30px;

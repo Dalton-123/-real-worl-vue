@@ -8,28 +8,6 @@
 
             </p>
         </div>
-
-
-        <div class="ex">
-        <div>
-            <img src="cris.JPG" alt="">
-        </div>
-            <div style="margin-top:10px">
-               <h2>Christopher Rojek</h2>
-                <p>Technology Architect </p>
-            </div>
-        </div>
-
-        <div class="ex">
-        <div>
-            <img src="crab.JPG" alt="">
-        </div>
-            <div style="margin-top:10px">
-               <h2>Dalton Smith</h2>
-                <p>Chief Technology Director  </p>
-            </div>
-        </div>
-
         <div class="ex">
             <div>
                 <img src="mom.JPG" alt="">
@@ -41,6 +19,20 @@
         </div>
 
 
+
+        <div class="ex">
+        <div>
+            <img src="crab.JPG" alt="">
+        </div>
+            <div style="margin-top:10px">
+               <h2>Dalton Smith</h2>
+                <p>Chief Technology Director  </p>
+            </div>
+        </div>
+
+
+
+
         <div class="ex">
         <div>
             <img src="crab.png" alt="">
@@ -50,7 +42,15 @@
                 <p>Chief Artistic Director</p>
             </div>
         </div>
-
+        <div class="ex">
+            <div>
+                <img src="cris.JPG" alt="">
+            </div>
+            <div style="margin-top:10px">
+                <h2>Christopher Rojek</h2>
+                <p>Technology Architect </p>
+            </div>
+        </div>
 <foot></foot>
 
     </div>
@@ -85,7 +85,7 @@ h2{font-weight: 400;
 color: orangered}
 
 .testStep1{
-    background-image: url("../../../public/space.jpg") ;
+    background-image: url("https://i2.wp.com/nlj.gov.jm/wp-content/uploads/2017/08/rippled-flag.jpg?fit=1024%2C576&ssl=1") ;
     /*width: 1500px;*/
     /*height: 1000px;*/
     margin-top: auto;

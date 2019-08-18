@@ -1,6 +1,6 @@
 <template>
   <div style="" class="">
-    <span style="color: red" class="pointer" href="#modal-full" uk-toggle><i style="font-size:24px" class="fa">&#xf093;</i></span>
+    <span style="color: red" class="pointer" href="#modal-full" uk-toggle><i style="font-size:24px" class="fa">&#xf093;</i>upload</span>
 
     <div id="modal-full" class="uk-modal-full" uk-modal>
       <div class="uk-modal-dialog">
@@ -216,7 +216,7 @@
 
   }
   a i {
-    color: blue;
+    color: black;
   }
   .pointer{
     cursor: pointer;

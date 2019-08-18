@@ -1,17 +1,23 @@
 <template>
-    <div id="offcanvas-usage" class="uk-background-fixed testStep1 first" style="background-color: rgb(204,255,225)">
-        <div>
-            <router-view /></div>
+    <div >
+
         <div>
             <navbar></navbar>
         </div>
-<p class="uk-container test uk-text-center">Muscle Crab Diversities is a Jamaican owned company that provides the planet a taste of caribbean culture daily.  Subscribe today to receive your daily Meme.</p>
-        <but :alias="alias"></but>
-        <cor></cor>
-        <br><br><br><br><br>
 
-        <br><br>
-        <about></about>
+        <div  class="uk-section uk-section-muted uk-margin-remove">
+            <timestamp></timestamp>
+            <topMemes></topMemes>
+            <div class="uk-grid-divider uk-child-width-expand@l " uk-grid >
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <div> <cor></cor></div>
+                <div>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+            </div>
+        </div>
+
+
+
+
 
 
     </div>
@@ -49,7 +55,7 @@
 
 <style scoped>
     .testStep1{
-        background-image: url("../../../public/space.jpg") ;
+        /*background-image: url("../../../public/space.jpg") ;*/
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -63,7 +69,5 @@
         font-size: 20px;
         font-weight: 600;
     }
-    .first{
-        background-color: rgba(201, 76, 76, 0.3);;
-    }
+
 </style>

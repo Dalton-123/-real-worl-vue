@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="">
-          <span class="" ><i class="fa fa-globe" style="font-size:24px;color: orangered"></i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: red" class="uk-badge">{{Friends.length}}</span></span>
+          <span class="" ><i class="fa fa-globe" style="font-size:24px;color: black"></i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: red" class="uk-badge">{{Friends.length}}</span></span>
           <div uk-dropdown="mode: click" v-if="Friends.length != 0">
               <div v-for="requests in Friends" class="uk-flex "  style="width: 450px">
                  <div>

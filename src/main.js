@@ -27,6 +27,7 @@ import Gif from '@/components/Gif'
 import notification from '@/components/notification'
 import userMemes from '@/views/userMemes'
 import likes from "@/components/frames/likes";
+import timestamp from "./components/timestamp";
 
 import VueFirestore from 'vue-firestore'
 
@@ -76,9 +77,12 @@ Vue.component('likes',likes)
 Vue.component('profileComment',profileComment)
 Vue.component('memeGenerator',memeGenerator)
 Vue.component('Gif',Gif)
+Vue.component('timestamp',timestamp)
 
 
 
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 
 
 import { sync } from 'vuex-router-sync'
