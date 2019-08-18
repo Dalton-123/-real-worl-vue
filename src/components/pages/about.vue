@@ -44,7 +44,7 @@
         </div>
         <div class="ex">
             <div>
-                <img src="cris.JPG" alt="">
+                <img src="ceeej.jpg" alt="">
             </div>
             <div style="margin-top:10px">
                 <h2>Christopher Rojek</h2>
