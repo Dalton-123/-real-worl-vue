@@ -35,7 +35,7 @@
 
         <div class="ex">
         <div>
-            <img src="crab.png" alt="">
+            <img src="rally.jpg" alt="">
         </div>
             <div style="margin-top:10px">
                <h2>Ralston Smith</h2>
