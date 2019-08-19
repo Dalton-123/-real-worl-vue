@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="">
-          <span class="" ><i class="fa fa-globe" style="font-size:24px;color: black"></i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: red" class="uk-badge">{{Friends.length}}</span></span>
+          <span class="" ><i class="fa fa-globe" style="font-size:24px;color: black"></i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: #009b3a" class="uk-badge">{{Friends.length}}</span></span>
           <div uk-dropdown="mode: click" v-if="Friends.length != 0">
               <div v-for="requests in Friends" class="uk-flex "  style="width: 450px">
                  <div>
@@ -12,7 +12,7 @@
                              :src="requests.user_requestedImage"
                      />
                  </div>
-                  <span style="color: #00c7ff;font-weight: bold" >{{ requests.user_requestedName }}</span><span>{{msg}}</span><span style="color: red" @click="checked(requests.request_id)"><span class="uk-margin-small-right" uk-icon="check"></span></span>
+                  <span style="color: #00c7ff;font-weight: bold" @click="checked(requests.request_id)">{{ requests.user_requestedName }}</span><span>{{msg}}</span><span style="color: red" @click="checked(requests.request_id)"><span class="uk-margin-small-right" uk-icon="check"></span></span>
               </div>
               <div></div>
 
@@ -78,9 +78,9 @@ img {
 .uk-flex {
   margin-top: 15px;
 }
-span {
-  margin-left: 5px;
-}
+/*span {*/
+/*  margin-left: 5px;*/
+/*}*/
 .uk-offcanvas-bar {
   background-color: #0a2b4e;
 }

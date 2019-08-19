@@ -1,10 +1,10 @@
 <template>
-<div class="uk-container" style="padding-bottom: 50px;margin-top: 50px;margin-left: 400px">
+<div class="uk-text-center" style="padding-bottom: 50px;margin-top: 50px;margin-left: 400px">
   <form action="#" @submit.prevent="press">
     <div>
       <label>
         <i class="fa fa-link" @click="Likes"></i>
-        <input name="group1" type="radio" value="mostLikes" v-model="mostLikes"/>
+        <input class="uk-radio" name="group1" type="radio" value="mostLikes" v-model="mostLikes"/>
         <span>Most Liked(last two months)</span>
       </label>
     </div>
@@ -12,7 +12,7 @@
     <div>
       <label>
         <i class="fa fa-link" @click="Comments"></i>
-        <input class="with-gap" name="group1" type="radio" value="mostComments" v-model="mostComments"/>
+        <input class="uk-radio" name="group1" type="radio" value="mostComments" v-model="mostComments"/>
         <span>Most Comments(last two months)</span>
       </label>
     </div>
@@ -22,25 +22,25 @@
       <div>
         <i class="fa fa-link" @click="myMemes"></i>
         <label>
-          <input name="group1" type="radio" value="myMemes" v-model="mine"/>
+          <input class="uk-radio" name="group1" type="radio" value="myMemes" v-model="mine"/>
           <span>My Memes</span>
         </label>
       </div>
       <i class="fa fa-link" @click="mostRecent"></i>
       <label>
-        <input name="group1" type="radio" value="Recent" v-model="recent"/>
+        <input class="uk-radio" name="group1" type="radio" value="Recent" v-model="recent"/>
         <span>Most Recent</span>
       </label>
     </div>
-    <div class=" cat " >
+
       <span><i @click="press" class="fa fa-link "></i></span>
-      <select class="browser-default "  v-model="cat" >
+      <select class=" "  v-model="cat" >
         <option  v-for="(cat, index) in Cats" :key="index" >{{
           cat.name
           }}</option>
       </select>
 
-    </div>
+
 
 
   </form>
@@ -132,9 +132,15 @@ div  ,i{
 
 }
   label span{color: black}
-  i{font-size: 30px;color: black}
+  i{font-size: 30px;color:#009b3a  }
   .cat{
     width: 200px;
   }
 
+input,label,span,option{
+  margin-left: 5px;
+}
+input:checked ~ {
+  background-color: black !important;
+}
 </style>

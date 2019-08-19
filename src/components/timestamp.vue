@@ -1,11 +1,11 @@
 <template>
     <div class="uk-container uk-section uk-section-muted" style="margin-top: 0px" >
         <div uk-slider="center: true">
-
+<h3>People you may know</h3>
             <div  class="uk-position-relative uk-visible-toggle uk-light " tabindex="-1">
                 <div class=" uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m" >
                     <div class="card" v-for="use in users">
-                        <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
+                        <canvas class="header-bg" width="20" height="70" id="header-blur"></canvas>
                         <div class="avatar">
                             <img :src="use.image" alt="" />
                         </div>
@@ -162,7 +162,8 @@
         border-radius: 8px;
         text-align: center;
         padding: 0;
-        background-color: black;
+        margin:10px;
+        /*background-color: black;*/
         color: rgb(136, 172, 217);
     }
 
@@ -173,7 +174,7 @@
         left: 0;
         width: 100%;
         height: 70px;
-        border-bottom: 1px #FFF solid;
+        border-bottom: 1px rgba(0, 155, 58, 0.9) solid;
         /* This positions the canvas under the text */
         z-index: 1;
     }
@@ -189,10 +190,11 @@
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
-        border: 5px solid rgba(0, 155, 58, 0.9) ;
+        border: 5px solid  rgba(0, 155, 58, 0.9);
     }
     button{
-        width: 100%;
-background-color:rgba(254, 209, 0, 0.9);
+        /*width: 100%;*/
+/*background-color:rgba(254, 209, 0, 0.9);*/
+        background-color:  rgba(254, 209, 0, 0.9) ;
     }
 </style>

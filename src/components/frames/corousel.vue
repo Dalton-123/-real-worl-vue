@@ -2,7 +2,7 @@
   <div>
 
 
-  <div class="uk-container uk-container-small ">
+  <div class="uk-container uk-container-small" style="margin: 10px">
     <div v-if="loading"><loader></loader></div>
 
     <div

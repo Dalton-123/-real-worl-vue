@@ -4,53 +4,79 @@
 
     <div class="first">
 
-      <div class="container">
-        <div class="d-flex justify-content-center h-100">
-          <div class="card">
-            <div class="card-header">
-              <h3>Sign In</h3>
-              <div class="d-flex justify-content-end social_icon">
-                <span><i class="fab fa-facebook-square"></i></span>
-                <span><i class="fab fa-google-plus-square"></i></span>
-                <span><i class="fab fa-twitter-square"></i></span>
-              </div>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="input-group form-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="email" v-model="email">
 
-                </div>
-                <div class="input-group form-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+      <div class="uk-grid-match">
+        <div>
+          <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true">
+            <div class="container"   uk-scrollspy-class="uk-animation-slide-top">
+              <div class="d-flex justify-content-center h-100">
+                <div class="card uk-card" >
+                  <div class="card-header">
+                    <h3>Sign In</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                      <span><i class="fab fa-facebook-square"></i></span>
+                      <span><i class="fab fa-google-plus-square"></i></span>
+                      <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
                   </div>
-                  <input type="password" class="form-control" placeholder="password" v-model="password">
-                </div>
-<!--                <div class="row align-items-center remember">-->
-<!--&lt;!&ndash;                  <input type="checkbox">Remember Me&ndash;&gt;-->
-<!--                </div>-->
-                <p style="color: red">{{feedback}}</p>
-                <div class="">
+                  <div class="card-body">
+                    <form>
+                      <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="email" v-model="email">
 
+                      </div>
+                      <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="password" v-model="password">
+                      </div>
+                      <!--                <div class="row align-items-center remember">-->
+                      <!--&lt;!&ndash;                  <input type="checkbox">Remember Me&ndash;&gt;-->
+                      <!--                </div>-->
+                      <p style="color: red">{{feedback}}</p>
+                      <div class="">
+
+                      </div>
+                    </form>
+                    <button class="btn float-right login_btn" @click="login">Login</button>
+                  </div>
+                  <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                      Don't have an account?<a href="#">Sign Up</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                      <a href="#">Forgot your password?</a>
+                    </div>
+                  </div>
                 </div>
-              </form>
-              <button class="btn float-right login_btn" @click="login">Login</button>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-center links">
-                Don't have an account?<a href="#">Sign Up</a>
-              </div>
-              <div class="d-flex justify-content-center">
-                <a href="#">Forgot your password?</a>
               </div>
             </div>
           </div>
         </div>
+
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <vue-particles style=""
                      color="#009b3a"
                      :particleOpacity="0.7"
@@ -80,8 +106,8 @@
 
 
 
-    <div class="testStep1">
-      <div class="login container ">
+    <div class="testStep1" uk-scrollspy-class="uk-animation-slide-top">
+      <div class="login container uk-card uk-card-default">
         <form @submit.prevent="login" class="card">
           <h2 class=" center test">login</h2>
           <div class="field">

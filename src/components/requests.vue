@@ -2,7 +2,7 @@
   <div>
    <div>
      <a class="" uk-toggle="target: #friends"
-     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color:deepskyblue" class="uk-badge">{{friends.length}}</span>
+     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color:#009b3a" class="uk-badge">{{friends.length}}</span>
      </a
      >
      <div id="friends" uk-offcanvas="overlay: true">
@@ -102,9 +102,9 @@ img {
 .uk-flex {
   margin-top: 15px;
 }
-span {
-  margin-left: 5px;
-}
+/*span {*/
+/*  margin-left: 5px;*/
+/*}*/
 button {
   margin-left: 15px;
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <banner></banner>
+    <navbar></navbar>
      <div v-if="loading"> <loader></loader></div>
     <div class="test uk-section uk-section-muted" >
       <div class="row uk-container" v-for="gal in gallery">

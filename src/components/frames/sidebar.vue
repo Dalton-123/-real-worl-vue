@@ -1,7 +1,7 @@
 <template>
   <div>
     <a class="" type="" uk-toggle="target: #offcanvas"
-      ><i class="fa fa-users" style="color: orangered">users</i></a
+      ><i class="fa fa-users" style=":  #009b3a ">users</i></a
     >
 
     <div id="offcanvas" uk-offcanvas="flip:false; overlay: true">

@@ -1,60 +1,47 @@
 <template>
-    <div>
-    <a href="#me" uk-toggle><i style="color:orangered " class="material-icons">&#xe7f0;</i></a>
-
-    <div id="me" uk-offcanvas="flip: true;bg-close:false">
-        <div class="uk-offcanvas-bar uk-section uk-section-muted test" style="margin-top: 145px;position: absolute">
-
-            <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <div class="">
 
 
 
-            <div v-if="frens.length !=0 || Friends.length !=0">
-                <h3>Your Frens</h3>
-                <hr>
-                <hr>
-                <div  uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+        <div class="uk-card-header" v-if="frens.length !=0 || Friends.length !=0">
 
-                    <div
-                            v-for="request in frens"
+            <!--  For who sends fren request -->
 
-                            class="uk-flex uk-card"
-                    >
-                        <img
-                                class="uk-border-circle"
-                                width="40"
-                                height="40"
-                                :src="request.requesterImage"
-                        />
+            <div  v-for="requests in frens" class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    <img class="uk-border-circle" width="50" height="50" :src="requests.user_requestedImage">
 
-                        <router-link :to="'/profile/' + request.myAlias  "><span>{{ request.name}}</span></router-link><span @click="remove(request.request_id)" style="color: red">Unfren</span>
-                    </div>
                 </div>
-                <div class="uk-grid-divider uk-child-width-expand@s" uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true" uk grid>
-                    <div
-                            v-for="requests in Friends"
-                            class="uk-flex uk-card"
-                    >
-                      <div>  <img
-                              class="uk-border-circle"
-                              width="40"
-                              height="40"
-                              :src="requests.user_requestedImage"
-                      /></div>
-<div> <router-link :to="'/profile/' + requests
-                        .userRequestedAlias"><span>{{ requests.user_requestedName}}</span></router-link></div>
-                       <div><button @click="remove(requests.request_id)" style="color: red">Unfren</button></div>
-                    </div>
+                    <router-link :to="'/profile/' + requests.myAlias  "><span>{{ requests.user_requestedName}}</span></router-link>
+                <div class="uk-width-expand">
+                    <button class="btn btn-light" type="button" @click="remove(requests.request_id)" style="color: black">Unfren</button>
                 </div>
             </div>
-            <div v-else>
-                <h3>You have no frens</h3>
-                <hr>
-                <hr>
-                <span style='font-size:200px;'>&#128577;</span></div>
-        </div>
+
+
+            <!--  For who requests fren request -->
+
+            <div  v-for="requests in Friends" class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-expand">
+                    <img class="uk-border-circle" width="50" height="50" :src="requests.user_requestedImage">
+
+                </div>
+                <router-link :to="'/profile/' + requests.myAlias  ">{{ requests.user_requestedName}}</router-link>
+
+                <div class="uk-width-expand">
+                    <button class="btn btn-light" type="button" @click="remove(requests.request_id)" style="color: black">Unfren</button>
+                </div>
+            </div>
+
+            <!--  Smiley face if dont have any frens   -->
 
         </div>
+        <div v-else>
+            <h3>You have no frens</h3>
+            <hr>
+            <hr>
+            <span style='font-size:200px;'>&#128577;</span></div>
+
     </div>
 </template>
 
@@ -102,28 +89,15 @@
                 console.error(err)
             })
         },
-        mounted() {
-            UIkit.offcanvas("#me").show();
-        }
+        // mounted() {
+        //     UIkit.offcanvas("#me").show();
+        // }
     }
 </script>
 
 <style scoped>
-    img {
-        width: 30px;
-        height: 30px;
-    }
-    .uk-flex {
-        margin-top: 15px;
-    }
-    span {
-        margin-left: 5px;
-    }
-    .uk-offcanvas-bar{
-
-    }
-    button{margin-left: 7px}
-    .test{width: 320px;
-    }
-
+button {
+    background-color: #fed100;
+   margin-left: 5px;
+}
 </style>

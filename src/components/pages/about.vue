@@ -8,49 +8,32 @@
 
             </p>
         </div>
-        <div class="ex">
+        <div class=" uk-align-center  uk-child-width-expand uk-grid-small uk-text-center" uk-grid style="height: 300px;margin-bottom: 150px">
             <div>
                 <img src="mom.JPG" alt="">
-            </div>
-            <div style="margin-top:10px">
                 <h2>Sandra Mitchell</h2>
                 <p>Treasurer</p>
             </div>
-        </div>
-
-
-
-        <div class="ex">
-        <div>
-            <img src="crab.JPG" alt="">
-        </div>
-            <div style="margin-top:10px">
-               <h2>Dalton Smith</h2>
+            <div>
+                <img src="crab.JPG" alt="">
+                <h2>Dalton Smith</h2>
                 <p>Chief Technology Director  </p>
             </div>
-        </div>
-
-
-
-
-        <div class="ex">
-        <div>
-            <img src="rally.jpg" alt="">
-        </div>
-            <div style="margin-top:10px">
-               <h2>Ralston Smith</h2>
+            <div>
+                <img src="rally.jpg" alt="">
+                <h2>Ralston Smith</h2>
                 <p>Chief Artistic Director</p>
             </div>
-        </div>
-        <div class="ex">
             <div>
                 <img src="ceeej.jpg" alt="">
-            </div>
-            <div style="margin-top:10px">
                 <h2>Christopher Rojek</h2>
                 <p>Technology Architect </p>
             </div>
+
         </div>
+
+
+
 <foot></foot>
 
     </div>

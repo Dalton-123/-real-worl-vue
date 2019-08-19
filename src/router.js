@@ -21,6 +21,7 @@ import testing from "./components/testing";
 import timestamp from "./components/timestamp";
 import Gif from "./components/Gif";
 import Home from "./components/Home";
+import Grid from "./components/Grid";
 
 Vue.use(Router);
 
@@ -50,6 +51,10 @@ const router = new Router({
       path: "/",
       name: "Home",
       component: Home
+    },{
+      path: "/Grid/:id",
+      name: "Grid",
+      component: Grid
     },
 
     {
