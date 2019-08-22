@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="">
-          <span class="" ><i class="fa fa-globe" style="font-size:24px;color: black"></i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: #009b3a" class="uk-badge">{{Friends.length}}</span></span>
+          <span class="" ><img :src=" '/' + images " alt=""><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color: #009b3a" class="uk-badge">{{Friends.length}}</span><span class="uk-text-bold" style="">Alerts</span></span>
           <div uk-dropdown="mode: click" v-if="Friends.length != 0">
               <div v-for="requests in Friends" class="uk-flex "  style="width: 450px">
                  <div>
@@ -36,7 +36,8 @@ export default {
     return {
       msg:'accepted you fren request',
       Friends: [],
-      id: firebase.auth().currentUser.uid
+      id: firebase.auth().currentUser.uid,
+        images:'worlds.svg'
     };
   },
     firestore() {

@@ -8,7 +8,7 @@
                     <ul class="uk-navbar-nav">
                       <li><a ><img src="https://cdn.pixabay.com/photo/2012/04/26/19/07/crab-42880__340.png" width="70" height="70" alt=""/></a></li>
 <!--                      <li ><hr class="uk-divider-vertical" ></li>-->
-                      <li><a href=""><h1>Meme Galleries</h1></a></li>
+<!--                      <li><a href=""><h1>Meme Galleries</h1></a></li>-->
                       <li class="">
 
                         <a href=""><div class="input-group-prepend">
@@ -131,6 +131,7 @@ export default {
         -pie-background: linear-gradient(to bottom, #fed100, #009b3a  84%);
       background-color: #4267b2;
       border-bottom: 1px solid #29487d;
+      opacity: 0.9;
     }
 .test {
   margin-top: 0px;

@@ -1,28 +1,28 @@
 <template>
- <div class="uk-section uk-section-muted">
-     <banner></banner>
+ <div>
+     <navbar></navbar>
+     <div class="uk-section uk-section-muted">
 
 
-            <div> <pro></pro></div>
-
-
-     <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match uk-margin" uk-grid>
-         <div>
-             <div >
-                 <profileComment></profileComment>
+         <div> <pro></pro></div>
+         <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match uk-margin " uk-grid>
+             <div>
+                 <div >
+                     <profileComment></profileComment>
+                 </div>
              </div>
-         </div>
-         <div>
-             <div >
-                 <userMemes></userMemes>
+             <div>
+                 <div >
+                     <userMemes></userMemes>
+                 </div>
              </div>
-         </div>
-         <div>
-             <div >
-                 <memeGenerator></memeGenerator>
+             <div>
+                 <!--             <div >-->
+                 <!--                 <memeGenerator></memeGenerator>-->
+                 <!--             </div>-->
              </div>
-         </div>
 
+         </div>
      </div>
  </div>
 </template>

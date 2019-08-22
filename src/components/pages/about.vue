@@ -25,7 +25,7 @@
                 <p>Chief Artistic Director</p>
             </div>
             <div>
-                <img src="ceeej.jpg" alt="">
+                <a href=""><img src="users.svg" alt=""></a>
                 <h2>Christopher Rojek</h2>
                 <p>Technology Architect </p>
             </div>

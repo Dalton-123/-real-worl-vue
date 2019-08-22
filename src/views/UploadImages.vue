@@ -1,6 +1,6 @@
 <template>
   <div style="" class="">
-    <span style="color: black" class="pointer" href="#modal-full" uk-toggle><i style="font-size:24px" class="fa">&#xf093;</i>upload</span>
+    <span style="color: black" class="pointer" href="#modal-full" uk-toggle><img :src=" '/' + images " alt=""><span class="uk-text-bold" style="margin-left: 17px">upload</span></span>
 
     <div id="modal-full" class="uk-modal-full" uk-modal>
       <div class="uk-modal-dialog">
@@ -79,7 +79,8 @@
         id:firebase.auth().currentUser.uid,
         Names:null,
         Pic:null,
-        alias:null
+        alias:null,
+        images:'upload.svg'
 
 
       };
@@ -184,9 +185,10 @@
 </script>
 
 <style scoped>
-  /*.test{*/
-  /*    margin-left: 330px;*/
-  /*}*/
+  img{
+    width:30px;
+    height: 30px;
+  }
   button {
     margin-top: 20px;
   }

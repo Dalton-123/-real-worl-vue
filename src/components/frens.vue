@@ -1,19 +1,34 @@
 <template>
     <div class="">
 
-
-
+<!--        <img :src="'/' + images" alt="">-->
+        <img  style="opacity: 0.7"  src="https://cdn.pixabay.com/photo/2016/06/16/00/04/jamaica-1460207__340.jpg" alt="">
         <div class="uk-card-header" v-if="frens.length !=0 || Friends.length !=0">
 
             <!--  For who sends fren request -->
+            <h3 class="uk-text-bold">Your Frens</h3>
+<!--Input Field-->
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-search"></i></div>
+                    </div>
+                    <input  type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                </div>
+            </div>
 
-            <div  v-for="requests in frens" class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-auto">
-                    <img class="uk-border-circle" width="50" height="50" :src="requests.user_requestedImage">
+
+
+            <div  v-for="requests in frens" class="uk-grid-small uk-flex-middle  uk-child-width-1-3@s   uk-margin-remove p-1" uk-grid>
+                <div class="">
+                    <img class="uk-border-circle" width="60" height="30" :src="requests.requesterImage">
 
                 </div>
-                    <router-link :to="'/profile/' + requests.myAlias  "><span>{{ requests.user_requestedName}}</span></router-link>
-                <div class="uk-width-expand">
+                    <div>
+                        <router-link :to="'/profile/' + requests.myAlias  "><span class="uk-text-bold" style="color: #009b3a">{{ requests.name}}</span></router-link>
+                    </div>
+                <div class="" >
                     <button class="btn btn-light" type="button" @click="remove(requests.request_id)" style="color: black">Unfren</button>
                 </div>
             </div>
@@ -21,16 +36,21 @@
 
             <!--  For who requests fren request -->
 
-            <div  v-for="requests in Friends" class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-expand">
-                    <img class="uk-border-circle" width="50" height="50" :src="requests.user_requestedImage">
+            <div  v-for="requests in Friends" class="uk-grid-small uk-flex-middle uk-child-width-1-3@s  uk-margin-remove p-1" uk-grid>
+                <div class="">
+                    <img class="uk-border-circle" width="60" height="30" :src="requests.user_requestedImage">
 
                 </div>
-                <router-link :to="'/profile/' + requests.myAlias  ">{{ requests.user_requestedName}}</router-link>
+                <router-link :to="'/profile/' + requests.userRequestedAlias " ><span class="uk-text-bold " style="color: #009b3a;">{{ requests.user_requestedName}}</span></router-link>
 
-                <div class="uk-width-expand">
-                    <button class="btn btn-light" type="button" @click="remove(requests.request_id)" style="color: black">Unfren</button>
+
+
+
+
+                <div class="" >
+                    <button class="btn btn-light" type="button" @click="remove(requests.request_id)" style="color: black;">Unfren</button>
                 </div>
+
             </div>
 
             <!--  Smiley face if dont have any frens   -->
@@ -41,6 +61,10 @@
             <hr>
             <hr>
             <span style='font-size:200px;'>&#128577;</span></div>
+
+
+
+
 
     </div>
 </template>
@@ -58,6 +82,7 @@
               frens:[],
               Friends:[],
               id: firebase.auth().currentUser.uid,
+              images:'signup.svg'
 
 
           }
@@ -98,6 +123,15 @@
 <style scoped>
 button {
     background-color: #fed100;
-   margin-left: 5px;
+    /*background-color: #e9ebee;*/
+
+
 }
+
+
+input{
+    background-color: #e9ebee;
+}
+
+
 </style>

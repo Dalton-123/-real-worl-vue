@@ -10,6 +10,7 @@ import GMap from "./components/home/GMap.vue";
 import start from "./components/home/GetStarted.vue";
 import Singup from "./components/auth/Signup.vue";
 import logins from "./components/auth/login.vue";
+import TermsCondition from "./components/auth/TermsCondition.vue";
 import prof from "./components/auth/profile.vue";
 import firebase from "firebase";
 import about from "@/components/pages/about";
@@ -96,6 +97,10 @@ const router = new Router({
       path: "/testing",
       name: "testing",
       component: testing
+    }, {
+      path: "/TermsCondition",
+      name: "TermsCondition",
+      component: TermsCondition
     },
 
     {

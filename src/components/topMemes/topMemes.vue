@@ -141,6 +141,6 @@ input,label,span,option{
   margin-left: 5px;
 }
 input:checked ~ {
-  background-color: black !important;
+  background-color: black;
 }
 </style>

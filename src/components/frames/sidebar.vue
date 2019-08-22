@@ -1,7 +1,7 @@
 <template>
   <div>
     <a class="" type="" uk-toggle="target: #offcanvas"
-      ><i class="fa fa-users" style=":  #009b3a ">users</i></a
+      ><img :src=" '/' + images " alt=""><span class="uk-text-bold" style="margin-left: 5px">Users</span></a
     >
 
     <div id="offcanvas" uk-offcanvas="flip:false; overlay: true">
@@ -116,7 +116,8 @@ export default {
       testing: [],
       requester: null,
       search: "",
-      Show: true
+      Show: true,
+      images:'users.svg'
     };
   },
 
@@ -251,9 +252,9 @@ img {
 .uk-flex {
   margin-top: 15px;
 }
-span {
-  margin-left: 5px;
-}
+/*span {*/
+/*  margin-left: 5px;*/
+/*}*/
 .test {
   width: 500px;
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
 
-
+<!--Carousel-->
   <div class="uk-container uk-container-small" style="margin: 10px">
     <div v-if="loading"><loader></loader></div>
 
@@ -17,7 +17,7 @@
           /></router-link>
           <div
             style="opacity: 0.9"
-            class="uk-overlay uk-overlay-primary uk-position-right uk-transition-slide-right uk-width-medium"
+            class="uk-overlay uk-overlay-primary uk-position-right uk-transition-slide-right"
           >
             <p class="uk-margin-remove">Title: {{ image.title }}</p>
             <p class="uk-margin-remove">Author: {{ image.name }}</p>
@@ -50,8 +50,10 @@
         uk-slideshow-item="next"
       ></a>
     </div>
-    <div style="max-height: 500px;overflow: auto;border-radius:15px"
-      uk-dropdown="mode:click;pos: right-center;duration:2000"
+
+<!--    Dropdown -->
+    <div style="max-height: 500px;overflow: auto;border-radius:15px;width: 300px"
+      uk-dropdown="mode:click;pos: right-center;duration:2000" class="uk-section uk-section-muted"
     >
       <div v-if="comments.length != 0">
         <h3 v-if="comments.length > 1">{{ comments.length }} Comments</h3>

@@ -21,7 +21,7 @@
                                     <i class="fa fa-user-plus"> fren</i>
                                 </button>
 
-                                <div style="margin-bottom: auto;margin-left: 25px" v-else class="uk-alert-primary" uk-alert>
+                                <div style="margin-bottom: auto;" v-else class="uk-alert-primary" uk-alert>
                                     <a class="uk-alert-close" uk-close ></a>
                                     <p>
                                         {{ msg }}<span>{{ use.name }}</span>
@@ -32,8 +32,8 @@
                     </div>
                 </div>
 
-                <a style="color: #00c7ff" class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                <a style="color: #00c7ff" class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                <a style="color: #009b3a" class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a style="color: #009b3a" class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
             </div>
 
@@ -164,7 +164,8 @@
         padding: 0;
         margin:10px;
         /*background-color: black;*/
-        color: rgb(136, 172, 217);
+        /*color: rgb(136, 172, 217);*/
+        color: black;
     }
 
     .card .header-bg {
@@ -174,7 +175,8 @@
         left: 0;
         width: 100%;
         height: 70px;
-        border-bottom: 1px rgba(0, 155, 58, 0.9) solid;
+        /*border-bottom: 1px rgba(0, 155, 58, 0.9) solid;*/
+        border-bottom: 1px #e9ebee solid;
         /* This positions the canvas under the text */
         z-index: 1;
     }
@@ -191,10 +193,11 @@
         -moz-border-radius: 50%;
         border-radius: 50%;
         border: 5px solid  rgba(0, 155, 58, 0.9);
+        /*border: 5px solid #e9ebee;*/
     }
     button{
-        /*width: 100%;*/
-/*background-color:rgba(254, 209, 0, 0.9);*/
+
         background-color:  rgba(254, 209, 0, 0.9) ;
+        /*background-color: #e9ebee;*/
     }
 </style>

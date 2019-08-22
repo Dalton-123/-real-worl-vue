@@ -1,46 +1,49 @@
 <template>
-  <div>
+  <div >
     <div>
       <navbar></navbar>
     </div>
 
-    <div  style="background-color: #e9ebee">
+ <div  style="background-color: #e9ebee">
       <div class="" style="background-color: #e9ebee">
-          <topMemes></topMemes>
+        <topMemes></topMemes>
       </div>
 
       <div style="margin: 50px;background-color: #e9ebee" >
         <div class="row ">
-          <div class="col-xs-7 col-sm-6 col-lg-2">
-            <div class="card test">
-                <Grid></Grid>
+          <div class="col-xs-7 col-sm-6 col-lg-1">
+            <div class=" test">
+              <Grid></Grid>
             </div>
           </div>
 
           <div class="col-xs-5 col-sm-6 col-lg-8">
             <div  style="background-color: #e9ebee">
-              <div style="margin: 5px">
+              <div style="margin: 5px " >
                 <!--                    <cor></cor>-->
                 <div class="card">
                   <timestamp></timestamp>
                 </div>
-                <div style="margin: 10px">
-                    <div class="card ">
-                        <cor></cor>
-                    </div>
+                <div style="">
+                  <div class="card ">
+                    <cor></cor>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="col-xs-5 col-sm-6 col-lg-2  ">
+          <div class="col-xs-5 col-sm-6 col-lg-3  ">
             <div class="card test">
-                <frens></frens>
+              <frens></frens>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
+
   </div>
 </template>
 
@@ -62,7 +65,9 @@ export default {
     // window.location.reload()
   },
   data() {
-    return {};
+    return {
+      image:'user.svg'
+    };
   },
   created() {
     this.$store.dispatch("IDs");
@@ -105,7 +110,7 @@ export default {
         z-index: 100;
     }
 
-    .card .avatar img {
+    .card .avatar  {
         width: 100px;
         height: 100px;
         -webkit-border-radius: 50%;

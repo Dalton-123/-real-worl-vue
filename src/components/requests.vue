@@ -2,7 +2,7 @@
   <div>
    <div>
      <a class="" uk-toggle="target: #friends"
-     ><i class="fa fa-user-plus">requests</i><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color:#009b3a" class="uk-badge">{{friends.length}}</span>
+     ><img :src=" '/' + images " alt=""><span style="position:relative;top:-15px;left:-10px;margin-top: 5px;background-color:#009b3a" class="uk-badge">{{friends.length}}</span><span class="uk-text-bold" style="overflow: hidden">Request</span>
      </a
      >
      <div id="friends" uk-offcanvas="overlay: true">
@@ -49,7 +49,8 @@ export default {
     return {
       id: firebase.auth().currentUser.uid,
       status: null,
-      friends:[]
+      friends:[],
+      images:'requests.svg'
     };
   },
   firestore() {
