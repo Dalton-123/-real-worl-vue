@@ -7,8 +7,8 @@
         <div class="col-md-3 register-left">
           <img src="https://cdn.pixabay.com/photo/2012/04/26/19/07/crab-42880__340.png" alt=""/>
           <h3>Welcome</h3>
-          <p>You are 30 seconds away from earning your own money!</p>
-          <input type="submit" name="" value="Login"/><br/>
+          <p style="font-size: 1.2em">By signing up, I agree to  Memes Galleries <span><TermsCondition></TermsCondition></span>.</p>
+          <router-link to="/login"><input style="background: #fed100;color:white" type="submit" name="" value="Login"/></router-link><br/>
         </div>
         <div class="col-md-9 register-right">
 <!--          <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">-->
@@ -25,93 +25,103 @@
               <div class="row register-form">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *" value="" />
+                    <input type="text" class="form-control" placeholder="Email *" v-model="email" />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                    <input type="password" class="form-control" placeholder="Password *" v-model="password" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <div class="maxl">
-                      <label class="radio inline">
-                        <input type="radio" name="gender" value="male" checked>
-                        <span> Male </span>
-                      </label>
-                      <label class="radio inline">
-                        <input type="radio" name="gender" value="female">
-                        <span>Female </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Your Email *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                      <option>What is your Birthdate?</option>
-                      <option>What is Your old Phone Number</option>
-                      <option>What is your Pet Name?</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
-                  </div>
-                  <input type="submit" class="btnRegister"  value="Register"/>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <h3  class="register-heading">Apply as a Hirer</h3>
-              <div class="row register-form">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
+                    <input  class="form-control" placeholder="Your Phone *" v-model.number="number" type="number">
                   </div>
 
-
+                  <div class="form-group">
+                    <input  class="form-control" placeholder="Alias *" v-model="alias" type="text">
+                  </div>
+                  <div class="form-group">
+                    <p style="color: red" v-if="feedback" class="red-text center">{{ feedback }}</p>
+                  </div>
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" name="alias" v-model="alias" class="form-control"  placeholder="Alias *"/>-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <div class="maxl">-->
+<!--                      <label class="radio inline">-->
+<!--                        <input type="radio" name="gender" value="male" checked>-->
+<!--                        <span> Male </span>-->
+<!--                      </label>-->
+<!--                      <label class="radio inline">-->
+<!--                        <input type="radio" name="gender" value="female">-->
+<!--                        <span>Female </span>-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                  </div>-->
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-                  </div>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                      <option>What is your Birthdate?</option>
-                      <option>What is Your old Phone Number</option>
-                      <option>What is your Pet Name?</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="`Answer *" value="" />
-                  </div>
-                  <input type="submit" class="btnRegister"  value="Register"/>
-                </div>
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="email" class="form-control" placeholder="Your Email *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <select class="form-control">-->
+<!--                      <option class="hidden"  selected disabled>Please select your Sequrity Question</option>-->
+<!--                      <option>What is your Birthdate?</option>-->
+<!--                      <option>What is Your old Phone Number</option>-->
+<!--                      <option>What is your Pet Name?</option>-->
+<!--                    </select>-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />-->
+<!--                  </div>-->
+<!--                  <input type="submit" class="btnRegister"  value="Register"/>-->
+<!--                </div>-->
               </div>
             </div>
+<!--            <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+<!--              <h3  class="register-heading">Apply as a Hirer</h3>-->
+<!--              <div class="row register-form">-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" class="form-control" placeholder="First Name *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" class="form-control" placeholder="Last Name *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="email" class="form-control" placeholder="Email *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />-->
+<!--                  </div>-->
+
+
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="password" class="form-control" placeholder="Password *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" />-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <select class="form-control">-->
+<!--                      <option class="hidden"  selected disabled>Please select your Sequrity Question</option>-->
+<!--                      <option>What is your Birthdate?</option>-->
+<!--                      <option>What is Your old Phone Number</option>-->
+<!--                      <option>What is your Pet Name?</option>-->
+<!--                    </select>-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="text" class="form-control" placeholder="`Answer *" value="" />-->
+<!--                  </div>-->
+            <div class="form-group">
+              <button @click="signup"class="btnRegister">Signup</button>
+            </div>
+<!--                  <input type="submit"   value="Register"/>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -212,7 +222,7 @@ export default {
               });
             })
               .then(() => {
-                this.$router.push({ name: "GMap" ,params:{id:'Animated'}});
+                this.$router.push({ name: "UserProfile" });
 
               })
               .catch(err => {
@@ -291,18 +301,19 @@ export default {
   border: none;
   border-radius: 1.5rem;
   padding: 2%;
-  background: #0062cc;
+  background: #fed100;
   color: #fff;
   font-weight: 600;
-  width: 50%;
+  width: 10%;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .register .nav-tabs{
   margin-top: 3%;
   border: none;
   background: #0062cc;
   border-radius: 1.5rem;
-  width: 28%;
+  width: 18%;
   float: right;
 }
 .register .nav-tabs .nav-link{

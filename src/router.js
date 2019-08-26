@@ -70,11 +70,7 @@ const router = new Router({
           props: true
         },
 
-        {
-          path: "/user",
-          name: "UserProfile",
-          component: user
-        },
+
 
 
         {
@@ -102,7 +98,11 @@ const router = new Router({
       name: "TermsCondition",
       component: TermsCondition
     },
-
+    {
+      path: "/user",
+      name: "UserProfile",
+      component: user
+    },
     {
       path: "/timestamp",
       name: "timestamp",
@@ -140,7 +140,7 @@ router.beforeEach((to, from, next) => {
     if (user.emailVerified == true) {
       next();
     } else {
-      next('/');
+      next('/login');
 
         UIkit.notification({
           message: '<span uk-icon=\'icon: lock\'></span> You need to check your email for a confirmation link!',

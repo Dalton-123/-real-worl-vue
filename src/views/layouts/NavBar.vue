@@ -42,7 +42,7 @@
               <a href=""> <i class="fa fa-shopping-cart">cart</i></a>
           </li>
           <li v-if="user">
-            <a href="" @click="profile"
+            <a href=""
               ><i class="fa fa-user">{{ user.email }}</i></a
             >
           </li>

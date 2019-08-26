@@ -6,12 +6,27 @@
         <img :src="imageUrl" alt="" width="100px" height="100px">
         <form @submit.prevent="sendMessage">
          <div>
-           <div class="d-flex" style="margin-top: 10px">
+           <div class="uk-grid-small uk-flex-middle uk-child-width-1-3" uk-grid style="">
              <div class="uk-width-auto ">
                <img width="40" height="40" class="uk-border-circle" src="@/assets/avatar.svg">
              </div>
-             <div class="input-group ">
-               <input type="text" placeholder="Comment..." v-model="message" />
+
+               <form style="margin-top: 50px">
+                   <div class="form-group">
+                       <input type="text" class="form-control" placeholder="Comment..." v-model="message" />
+
+                   </div>
+                   <div>
+                       <span @click="sendMessage" class="uk-badge" style="background-color: red"> <i style="color: blue" class="fa fa-send"></i></span>
+                       <span @click="upload" class="ml-3 uk-badge"> <i style="color: blue" class="fa fa-camera "></i></span>
+                       <span @click="shows" class="uk-badge" style="background-color: blue">&#128578;</span>
+                       <div v-if="show">
+                           <new></new>
+                       </div>
+                   </div>
+               </form>
+
+             <div class="form-group ">
 
               <div v-for="emoji in showEmoji">
                 <p v-if="show">{{emoji}}</p>
@@ -19,12 +34,7 @@
 
                <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="uploadFile"/>
 
-               <span @click="sendMessage" class="uk-badge" style="background-color: red"> <i style="color: blue" class="fa fa-send"></i></span>
-               <span @click="upload" class="ml-3 uk-badge"> <i style="color: blue" class="fa fa-camera "></i></span>
-               <span @click="shows" class="uk-badge" style="background-color: blue">&#128578;</span>
-               <div v-if="show">
-                 <new></new>
-               </div>
+
              </div>
            </div>
 

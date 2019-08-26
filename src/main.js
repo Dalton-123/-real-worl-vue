@@ -29,6 +29,7 @@ import userMemes from '@/views/userMemes'
 import likes from "@/components/frames/likes";
 import timestamp from "./components/timestamp";
 import update from '@/components/User/UpdateProfile'
+import TermsCondition from '@/components/auth/TermsCondition'
 import VueFirestore from 'vue-firestore'
 
 
@@ -80,6 +81,7 @@ Vue.component('Gif',Gif)
 Vue.component('timestamp',timestamp)
 Vue.component('Grid',Grid)
 Vue.component('update',update)
+Vue.component('TermsCondition',TermsCondition)
 import Grid from "./components/Grid";
 
 
