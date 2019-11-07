@@ -88,7 +88,7 @@
                      :lineLinked="true"
                      :lineOpacity="0.4"
                      :linesDistance="150"
-                     :moveSpeed="6"
+                     :moveSpeed="10"
                      :hoverEffect="true"
                      hoverMode="grab"
                      :clickEffect="true"
@@ -106,27 +106,27 @@
 
 
 
-    <div class="testStep1" uk-scrollspy-class="uk-animation-slide-top">
-      <div class="login container uk-card uk-card-default">
-        <form @submit.prevent="login" class="card">
-          <h2 class=" center test">login</h2>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="text" name="email" v-model="email" />
-          </div>
-          <div class="field">
-            <label for="password">Password</label>
-            <input type="password" name="password" v-model="password" />
-          </div>
-          <p v-if="feedback" style="color:red" class="center red-text-centered">
-            {{ feedback }}
-          </p>
-          <div class="field center">
-            <button @click="login" class="tests">login</button>
-          </div>
-        </form>
-      </div>
-    </div>
+<!--    <div class="testStep1" uk-scrollspy-class="uk-animation-slide-top">-->
+<!--      <div class="login container uk-card uk-card-default">-->
+<!--        <form @submit.prevent="login" class="card">-->
+<!--          <h2 class=" center test">login</h2>-->
+<!--          <div class="field">-->
+<!--            <label for="email">Email</label>-->
+<!--            <input type="text" name="email" v-model="email" />-->
+<!--          </div>-->
+<!--          <div class="field">-->
+<!--            <label for="password">Password</label>-->
+<!--            <input type="password" name="password" v-model="password" />-->
+<!--          </div>-->
+<!--          <p v-if="feedback" style="color:red" class="center red-text-centered">-->
+<!--            {{ feedback }}-->
+<!--          </p>-->
+<!--          <div class="field center">-->
+<!--            <button @click="login" class="tests">login</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
 
 
 

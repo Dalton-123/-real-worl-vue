@@ -8,7 +8,7 @@
     <div
       class="uk-position-relative uk-visible-toggle uk-light"
       tabindex="-1"
-      uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 3000;"
+      uk-slideshow="autoplay: true; autoplay-interval: 2000;"
     >
       <ul class="uk-slideshow-items">
         <li v-for="image in images" :key="image.timestamp">

@@ -6,7 +6,7 @@
                 <div class="uk-navbar-left uk-container">
 
                     <ul class="uk-navbar-nav">
-                      <li><a ><img src="https://cdn.pixabay.com/photo/2012/04/26/19/07/crab-42880__340.png" width="70" height="70" alt=""/></a></li>
+                      <li  > <router-link to="/GMap/Animated"><a ><img  src="https://cdn.pixabay.com/photo/2012/04/26/19/07/crab-42880__340.png" width="70" height="70" alt=""/></a></router-link></li>
 <!--                      <li ><hr class="uk-divider-vertical" ></li>-->
 <!--                      <li><a href=""><h1>Meme Galleries</h1></a></li>-->
                       <li class="">
@@ -98,6 +98,9 @@ export default {
         .auth()
         .signOut()
 
+    },
+    home(){
+      this.$router.push({name:'GMap',params:{id:'Animated'}})
     }
   },
   created() {
@@ -127,9 +130,9 @@ export default {
 
 <style scoped>
     .header-holder.tt-logo-center {
-        background-image: linear-gradient(to bottom, #fed100, #009b3a  84%);
-        -pie-background: linear-gradient(to bottom, #fed100, #009b3a  84%);
-      background-color: #4267b2;
+        /*background-image: linear-gradient(to bottom, #fed100, #009b3a  84%);*/
+        /*-pie-background: linear-gradient(to bottom, #fed100, #009b3a  84%);*/
+      background-color: white;
       border-bottom: 1px solid #29487d;
       opacity: 0.9;
     }

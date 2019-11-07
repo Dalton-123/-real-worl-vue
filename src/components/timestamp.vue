@@ -2,8 +2,8 @@
     <div class="uk-container uk-section uk-section-muted" style="margin-top: 0px" >
         <div uk-slider="center: true">
 <h3>People you may know</h3>
-            <div  class="uk-position-relative uk-visible-toggle uk-light " tabindex="-1">
-                <div class=" uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m" >
+            <div  class="uk-position-relative uk-visible-toggle uk-light " tabindex="-1" >
+                <div class=" uk-slider-items uk-child-width-1-1@s uk-child-width-1-3@m" >
                     <div class="card" v-for="use in users">
                         <canvas class="header-bg" width="20" height="70" id="header-blur"></canvas>
                         <div class="avatar">

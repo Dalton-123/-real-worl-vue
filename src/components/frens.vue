@@ -2,21 +2,22 @@
     <div class="">
 
 <!--        <img :src="'/' + images" alt="">-->
-        <img  style="opacity: 0.7"  src="https://cdn.pixabay.com/photo/2016/06/16/00/04/jamaica-1460207__340.jpg" alt="">
+<!--        <img  style="opacity: 0.7"  src="https://cdn.pixabay.com/photo/2016/06/16/00/04/jamaica-1460207__340.jpg" alt="">-->
+        <!--Input Field-->
+        <div class="col-auto" style="margin-top: 50px">
+            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-search"></i></div>
+                </div>
+                <input  type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+            </div>
+        </div>
+
         <div class="uk-card-header" v-if="frens.length !=0 || Friends.length !=0">
 
             <!--  For who sends fren request -->
             <h3 class="uk-text-bold">Your Frens</h3>
-<!--Input Field-->
-            <div class="col-auto">
-                <label class="sr-only" for="inlineFormInputGroup">Username</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fa fa-search"></i></div>
-                    </div>
-                    <input  type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
-                </div>
-            </div>
 
 
 
@@ -59,7 +60,7 @@
         <div v-else>
             <h3>You have no frens</h3>
             <hr>
-            <hr>
+
             <span style='font-size:200px;'>&#128577;</span></div>
 
 
@@ -114,9 +115,7 @@
                 console.error(err)
             })
         },
-        // mounted() {
-        //     UIkit.offcanvas("#me").show();
-        // }
+
     }
 </script>
 

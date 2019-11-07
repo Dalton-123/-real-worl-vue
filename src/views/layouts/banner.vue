@@ -1,39 +1,22 @@
 <template>
-   <div style="background-color: #0a2b4e">
-       <div class="uk-position-relative">
-           <nav class="uk-navbar-container " uk-navbar  style="background-color: #0a2b4e">
-
-           <div class="uk-navbar-left container uk-text-center">
-
-               <ul class="uk-navbar-nav ">
-                   <li><div class="uk-margin">
-                       <form class="uk-search uk-search-default uk-container uk-container-small">
-                           <input class="uk-search-input" type="search" placeholder="Search..." style="border: 1px solid black;border-radius: 10px;background-color: white;margin: 4px">
-                       </form>
-                   </div></li>
-               </ul>
-
+   <div style="">
+       <div id="modal-full" class="uk-modal-full" uk-modal>
+           <div class="uk-modal-dialog">
+               <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+                   <div class="uk-background-cover uk-container-small" style="background-image: url('crab.JPG');margin:60px" uk-height-viewport></div>
+                   <div class="uk-padding-large ">
+                       <h1>Headline</h1>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                   </div>
+               </div>
            </div>
-
-           <div class="uk-navbar-right">
-
-               <ul class="uk-navbar-nav">
-
-                   <li ><upload></upload></li>
-                   <li style="color: blue" @click=" home"><i class="fa fa-home" style="font-size: 30px"></i></li>
-                   <li><pro></pro></li>
-
-               </ul>
-
-           </div>
-
-           </nav>
        </div>
    </div>
 </template>
 
 <script>
     import upload from '@/views/UploadImages'
+    import UIkit from "uikit";
     export default {
         name: "banner",
         components:{upload},
@@ -41,6 +24,8 @@
             home() {
                 this.$router.push({ name: "GMap", params: { id: "Animated" } });
             },
+        },mounted(){
+            UIkit.modal("#modal-full").show()
         }
     }
 </script>

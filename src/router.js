@@ -23,6 +23,7 @@ import timestamp from "./components/timestamp";
 import Gif from "./components/Gif";
 import Home from "./components/Home";
 import Grid from "./components/Grid";
+import MyProfile from '@/views/layouts/banner'
 
 Vue.use(Router);
 
@@ -43,6 +44,11 @@ const router = new Router({
       path: "/signup",
       name: "signup",
       component: Singup
+    },
+    {
+      path: "/MyProfile",
+      name: "MyProfile",
+      component: MyProfile
     },
     {
       path: "/login",
@@ -140,7 +146,7 @@ router.beforeEach((to, from, next) => {
     if (user.emailVerified == true) {
       next();
     } else {
-      next('/login');
+      next( '/login');
 
         UIkit.notification({
           message: '<span uk-icon=\'icon: lock\'></span> You need to check your email for a confirmation link!',

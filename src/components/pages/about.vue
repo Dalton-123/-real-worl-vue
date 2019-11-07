@@ -8,7 +8,7 @@
 
             </p>
         </div>
-        <div class=" uk-align-center  uk-child-width-expand uk-grid-small uk-text-center" uk-grid style="height: 300px;margin-bottom: 150px">
+        <div class="  uk-child-width-expand uk-grid-small uk-text-center" uk-grid style="height: 300px;margin-bottom: 150px">
             <div>
                 <img src="mom.JPG" alt="">
                 <h2>Sandra Mitchell</h2>
@@ -25,7 +25,7 @@
                 <p>Chief Artistic Director</p>
             </div>
             <div>
-                <a href=""><img src="users.svg" alt=""></a>
+                <a href=""><img src="ceeej.jpg" alt=""></a>
                 <h2>Christopher Rojek</h2>
                 <p>Technology Architect </p>
             </div>
