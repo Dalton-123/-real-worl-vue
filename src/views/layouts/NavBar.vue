@@ -47,21 +47,6 @@
             >
           </li>
 
-<!--          <li v-if="user">-->
-<!--            <span> <sidebar></sidebar></span>-->
-<!--          </li>-->
-<!--          <li v-if="user">-->
-<!--            <a> <requests></requests></a>-->
-<!--          </li>-->
-<!--          <li v-if="user">-->
-<!--            <a> <notification></notification></a>-->
-<!--          </li>-->
-<!--          <li v-if="user">-->
-<!--            <span> <frens></frens></span>-->
-<!--          </li>-->
-<!--          <li v-if="user">-->
-<!--            <a> <upload></upload></a>-->
-<!--          </li>-->
 
           <li v-if="user">
             <a href="" @click="logout"><i class="fa fa-sign-out">logout</i></a>
