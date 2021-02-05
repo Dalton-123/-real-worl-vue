@@ -30,6 +30,7 @@ import likes from "@/components/frames/likes";
 import timestamp from "./components/timestamp";
 import update from '@/components/User/UpdateProfile'
 import TermsCondition from '@/components/auth/TermsCondition'
+import  navi from '@/components/MemeGenerator/Navi.vue'
 import VueFirestore from 'vue-firestore'
 
 
@@ -82,6 +83,7 @@ Vue.component('timestamp',timestamp)
 Vue.component('Grid',Grid)
 Vue.component('update',update)
 Vue.component('TermsCondition',TermsCondition)
+Vue.component('top', navi)
 import Grid from "./components/Grid";
 
 

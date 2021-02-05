@@ -45,5 +45,6 @@
 </script>
 
 <style scoped>
-img{width: 40px;height: 40px;border: 2px solid white}
+img{width: 40px;height: 40px;border: 3px solid green}
+
 </style>

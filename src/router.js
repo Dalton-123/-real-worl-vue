@@ -24,6 +24,8 @@ import Gif from "./components/Gif";
 import Home from "./components/Home";
 import Grid from "./components/Grid";
 import MyProfile from '@/views/layouts/banner'
+import memeGenerator from '@/components/testing'
+import Generator from './components/MemeGenerator/MemeGenerator'
 
 Vue.use(Router);
 
@@ -41,9 +43,21 @@ const router = new Router({
       }
     },
     {
+      path: "/Generator",
+      name: "Generator",
+      component: Generator
+    }
+
+    , {
       path: "/signup",
       name: "signup",
       component: Singup
+    },
+
+    {
+      path: "/memeGenerator",
+      name: "memeGenerator",
+      component: memeGenerator
     },
     {
       path: "/MyProfile",
@@ -107,6 +121,7 @@ const router = new Router({
     {
       path: "/user",
       name: "UserProfile",
+
       component: user
     },
     {

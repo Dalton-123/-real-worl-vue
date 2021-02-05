@@ -44,10 +44,6 @@
                 </div>
                 <router-link :to="'/profile/' + requests.userRequestedAlias " ><span class="uk-text-bold " style="color: #009b3a;">{{ requests.user_requestedName}}</span></router-link>
 
-
-
-
-
                 <div class="" >
                     <button class="btn btn-light" type="button" @click="remove(requests.request_id)" style="color: black;">Unfren</button>
                 </div>
@@ -55,18 +51,12 @@
             </div>
 
             <!--  Smiley face if dont have any frens   -->
-
         </div>
         <div v-else>
             <h3>You have no frens</h3>
             <hr>
 
             <span style='font-size:200px;'>&#128577;</span></div>
-
-
-
-
-
     </div>
 </template>
 
